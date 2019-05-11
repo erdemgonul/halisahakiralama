@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUp">
+
+    <TextView
+        android:id="@+id/title_app"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="118dp"
+        android:layout_marginTop="52dp"
+        android:text="FED YOUR PET"
+        android:textAlignment="center"
+
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/signinmail_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description_app"
+        android:layout_width="256dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:text="sign up to take a pet"
+        android:textAlignment="center"
+
+        android:textSize="25dp"
+        app:fontFamily="casual"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signupmail_input"
+        android:layout_width="280dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="212dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="your email"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signuppassword_input"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="password"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupmail_input" />
+
+    <CheckBox
+        android:id="@+id/acceptterms_checkbox"
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:layout_marginTop="72dp"
+        android:text="I read the terms and accept it."
+        app:layout_constraintBottom_toTopOf="@+id/signinsignin_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signuppassword_input"
+
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/signupsignup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:width="280dp"
+        android:text="sign up"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/haveaccount_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/haveaccount_button"
+        android:layout_width="wrap_content"
+        android:layout_height="29dp"
+        android:layout_marginBottom="44dp"
+        android:width="250dp"
+        android:background="@android:color/transparent"
+        android:text="already have an account ? sign in."
+        android:textAllCaps="false"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

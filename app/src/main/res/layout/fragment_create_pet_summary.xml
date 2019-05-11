@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreatePetSummary">
+
+    <TextView
+        android:id="@+id/title_app"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="42dp"
+        android:text="Your First Pet"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/description_app"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description_app"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="39dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp"
+
+        android:layout_marginStart="52dp"
+        android:text="sign in to see your pet"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/suminfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_app" />
+
+    <TextView
+        android:id="@+id/suminfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginRight="52dp"
+        android:layout_marginStart="52dp"
+        android:text="Lorem ipsum dolor sadipiscing elit. Nam dictum felis a sagittis luctus. Cras suscipit leo in aMorbi orci elit, porttitor a laoreet nec, consectetur vel nisl. "
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_app" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        android:padding="16dip"
+        app:layout_constraintBottom_toTopOf="@+id/sumsubmit_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/suminfo">
+
+        <TextView
+            android:id="@+id/sumtypeanimal2"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/sumpetname"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Type"
+            android:textColor="@color/Black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/sumpetname"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/sumdescriptionanimal"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:text="Name"
+            android:textColor="@color/Black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/sumdescriptionanimal"
+            android:layout_width="fill_parent"
+            android:layout_height="38dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/sumimageanimal"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Description"
+            android:textColor="@color/Black"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/sumimageanimal"
+            android:layout_width="91dp"
+            android:layout_height="58dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="6dip"
+            android:contentDescription="TODO"
+            android:src="@drawable/cat" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/sumsubmit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:width="280dp"
+        android:text="submit"
+        android:textAllCaps="false"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+</android.support.constraint.ConstraintLayout>
