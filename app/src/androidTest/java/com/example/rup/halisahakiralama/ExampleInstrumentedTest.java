@@ -1,4 +1,4 @@
-package com.example.rup.feedyourpet;
+package com.example.rup.halisahakiralama;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

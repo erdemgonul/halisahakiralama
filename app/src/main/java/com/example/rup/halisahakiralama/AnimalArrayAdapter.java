@@ -1,4 +1,4 @@
-package com.example.rup.feedyourpet;
+package com.example.rup.halisahakiralama;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.rup.halisahakiralama.R;
 
 import java.util.List;
 

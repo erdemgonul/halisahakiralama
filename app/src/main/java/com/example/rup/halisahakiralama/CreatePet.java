@@ -1,12 +1,14 @@
-package com.example.rup.feedyourpet;
+package com.example.rup.halisahakiralama;
 
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+
+import com.example.rup.halisahakiralama.R;
+
 public class CreatePet extends FragmentActivity {
 
 
@@ -20,7 +22,6 @@ public class CreatePet extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_screen);
         ViewPager pager = (ViewPager) findViewById(R.id.viewPager);
         pager.setAdapter(new MyPagerAdapter(getSupportFragmentManager()));
     }

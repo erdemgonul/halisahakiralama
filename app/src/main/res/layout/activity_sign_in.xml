@@ -16,7 +16,7 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:layout_marginBottom="30dp"
-        android:text="FED YOUR PET"
+        android:text="Giriş Yap"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"
@@ -25,24 +25,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/description_app"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginBottom="44dp"
-        android:text="sign in to see your pet"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        app:fontFamily="casual"
-        app:layout_constraintBottom_toTopOf="@+id/signinmail_input"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_app" />
 
     <EditText
         android:id="@+id/signinmail_input"
@@ -51,63 +33,82 @@
 
         android:layout_marginStart="65dp"
         android:layout_marginLeft="65dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="your email"
         android:inputType="textEmailAddress"
+
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/signinpassword_input"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_app" />
+        app:layout_constraintTop_toBottomOf="@+id/title_app"
+        app:layout_constraintVertical_bias="0.855" />
 
     <EditText
         android:id="@+id/signinpassword_input"
-        android:layout_width="0dp"
+        android:layout_width="281dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="388dp"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/signinforgotpassword_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="272dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/rounded_button"
+        android:text="Takım Arkadaşı Bulma"
+        android:textSize="18sp"
+        android:theme="@style/Base.V23.Theme.AppCompat"
+        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signinmail_input" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
+        android:layout_width="283dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginBottom="112dp"
-        app:layout_constraintBottom_toTopOf="@+id/signinsignup_button"
-        app:layout_constraintStart_toStartOf="@+id/signinforgotpassword_button"
-        app:layout_constraintTop_toBottomOf="@+id/signinforgotpassword_button" />
+        android:layout_marginTop="64dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
     <Button
         android:id="@+id/signinsignup_button"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="91dp"
         android:layout_marginBottom="52dp"
         android:width="250dp"
         android:background="@android:color/transparent"
         android:text="dont have an account ? create it."
         android:textAllCaps="false"
-        android:textSize="12dp"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/signinforgotpassword_button"

@@ -1,4 +1,4 @@
-package com.example.rup.feedyourpet;
+package com.example.rup.halisahakiralama;
 
 import org.junit.Test;
 

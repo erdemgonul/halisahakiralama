@@ -1,11 +1,12 @@
-package com.example.rup.feedyourpet;
+package com.example.rup.halisahakiralama;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
+
+import com.example.rup.halisahakiralama.R;
 
 public class ForgotPassword extends AppCompatActivity {
     EditText mailtext;

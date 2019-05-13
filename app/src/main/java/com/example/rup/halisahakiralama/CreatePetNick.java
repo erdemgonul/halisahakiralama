@@ -1,4 +1,4 @@
-package com.example.rup.feedyourpet;
+package com.example.rup.halisahakiralama;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.example.rup.halisahakiralama.R;
 
 
 /**

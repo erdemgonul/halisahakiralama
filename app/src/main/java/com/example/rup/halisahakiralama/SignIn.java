@@ -1,16 +1,15 @@
-package com.example.rup.feedyourpet;
+package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
-import android.os.Debug;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.rup.halisahakiralama.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -83,7 +82,7 @@ public class SignIn extends AppCompatActivity {
             //BURDA HTTP POST ATICAN JAVAYA
             // Signed in successfully, show authenticated UI.
             Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
-            SignIn.this.startActivity(new Intent(SignIn.this,Dashboard.class));
+            SignIn.this.startActivity(new Intent(SignIn.this,ChooseJob.class));
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -98,14 +97,7 @@ public class SignIn extends AppCompatActivity {
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account!=null){
-            SignIn.this.startActivity(new Intent(SignIn.this,Dashboard.class));
-        }
-    }
-
-    private void auth(String mail, String password){
-        if(mail!=null && password!=null){
-
-            SignIn.this.startActivity(new Intent(SignIn.this,CreatePet.class));
+            SignIn.this.startActivity(new Intent(SignIn.this,ChooseJob.class));
         }
     }
 }
