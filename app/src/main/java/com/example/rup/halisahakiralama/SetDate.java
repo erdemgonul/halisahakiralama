@@ -11,6 +11,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.example.rup.halisahakiralama.client.City;
+import com.example.rup.halisahakiralama.client.District;
+import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,6 +30,7 @@ public class SetDate extends AppCompatActivity {
 
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
+    TextView textView;
     EditText edittext;
     Button toNextFrag;
     ListView listView;
@@ -32,6 +38,14 @@ public class SetDate extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_date);
+
+        Gson g=new Gson();
+        Bundle extras = getIntent().getExtras();
+        City city =  g.fromJson(extras.getString("il"),City.class);
+        District district = g.fromJson(extras.getString("ilce"),District.class);
+
+        textView=findViewById(R.id.textView3);
+        textView.setText(city.name + "/" + district.name + " için bir tarih belirleyin");
 
         myCalendar = Calendar.getInstance();
 

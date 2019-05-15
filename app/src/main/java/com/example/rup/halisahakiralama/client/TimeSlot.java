@@ -1,10 +1,6 @@
 package com.example.rup.halisahakiralama.client;
 
 import com.google.api.client.util.Key;
-import egcom.hsk.util.ReservationStatus;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class TimeSlot {
     @Key public String date;

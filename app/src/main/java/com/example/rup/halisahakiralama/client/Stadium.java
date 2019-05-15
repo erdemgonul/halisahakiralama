@@ -1,8 +1,6 @@
 package com.example.rup.halisahakiralama.client;
 
 import com.google.api.client.util.Key;
-import egcom.hsk.entity.metadata.City;
-import egcom.hsk.entity.metadata.District;
 
 import java.math.BigDecimal;
 
