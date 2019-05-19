@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -45,8 +46,14 @@ public class ChooseHaliSaha extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_hali_saha);
 
+
+        Bundle  b=getIntent().getExtras();
+        String il=b.getString("il");
+        String ilce=b.getString("ilce") ;
+        Log.d("d",il + ilce );
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.56.1:8080/cities";
+        Toast.makeText(this, il + "    " + ilce, Toast.LENGTH_SHORT).show();
+        String url = "http://192.168.1.103:8080/stadium/" + il + "/" + ilce;
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
@@ -56,13 +63,11 @@ public class ChooseHaliSaha extends Activity {
                         Log.d("d",response);
                         Gson g = new Gson();
 
-                        City[] p = g.fromJson(response, City[].class);
-                        Log.d("d",p[0].name);
+                        final StadiumListResponse p = g.fromJson(response, StadiumListResponse.class);
                         List<String> list=new ArrayList<>();
-                        for(int i=0;i<p.length;i++){
-                            list.add(p[i].name);
+                        for(int i=0;i<p.stadiums.size();i++){
+                            list.add(p.stadiums.get(i).name);
                         }
-                        Log.d("d",list.get(0));
 
                         ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
                                 (ChooseHaliSaha.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0]));
@@ -72,9 +77,10 @@ public class ChooseHaliSaha extends Activity {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                                 System.out.println(i);
-                                Intent intent = new Intent(ChooseHaliSaha.this,ShowHaliSaha.class);
-
-                                intent.putExtra("name",nameCities[i]);
+                                Intent intent = new Intent(ChooseHaliSaha.this,SetDate.class);
+                                intent.putExtra("name",p.stadiums.get(i).name);
+                                intent.putExtra("stadium_id",p.stadiums.get(i).id + "");
+                                Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id+"", Toast.LENGTH_SHORT).show();
                                 ChooseHaliSaha.this.startActivity(intent);
 
 

@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,8 +13,16 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.City;
 import com.example.rup.halisahakiralama.client.District;
 import com.google.gson.Gson;
@@ -21,8 +31,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 public class SetDate extends AppCompatActivity {
@@ -34,6 +46,7 @@ public class SetDate extends AppCompatActivity {
     EditText edittext;
     Button toNextFrag;
     ListView listView;
+    int  stadiumId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +54,11 @@ public class SetDate extends AppCompatActivity {
 
         Gson g=new Gson();
         Bundle extras = getIntent().getExtras();
-        City city =  g.fromJson(extras.getString("il"),City.class);
-        District district = g.fromJson(extras.getString("ilce"),District.class);
+        String  stadiumName =  extras.getString("name");
+        stadiumId =Integer.valueOf(extras.getString("stadium_id"));
 
         textView=findViewById(R.id.textView3);
-        textView.setText(city.name + "/" + district.name + " için bir tarih belirleyin");
+        textView.setText(stadiumName +  " için bir tarih belirleyin");
 
         myCalendar = Calendar.getInstance();
 
@@ -86,37 +99,85 @@ public class SetDate extends AppCompatActivity {
 
             }
         });
-        final String[] array=new String[]{
-                "09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00"
-        };
+
+
+
+
+
+
+
+
 
         listView=findViewById(R.id.list_hours);
-        //(B) adımı
-        ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
-                (this, android.R.layout.simple_list_item_1, android.R.id.text1, array);
 
-        //(C) adımı
-        listView.setAdapter(veriAdaptoru);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println(i);
-                Intent intent = new Intent(SetDate.this, ChooseHaliSaha.class);
-
-                        intent.putExtra("date",edittext.getText());
-                        intent.putExtra("hour",array[i]);
-                        SetDate.this.startActivity(intent);
-
-
-            }
-        });
 
     }
     private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "yyyy-MM-dd"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        String dateStr=sdf.format(myCalendar.getTime());
+        edittext.setText(dateStr);
 
-        edittext.setText(sdf.format(myCalendar.getTime()));
+        getTimeSlotsOfStadium(dateStr,stadiumId);
     }
+    public void getTimeSlotsOfStadium(String date,int id){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "http://192.168.1.103:8080/" + "reservation/time/sheet/" + id + "/" + date;
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        // response
+                        Log.d("d",response);
+                        Gson g = new Gson();
 
+                        TimeSlotResponseList p = g.fromJson(response, TimeSlotResponseList.class);
+
+                        List<String> list=new ArrayList<>();
+                        for(int i=0;i<p.timeSlotDTOs.size();i++){
+                            list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
+                        }
+                        Toast.makeText(SetDate.this, list.size()+"", Toast.LENGTH_SHORT).show();
+                        ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
+                                (SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0]));
+
+                        listView.setAdapter(veriAdaptoru);
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                System.out.println(i);
+                                Intent intent = new Intent(SetDate.this,ShowHaliSaha.class);
+                                //intent.putExtra("name",p.stadiums.get(i).name);
+                                //intent.putExtra("id",p.stadiums.get(i).id);
+
+                                SetDate.this.startActivity(intent);
+
+
+                            }
+                        });
+
+
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s","admin","admin");
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+    }
 }

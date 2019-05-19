@@ -22,6 +22,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -60,21 +61,22 @@ public class LocationSelect extends Activity {
 
     public void getCities(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.56.1:8080/cities";
+        String url = "http://192.168.1.103:8080/cities";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response) {
+                        Toast.makeText(LocationSelect.this,"hey", Toast.LENGTH_LONG).show();
                         // response
                         Log.d("d",response);
                         Gson g = new Gson();
 
-                        City[] p = g.fromJson(response, City[].class);
-                        illerList= Arrays.asList(p);
+                        CityListResponse p = g.fromJson(response, CityListResponse.class);
+                        illerList=p.cities;
                         List<String> list=new ArrayList<>();
-                        for(int i=0;i<p.length;i++){
-                            list.add(p[i].name);
+                        for(int i=0;i<p.cities.size();i++){
+                            list.add(p.cities.get(i).name);
                         }
                         iller=list.toArray(new String[0]);
                         Log.d("d",""+iller.length);
@@ -105,7 +107,7 @@ public class LocationSelect extends Activity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO Auto-generated method stub
-
+                        Toast.makeText(LocationSelect.this, "HATA", Toast.LENGTH_SHORT).show();
                     }
                 }
         ) {
@@ -122,7 +124,7 @@ public class LocationSelect extends Activity {
     }
     public void getDistrictsByCity(String cityName){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.56.1:8080/"+ cityName  + "/districts";
+        String url = "http://192.168.1.103:8080/"+ cityName  + "/districts";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
@@ -193,19 +195,15 @@ public class LocationSelect extends Activity {
         toNextFrag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LocationSelect.this, SetDate.class);
-                intent.putExtra("il",new Gson().toJson(illerList.get(spinner.getSelectedItemPosition())));
-                intent.putExtra("ilce",new Gson().toJson(ilcelerList.get(spinner2.getSelectedItemPosition())));
+                Intent intent = new Intent(LocationSelect.this, ChooseHaliSaha.class);
+                intent.putExtra("il",illerList.get(spinner.getSelectedItemPosition()).name);
+                intent.putExtra("ilce",ilcelerList.get(spinner2.getSelectedItemPosition()).name);
                 LocationSelect.this.startActivity(intent);
 
             }
         });
 
         getCities();
-
-
-
-
 
 
 
