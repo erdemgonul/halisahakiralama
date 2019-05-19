@@ -2,11 +2,13 @@ package com.example.rup.halisahakiralama;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -132,30 +134,52 @@ public class SetDate extends AppCompatActivity {
                         Log.d("d",response);
                         Gson g = new Gson();
 
-                        TimeSlotResponseList p = g.fromJson(response, TimeSlotResponseList.class);
+                        final TimeSlotResponseList p = g.fromJson(response, TimeSlotResponseList.class);
 
                         List<String> list=new ArrayList<>();
                         for(int i=0;i<p.timeSlotDTOs.size();i++){
                             list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
                         }
                         Toast.makeText(SetDate.this, list.size()+"", Toast.LENGTH_SHORT).show();
-                        ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
-                                (SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0]));
+                        ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])){
+                            @Override
+                            public View getView(int position, View convertView, ViewGroup parent) {
 
-                        listView.setAdapter(veriAdaptoru);
+
+                                View view =super.getView(position, convertView, parent);
+                                TextView textView=(TextView) view.findViewById(android.R.id.text1);
+                               if(!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY")) {
+
+                                    Log.d("d" , position + "");
+                                   /*YOUR CHOICE OF COLOR*/
+                                   textView.setBackgroundColor(Color.RED);
+                                   textView.setClickable(false);
+                                    textView.setTextColor(Color.WHITE);
+
+                               }
+                                return view;
+                            }
+
+                        };
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                System.out.println(i);
-                                Intent intent = new Intent(SetDate.this,ShowHaliSaha.class);
-                                //intent.putExtra("name",p.stadiums.get(i).name);
-                                //intent.putExtra("id",p.stadiums.get(i).id);
+                                TextView v=(TextView) view;
 
-                                SetDate.this.startActivity(intent);
+                                if(v.getCurrentTextColor()!= Color.WHITE) {
+                                    System.out.println(i);
+                                    Intent intent = new Intent(SetDate.this, ShowHaliSaha.class);
+                                    //intent.putExtra("name",p.stadiums.get(i).name);
+                                    //intent.putExtra("id",p.stadiums.get(i).id);
 
+                                    SetDate.this.startActivity(intent);
 
+                                }
                             }
                         });
+
+                        listView.setAdapter(veriAdaptoru);
+
 
 
                     }
