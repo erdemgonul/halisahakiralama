@@ -2,6 +2,7 @@ package com.example.rup.halisahakiralama;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,7 +47,8 @@ public class SetDate extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener date;
     TextView textView;
     EditText edittext;
-    Button toNextFrag;
+    Button toNextFrag,pickDateButton;
+    String[] hours;
     ListView listView;
     int  stadiumId;
     @Override
@@ -59,8 +61,6 @@ public class SetDate extends AppCompatActivity {
         String  stadiumName =  extras.getString("name");
         stadiumId =Integer.valueOf(extras.getString("stadium_id"));
 
-        textView=findViewById(R.id.textView3);
-        textView.setText(stadiumName +  " için bir tarih belirleyin");
 
         myCalendar = Calendar.getInstance();
 
@@ -84,9 +84,7 @@ public class SetDate extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                new DatePickerDialog(SetDate.this, date, myCalendar
-                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+               createDatePicker();
             }
         });
 
@@ -102,10 +100,13 @@ public class SetDate extends AppCompatActivity {
             }
         });
 
-
-
-
-
+        pickDateButton=findViewById(R.id.button10);
+        pickDateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createDatePicker();
+            }
+        });
 
 
 
@@ -113,6 +114,11 @@ public class SetDate extends AppCompatActivity {
         listView=findViewById(R.id.list_hours);
 
 
+    }
+    private void createDatePicker(){
+        new DatePickerDialog(SetDate.this, date, myCalendar
+                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
     }
     private void updateLabel() {
         String myFormat = "yyyy-MM-dd"; //In which you need put here
@@ -122,9 +128,9 @@ public class SetDate extends AppCompatActivity {
 
         getTimeSlotsOfStadium(dateStr,stadiumId);
     }
-    public void getTimeSlotsOfStadium(String date,int id){
+    public void getTimeSlotsOfStadium(final String date, int id){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://192.168.1.103:8080/" + "reservation/time/sheet/" + id + "/" + date;
+        String url = StaticVariables.ip_address + "reservation/time/sheet/" + id + "/" + date;
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
@@ -140,6 +146,7 @@ public class SetDate extends AppCompatActivity {
                         for(int i=0;i<p.timeSlotDTOs.size();i++){
                             list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
                         }
+                        hours=list.toArray(new String[0]);
                         Toast.makeText(SetDate.this, list.size()+"", Toast.LENGTH_SHORT).show();
                         ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])){
                             @Override
@@ -163,16 +170,27 @@ public class SetDate extends AppCompatActivity {
                         };
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                            public void onItemClick(AdapterView<?> adapterView, View view,final int i, long l) {
                                 TextView v=(TextView) view;
 
                                 if(v.getCurrentTextColor()!= Color.WHITE) {
-                                    System.out.println(i);
-                                    Intent intent = new Intent(SetDate.this, ShowHaliSaha.class);
-                                    //intent.putExtra("name",p.stadiums.get(i).name);
-                                    //intent.putExtra("id",p.stadiums.get(i).id);
 
-                                    SetDate.this.startActivity(intent);
+
+                                    toNextFrag.setText( hours[i] +" için devam et");
+                                    toNextFrag.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
+
+                                    toNextFrag.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            Intent intent = new Intent(SetDate.this, ShowHaliSaha.class);
+                                            intent.putExtra("hour",hours[i]);
+                                            intent.putExtra("date",date);
+
+
+
+                                            SetDate.this.startActivity(intent);
+                                        }
+                                    });
 
                                 }
                             }

@@ -25,6 +25,7 @@ public class CreatePetNick extends android.support.v4.app.Fragment{
     CreatePet x;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("w");
         View v = inflater.inflate(R.layout.fragment_create_pet_nick, container, false);
         x=(CreatePet) getActivity();
         nickText=v.findViewById(R.id.createpetnick_input);

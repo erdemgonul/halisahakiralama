@@ -4,24 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".SignIn">
 
     <TextView
         android:id="@+id/title_app"
-        android:layout_width="0dp"
+        android:layout_width="338dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
         android:layout_marginLeft="65dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:layout_marginBottom="30dp"
-        android:text="Giriş Yap"
+        android:fontFamily="sans-serif-light"
+        android:text="Halı Saha Kiralama"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/description_app"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/description_app"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginRight="65dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Giriş Yap"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +51,7 @@
     <EditText
         android:id="@+id/signinmail_input"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
 
         android:layout_marginStart="65dp"
         android:layout_marginLeft="65dp"
@@ -37,10 +59,11 @@
         android:layout_marginEnd="65dp"
         android:layout_marginRight="65dp"
         android:layout_marginBottom="16dp"
+        android:drawableLeft="@drawable/button_username"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="your email"
         android:inputType="textEmailAddress"
-
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
         app:layout_constraintBottom_toTopOf="@+id/signinpassword_input"
@@ -53,8 +76,10 @@
     <EditText
         android:id="@+id/signinpassword_input"
         android:layout_width="281dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginBottom="388dp"
+        android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
+        android:drawablePadding="10dp"
         android:ems="10"
         android:hint="password"
         android:inputType="textPassword"
@@ -66,43 +91,49 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="272dp"
-        android:layout_height="60dp"
+        android:layout_width="286dp"
+        android:layout_height="47dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="76dp"
         android:background="@drawable/rounded_button"
-        android:text="Takım Arkadaşı Bulma"
-        android:textSize="18sp"
+        android:backgroundTint="#4751A6"
+        android:fontFamily="sans-serif"
+        android:text="@string/action_sign_in_short"
+        android:textColor="@color/White"
+        android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signinpassword_input"
+        app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="283dp"
+        android:layout_width="291dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="156dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signinsignup_button"
         android:layout_width="wrap_content"
-        android:layout_height="91dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="52dp"
         android:width="250dp"
         android:background="@android:color/transparent"
+        android:fontFamily="sans-serif-medium"
         android:text="dont have an account ? create it."
         android:textAllCaps="false"
         android:textSize="16dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -112,18 +143,20 @@
 
     <Button
         android:id="@+id/signinforgotpassword_button"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="114dp"
+        android:layout_height="21dp"
         android:layout_marginBottom="97dp"
         android:width="240dp"
+
         android:background="@android:color/transparent"
-        android:gravity="end"
+        android:gravity="center"
         android:text="forgot my password"
-        android:textAlignment="textEnd"
+
         android:textAllCaps="false"
         android:textSize="12dp"
         app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
         app:layout_constraintEnd_toEndOf="@+id/signinpassword_input"
-        app:layout_constraintTop_toBottomOf="@+id/signinpassword_input" />
+        app:layout_constraintTop_toBottomOf="@+id/signinpassword_input"
+        app:layout_constraintVertical_bias="0.083" />
 
 </android.support.constraint.ConstraintLayout>

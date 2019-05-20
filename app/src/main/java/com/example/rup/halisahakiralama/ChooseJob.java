@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.rup.halisahakiralama.R;
-
 public class ChooseJob extends Activity {
 
 
@@ -22,13 +20,13 @@ public class ChooseJob extends Activity {
         findHaliSahaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChooseJob.this.startActivity(new Intent(ChooseJob.this,LocationSelect.class));
+                ChooseJob.this.startActivity(new Intent(ChooseJob.this, CitySelect.class));
             }
         });
         findPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChooseJob.this.startActivity(new Intent(ChooseJob.this,LocationSelect.class));
+                ChooseJob.this.startActivity(new Intent(ChooseJob.this, CitySelect.class));
             }
         });
     }

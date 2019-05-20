@@ -2,6 +2,8 @@ package com.example.rup.halisahakiralama;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
@@ -12,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,10 +35,10 @@ import java.util.Map;
 public class ChooseHaliSaha extends Activity {
 
     City[] array;
-    String[] nameCities;
+    String[] halisahaArray;
     Button nextbutton;
-    ViewPager viewPager;
     ListView listView;
+    TextView textView;
 
     public ChooseHaliSaha() {
         // Required empty public constructor
@@ -50,10 +53,20 @@ public class ChooseHaliSaha extends Activity {
         Bundle  b=getIntent().getExtras();
         String il=b.getString("il");
         String ilce=b.getString("ilce") ;
-        Log.d("d",il + ilce );
+
+
+        listView=findViewById(R.id.list_halisaha);
+        textView=findViewById(R.id.halisahalar_text);
+        nextbutton=findViewById(R.id.button9);
+
+        getHalisahalar(il,ilce);
+
+    }
+
+    public void getHalisahalar(String city,String district){
+
         RequestQueue queue = Volley.newRequestQueue(this);
-        Toast.makeText(this, il + "    " + ilce, Toast.LENGTH_SHORT).show();
-        String url = "http://192.168.1.103:8080/stadium/" + il + "/" + ilce;
+        String url = StaticVariables.ip_address + "stadium/" + city + "/" + district;
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
@@ -68,24 +81,35 @@ public class ChooseHaliSaha extends Activity {
                         for(int i=0;i<p.stadiums.size();i++){
                             list.add(p.stadiums.get(i).name);
                         }
-
+                        halisahaArray=list.toArray(new String[0]);
                         ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
-                                (ChooseHaliSaha.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0]));
+                                (ChooseHaliSaha.this, android.R.layout.simple_list_item_1, android.R.id.text1, halisahaArray);
 
                         listView.setAdapter(veriAdaptoru);
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                System.out.println(i);
-                                Intent intent = new Intent(ChooseHaliSaha.this,SetDate.class);
-                                intent.putExtra("name",p.stadiums.get(i).name);
-                                intent.putExtra("stadium_id",p.stadiums.get(i).id + "");
-                                Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id+"", Toast.LENGTH_SHORT).show();
-                                ChooseHaliSaha.this.startActivity(intent);
+                            public void onItemClick(AdapterView<?> adapterView, View view,final int i, long l) {
 
 
+                               nextbutton.setVisibility(View.VISIBLE);
+                               nextbutton.setText( halisahaArray[i] +" görüntüle");
+                               nextbutton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
+
+
+                                nextbutton.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intent = new Intent(ChooseHaliSaha.this,SetDate.class);
+                                        intent.putExtra("name",p.stadiums.get(i).name);
+                                        intent.putExtra("stadium_id",p.stadiums.get(i).id + "");
+                                        Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id+"", Toast.LENGTH_SHORT).show();
+                                        ChooseHaliSaha.this.startActivity(intent);
+                                    }
+                                });
                             }
                         });
+
+
                     }
                 },
                 new com.android.volley.Response.ErrorListener()
@@ -107,16 +131,5 @@ public class ChooseHaliSaha extends Activity {
             }
         };
         queue.add(getRequest);
-
-
-
-
-
-        listView=findViewById(R.id.list_halisaha);
-        //(B) adımı
-
-
-        nextbutton=findViewById(R.id.createpetnext2_button);
-
     }
 }
