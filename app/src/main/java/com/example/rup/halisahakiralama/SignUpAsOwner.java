@@ -1,50 +1,70 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.rup.halisahakiralama.R;
+import com.example.rup.halisahakiralama.client.District;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class SignUp extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class SignUpAsOwner extends AppCompatActivity {
+
     EditText mailtext;
     EditText passwordtext;
     CheckBox termbox;
     Button signupbutton;
     Button haveaccountbutton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_sign_up_as_owner);
 
-        mailtext=findViewById(R.id.signupmail_input);
-        passwordtext=findViewById(R.id.signuppassword_input);
-        termbox=findViewById(R.id.acceptterms_checkbox);
-        signupbutton=findViewById(R.id.signupsignup_button);
-        haveaccountbutton=findViewById(R.id.haveaccount_button);
+
+
+        mailtext=findViewById(R.id.signupmail_inputowner);
+        passwordtext=findViewById(R.id.signuppassword_inputowner);
+        termbox=findViewById(R.id.acceptterms_checkboxowner);
+        signupbutton=findViewById(R.id.signupsignup_buttonowner);
+        haveaccountbutton=findViewById(R.id.haveaccount_buttonowner);
 
         signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(termbox.isChecked()) {
                     try {
-                        newUser(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString());
-                        Toast.makeText(SignUp.this, "helalll", Toast.LENGTH_SHORT).show();
+                        newUserAsOwner(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString());
+                        Toast.makeText(SignUpAsOwner.this, "HELALL", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -61,39 +81,36 @@ public class SignUp extends AppCompatActivity {
         haveaccountbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SignUp.this.startActivity(new Intent(SignUp.this,SignIn.class));
+                SignUpAsOwner.this.startActivity(new Intent(SignUpAsOwner.this,SignInAsOwner.class));
             }
         });
     }
 
-
-    private void newUser(String username,String password) throws JSONException {
+    private void newUserAsOwner(String username,String password) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
 
         jsonBody.put("username", username);
         jsonBody.put("password", password);
-        jsonBody.put("role", "ROLE_USER");
+        jsonBody.put("role", "ROLE_STD_OWNER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                SignUp.this.startActivity(new Intent(SignUp.this,SignIn.class));
-
+                User user=new User();
+                SignUpAsOwner.this.startActivity(new Intent(SignUpAsOwner.this,SignInAsOwner.class));
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
                 System.out.println("FUCK");
-                Toast.makeText(SignUp.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpAsOwner.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
 
             }
         });
 
         queue.add(jsonObject);
     }
-
-
 }

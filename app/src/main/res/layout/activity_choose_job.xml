@@ -104,7 +104,7 @@
         android:id="@+id/button3"
         android:layout_width="248dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="224dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
@@ -112,10 +112,26 @@
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signoutbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/signoutbutton"
+        android:layout_width="248dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="116dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="#4751A6"
+        android:fontFamily="sans-serif"
+        android:text="çıkış yap"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        android:theme="@style/Base.V23.Theme.AppCompat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

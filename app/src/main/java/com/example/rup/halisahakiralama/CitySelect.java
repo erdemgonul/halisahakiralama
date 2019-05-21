@@ -44,7 +44,7 @@ public class CitySelect extends Activity {
     ArrayAdapter<String>adapter2;
     List<City>  illerList;
     List<District>  ilcelerList;
-
+    User user;
     public void getCities(){
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "cities";
@@ -85,6 +85,8 @@ public class CitySelect extends Activity {
                                     public void onClick(View view) {
                                         Intent intent = new Intent(CitySelect.this, IlceSelect.class);
                                         intent.putExtra("il",iller[i]);
+                                        Gson gson=new Gson();
+                                        intent.putExtra("user",gson.toJson(user));
                                         CitySelect.this.startActivity(intent);
                                     }
                                 });
@@ -107,7 +109,7 @@ public class CitySelect extends Activity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s","admin","admin");
+                String creds = String.format("%s:%s",user.username,user.password);
                 String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
                 params.put("Authorization", auth);
                 return params;
@@ -126,6 +128,10 @@ public class CitySelect extends Activity {
         setContentView(R.layout.activity_location_select);
 
         toNextFrag = findViewById(R.id.button7);
+
+        final Gson gson=new Gson();
+        Bundle extras = getIntent().getExtras();
+        user= gson.fromJson(extras.getString("user"),User.class);
 
 
         getCities();

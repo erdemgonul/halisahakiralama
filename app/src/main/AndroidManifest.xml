@@ -18,11 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".IlceSelect"></activity>
+        <activity android:name=".SignUpAsOwner"></activity>
+        <activity android:name=".SignInAsOwner" />
+        <activity android:name=".IlceSelect" />
         <activity android:name=".ApprovedHaliSaha" />
         <activity android:name=".ShowHaliSaha" />
         <activity android:name=".SetDate" />
-        <activity android:name=".CreateAccount"></activity>
         <activity android:name=".ChooseJob" />
         <activity android:name=".SignIn">
             <intent-filter>
@@ -33,7 +34,7 @@
         </activity>
         <activity android:name=".SignUp" />
         <activity android:name=".ForgotPassword" />
-        <activity android:name=".CitySelect"></activity>
+        <activity android:name=".CitySelect" />
         <activity android:name=".Dashboard" />
         <activity android:name=".ChooseHaliSaha" />
     </application>

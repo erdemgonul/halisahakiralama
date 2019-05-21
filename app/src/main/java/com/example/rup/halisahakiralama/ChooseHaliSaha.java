@@ -39,7 +39,7 @@ public class ChooseHaliSaha extends Activity {
     Button nextbutton;
     ListView listView;
     TextView textView;
-
+    User user;
     public ChooseHaliSaha() {
         // Required empty public constructor
     }
@@ -53,7 +53,8 @@ public class ChooseHaliSaha extends Activity {
         Bundle  b=getIntent().getExtras();
         String il=b.getString("il");
         String ilce=b.getString("ilce") ;
-
+        final Gson gson=new Gson();
+        user= gson.fromJson(b.getString("user"),User.class);
 
         listView=findViewById(R.id.list_halisaha);
         textView=findViewById(R.id.halisahalar_text);
@@ -102,6 +103,8 @@ public class ChooseHaliSaha extends Activity {
                                         Intent intent = new Intent(ChooseHaliSaha.this,SetDate.class);
                                         intent.putExtra("name",p.stadiums.get(i).name);
                                         intent.putExtra("stadium_id",p.stadiums.get(i).id + "");
+                                        final Gson gson=new Gson();
+                                        intent.putExtra("user",gson.toJson(user));
                                         Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id+"", Toast.LENGTH_SHORT).show();
                                         ChooseHaliSaha.this.startActivity(intent);
                                     }
@@ -123,8 +126,10 @@ public class ChooseHaliSaha extends Activity {
         ) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
+
+
                 HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s","admin","admin");
+                String creds = String.format("%s:%s",user.username,user.password);
                 String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
                 params.put("Authorization", auth);
                 return params;

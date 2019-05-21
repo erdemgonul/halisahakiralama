@@ -51,6 +51,7 @@ public class SetDate extends AppCompatActivity {
     String[] hours;
     ListView listView;
     int  stadiumId;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +59,8 @@ public class SetDate extends AppCompatActivity {
 
         Gson g=new Gson();
         Bundle extras = getIntent().getExtras();
+
+        user= g.fromJson(extras.getString("user"),User.class);
         String  stadiumName =  extras.getString("name");
         stadiumId =Integer.valueOf(extras.getString("stadium_id"));
 
@@ -185,7 +188,8 @@ public class SetDate extends AppCompatActivity {
                                             Intent intent = new Intent(SetDate.this, ShowHaliSaha.class);
                                             intent.putExtra("hour",hours[i]);
                                             intent.putExtra("date",date);
-
+                                            final Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
 
 
                                             SetDate.this.startActivity(intent);
@@ -214,7 +218,7 @@ public class SetDate extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s","admin","admin");
+                String creds = String.format("%s:%s",user.username,user.password);
                 String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
                 params.put("Authorization", auth);
                 return params;

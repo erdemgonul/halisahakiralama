@@ -41,7 +41,7 @@ public class IlceSelect extends AppCompatActivity {
     List<District>  ilcelerList;
     TextView textView;
     String  ilName;
-
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,38 +54,40 @@ public class IlceSelect extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         ilName =  extras.getString("il");
+        final Gson gson=new Gson();
+        user= gson.fromJson(extras.getString("user"),User.class);
         getDistrictsByCity(ilName);
 
 
     }
 
     public void getDistrictsByCity(final String cityName){
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = StaticVariables.ip_address + cityName  + "/districts";
-        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
-                new com.android.volley.Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("d",response);
-                        Gson g = new Gson();
+                            RequestQueue queue = Volley.newRequestQueue(this);
+                            String url = StaticVariables.ip_address + cityName  + "/districts";
+                            StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                                    new com.android.volley.Response.Listener<String>()
+                                    {
+                                        @Override
+                                        public void onResponse(String response) {
+                                            // response
+                                            Log.d("d",response);
+                                            Gson g = new Gson();
 
-                        District[] p = g.fromJson(response, District[].class);
-                        ilcelerList= Arrays.asList(p);
-                        List<String> list=new ArrayList<>();
-                        for(int i=0;i<p.length;i++){
-                            list.add(p[i].name);
-                        }
-                        ilceler=list.toArray(new String[0]);
+                                            District[] p = g.fromJson(response, District[].class);
+                                            ilcelerList= Arrays.asList(p);
+                                            List<String> list=new ArrayList<>();
+                                            for(int i=0;i<p.length;i++){
+                                                list.add(p[i].name);
+                                            }
+                                            ilceler=list.toArray(new String[0]);
 
-                        listView = (ListView) findViewById(R.id.list_ilceler);
-                        adapter = new ArrayAdapter<String>(getBaseContext(),
-                                android.R.layout.simple_list_item_1, ilceler);
+                                            listView = (ListView) findViewById(R.id.list_ilceler);
+                                            adapter = new ArrayAdapter<String>(getBaseContext(),
+                                                    android.R.layout.simple_list_item_1, ilceler);
 
 
-                        listView.setAdapter(adapter);
-                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                            listView.setAdapter(adapter);
+                                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view,final int i, long l) {
                                 toNextFrag.setVisibility(View.VISIBLE);
@@ -98,6 +100,8 @@ public class IlceSelect extends AppCompatActivity {
                                         Intent intent = new Intent(IlceSelect.this, ChooseHaliSaha.class);
                                         intent.putExtra("ilce",ilceler[i]);
                                         intent.putExtra("il",ilName);
+                                        final Gson gson=new Gson();
+                                        intent.putExtra("user",gson.toJson(user));
                                         IlceSelect.this.startActivity(intent);
                                     }
                                 });
@@ -121,7 +125,7 @@ public class IlceSelect extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s","admin","admin");
+                String creds = String.format("%s:%s",user.username,user.password);
                 String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
                 params.put("Authorization", auth);
                 return params;

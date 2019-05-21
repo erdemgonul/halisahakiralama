@@ -4,53 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".SignIn">
-
-    <TextView
-        android:id="@+id/title_app"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="65dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Halı Saha Kiralama"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".SignInAsOwner">
 
     <TextView
         android:id="@+id/description_app"
-        android:layout_width="0dp"
+        android:layout_width="367dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="65dp"
         android:fontFamily="sans-serif-light"
-        android:text="Giriş Yap"
+        android:text="Halı Sahibi Olarak Giriş Yap"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_app" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <EditText
-        android:id="@+id/signinmail_input"
+        android:id="@+id/signinmailowner_input"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="51dp"
 
         android:layout_marginStart="65dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="52dp"
         android:layout_marginEnd="65dp"
-        android:layout_marginBottom="16dp"
         android:drawableLeft="@drawable/button_username"
         android:drawablePadding="10dp"
         android:ems="10"
@@ -58,18 +38,16 @@
         android:inputType="textEmailAddress"
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/signinpassword_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_app"
-        app:layout_constraintVertical_bias="0.765" />
+        app:layout_constraintTop_toBottomOf="@+id/description_app" />
 
     <EditText
-        android:id="@+id/signinpassword_input"
+        android:id="@+id/signinpasswordowner_input"
         android:layout_width="281dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="20dp"
         android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
         android:drawablePadding="10dp"
         android:ems="10"
@@ -77,18 +55,17 @@
         android:inputType="textPassword"
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/signinforgotpassword_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signinmailowner_input" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonowner"
         android:layout_width="314dp"
-        android:layout_height="52dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
@@ -96,47 +73,46 @@
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button_owner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signinforgotpassword_button" />
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.gms.common.SignInButton
-        android:id="@+id/sign_in_button"
+        android:id="@+id/sign_in_button_owner"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/signinsignup_button"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/signinsignup_button_owner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/signinsignup_button"
+        android:id="@+id/signinsignup_button_owner"
         android:layout_width="325dp"
-        android:layout_height="41dp"
-        android:layout_marginBottom="40dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="112dp"
         android:width="250dp"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif"
 
-        android:text="hesabın yok mu ? kayıt ol"
+        android:text="halısahan mı var ? kayıt ol "
         android:textAllCaps="false"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/halisahagiris_button"
+        app:layout_constraintBottom_toTopOf="@+id/hey123"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/halisahagiris_button"
+        android:id="@+id/hey123"
         android:layout_width="348dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="28dp"
+        android:layout_height="43dp"
+        android:layout_marginBottom="36dp"
         android:width="250dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
-        android:text="halı saha sahibi olarak giriş yap"
+        android:text="müşteri olarak giriş yap"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"
@@ -146,23 +122,26 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/signinforgotpassword_button"
-        android:layout_width="114dp"
+        android:id="@+id/signinforgotpassword_button_owner"
+        android:layout_width="154dp"
         android:layout_height="21dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="64dp"
 
-        android:layout_marginBottom="97dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:width="240dp"
         android:background="@android:color/transparent"
-
+        android:fontFamily="sans-serif"
         android:gravity="center"
         android:text="forgot my password"
         android:textAllCaps="false"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonowner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintHorizontal_bias="0.863"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signinpasswordowner_input"
+        app:layout_constraintVertical_bias="0.409" />
 </android.support.constraint.ConstraintLayout>
