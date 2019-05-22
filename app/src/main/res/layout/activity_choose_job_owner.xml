@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChooseJob">
+    tools:context=".ChooseJobOwner">
 
 
     <TextView
@@ -21,7 +21,6 @@
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +30,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="184dp"
         android:layout_marginEnd="36dp"
         android:fontFamily="sans-serif-light"
         android:textAlignment="center"
@@ -47,7 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="264dp"
         android:layout_marginEnd="36dp"
         android:fontFamily="sans-serif-light"
         android:text="Lütfen Yapmak İstediğiniz İşlemi Seçiniz"
@@ -60,49 +59,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/reservationbutton"
         android:layout_width="248dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="8dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
-        android:text="HalıSaha Kiralama"
+        android:text="Rezervasyonlarım"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="248dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4751A6"
-        android:fontFamily="sans-serif"
-        android:text="Rakip Bulma"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/playerbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/playerbutton"
         android:layout_width="248dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
-        android:text="Rezervasyonlarım"
+        android:text="Oyuncu Bulma"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
@@ -115,7 +96,7 @@
         android:id="@+id/signoutbutton"
         android:layout_width="248dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="116dp"
+        android:layout_marginBottom="96dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"

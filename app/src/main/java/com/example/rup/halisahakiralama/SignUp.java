@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -23,16 +24,23 @@ import org.json.JSONObject;
 
 public class SignUp extends AppCompatActivity {
     EditText mailtext;
+    EditText userNameText;
     EditText passwordtext;
     CheckBox termbox;
     Button signupbutton;
     Button haveaccountbutton;
+    TextView header;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        mailtext=findViewById(R.id.signupmail_input);
+        header=findViewById(R.id.title_app);
+        header.setText(StaticVariables.title);
+
+        mailtext=findViewById(R.id.signupemail_inputowner);
+        userNameText=findViewById(R.id.signupusername_input);
         passwordtext=findViewById(R.id.signuppassword_input);
         termbox=findViewById(R.id.acceptterms_checkbox);
         signupbutton=findViewById(R.id.signupsignup_button);
@@ -43,7 +51,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 if(termbox.isChecked()) {
                     try {
-                        newUser(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString());
+                        newUser(userNameText.getEditableText().toString(),passwordtext.getEditableText().toString(), mailtext.getEditableText().toString());
                         Toast.makeText(SignUp.this, "helalll", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -67,13 +75,14 @@ public class SignUp extends AppCompatActivity {
     }
 
 
-    private void newUser(String username,String password) throws JSONException {
+    private void newUser(String username,String password, String mail) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
 
         jsonBody.put("username", username);
         jsonBody.put("password", password);
+        jsonBody.put("email", mail);
         jsonBody.put("role", "ROLE_USER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {

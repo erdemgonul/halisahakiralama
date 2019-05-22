@@ -37,6 +37,11 @@
         <activity android:name=".CitySelect" />
         <activity android:name=".Dashboard" />
         <activity android:name=".ChooseHaliSaha" />
+        <activity android:name=".ApproveReservation" />
+        <activity android:name=".CancelLastPageReservation" />
+        <activity android:name=".ChooseJobOwner" />
+        <activity android:name=".ShowReservation" />
+        <activity android:name=".SuccessLastPageReservation" />
     </application>
 
 </manifest>

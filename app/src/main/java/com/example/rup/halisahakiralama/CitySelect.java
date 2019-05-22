@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +37,7 @@ public class CitySelect extends Activity {
 
     ViewPager pager;
     Button toNextFrag;
+    TextView header;
 
     private ListView listView;
     private  String[] iller={"null"};
@@ -126,6 +128,9 @@ public class CitySelect extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_select);
+
+        header=findViewById(R.id.textView4);
+        header.setText(StaticVariables.title);
 
         toNextFrag = findViewById(R.id.button7);
 

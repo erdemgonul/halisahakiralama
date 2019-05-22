@@ -4,79 +4,75 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChooseHaliSaha">
+    tools:context=".ApproveReservation">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="26dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="212dp"
         android:fontFamily="sans-serif-light"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/reservation_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/halisahalar_text"
+        android:id="@+id/reservation_text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="62dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="106dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="60dp"
         android:fontFamily="sans-serif-light"
-        android:text="Istanbul'daki Halısahalar"
+        android:text="Onaylanacak Rezervasyonu Seçiniz"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/list_halisaha"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <ListView
-        android:id="@+id/list_halisaha"
+        android:id="@+id/list_reservation"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="137dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="183dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintBottom_toTopOf="@+id/button9"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/halisahalar_text" />
-
+        app:layout_constraintTop_toBottomOf="@+id/halisahalar_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"></ListView>
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="347dp"
+        android:layout_width="373dp"
         android:layout_height="47dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/LightGrey"
         android:fontFamily="sans-serif"
-        android:text="Ayışığı HalısahaSINI GÖRÜNTÜLE"
+        android:text="Devam Etmek İçin Bir Rezervasyon Seçiniz"
         android:textColor="@color/White"
 
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_iller"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

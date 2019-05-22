@@ -34,6 +34,7 @@ import java.util.Map;
 public class IlceSelect extends AppCompatActivity {
 
     Button toNextFrag;
+    TextView header;
 
     private ListView listView;
     private  String[] ilceler = {"null"};
@@ -47,6 +48,8 @@ public class IlceSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ilce_select);
 
+        header=findViewById(R.id.textView4);
+        header.setText(StaticVariables.title);
 
         textView=(TextView) findViewById(R.id.ilceler_text);
         listView=(ListView) findViewById(R.id.list_ilceler);

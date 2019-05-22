@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -32,12 +33,16 @@ public class SignInAsOwner extends AppCompatActivity {
     EditText passwordtext;
     SignInButton signinbutton;
     Button forgotbutton,registerbutton,changeactivity,signasbackend;
+    TextView header;
 
     int RC_SIGN_IN=1;
     GoogleSignInClient mGoogleSignInClient;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_as_owner);
+
+        header=findViewById(R.id.title_app);
+        header.setText(StaticVariables.title);
 
         mailtext=findViewById(R.id.signinmailowner_input);
         passwordtext=findViewById(R.id.signinpasswordowner_input);
@@ -114,7 +119,7 @@ public class SignInAsOwner extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            newUser(account.getDisplayName(),account.getEmail());
+            newUser(account.getDisplayName(),account.getEmail(), account.getEmail());
             Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
             SignInAsOwner.this.startActivity(new Intent(SignInAsOwner.this,ChooseJob.class));
 
@@ -160,10 +165,12 @@ public class SignInAsOwner extends AppCompatActivity {
                     user.username=object.getString("username");
                     user.password=object.getString("originalPassword");
                     user.role=object.getString("role");
+                    user.email=object.getString("email");
+                    user.id=object.getString("id");
 
                     System.out.println("---------- DENEME ");
                     Toast.makeText(SignInAsOwner.this, "HELALL", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(SignInAsOwner.this,ChooseJob.class);
+                    Intent intent=new Intent(SignInAsOwner.this,ChooseJobOwner.class);
 
                     Gson gson=new Gson();
                     intent.putExtra("user",gson.toJson(user));
@@ -184,13 +191,14 @@ public class SignInAsOwner extends AppCompatActivity {
 
         queue.add(jsonObject);
     }
-    private void newUser(final String username, final String password) throws JSONException {
+    private void newUser(final String username, final String password, final String email) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
 
         jsonBody.put("username", username);
         jsonBody.put("password", password);
+        jsonBody.put("email", email);
         jsonBody.put("role", "ROLE_STD_OWNER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
@@ -202,6 +210,8 @@ public class SignInAsOwner extends AppCompatActivity {
                     user.username=object.getString("username");
                     user.password=object.getString("originalPassword");
                     user.role=object.getString("role");
+                    user.id=object.getString("id");
+                    user.email=object.getString("email");
                 } catch (JSONException e) {
                     try {
                         signUserAsOwner(username,password);

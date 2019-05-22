@@ -2,5 +2,5 @@ package com.example.rup.halisahakiralama;
 
 public class User {
 
-    public String username,password,role;
+    public String id,username,password,role, email;
 }

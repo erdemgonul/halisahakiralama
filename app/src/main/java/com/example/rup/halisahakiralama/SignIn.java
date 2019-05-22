@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,6 +40,7 @@ public class SignIn extends Activity {
     EditText passwordtext;
     SignInButton signinbutton;
     Button forgotbutton,registerbutton,tosignasownerbutton,signasbackend;
+    TextView header;
 
     int RC_SIGN_IN=1;
     GoogleSignInClient mGoogleSignInClient;
@@ -46,6 +48,9 @@ public class SignIn extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        header=findViewById(R.id.title_app);
+        header.setText(StaticVariables.title);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().requestProfile()
@@ -121,7 +126,7 @@ public class SignIn extends Activity {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             System.out.println(account.getDisplayName());
-            newUser(account.getDisplayName(),account.getEmail());
+            newUser(account.getDisplayName(),account.getEmail(), account.getEmail());
             //BURDA HTTP POST ATICAN JAVAYA
             // Signed in successfully, show authenticated UI.
             Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
@@ -170,6 +175,8 @@ public class SignIn extends Activity {
                     user.username=object.getString("username");
                     user.password=object.getString("originalPassword");
                     user.role=object.getString("role");
+                    user.id=object.getString("id");
+                    user.email=object.getString("email");
 
                     System.out.println("---------- DENEME ");
                     Toast.makeText(SignIn.this, "HELALL", Toast.LENGTH_SHORT).show();
@@ -195,13 +202,14 @@ public class SignIn extends Activity {
         queue.add(jsonObject);
     }
 
-    private void newUser(final String username, final String password) throws JSONException {
+    private void newUser(final String username, final String password, final String email) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
 
         jsonBody.put("username", username);
         jsonBody.put("password", password);
+        jsonBody.put("email", email);
         jsonBody.put("role", "ROLE_USER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
@@ -213,6 +221,8 @@ public class SignIn extends Activity {
                     user.username=object.getString("username");
                     user.password=object.getString("originalPassword");
                     user.role=object.getString("role");
+                    user.email=object.getString("email");
+                    user.id=object.getString("id");
                 } catch (JSONException e) {
                     try {
                         signUser(username,password);

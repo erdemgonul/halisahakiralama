@@ -9,7 +9,8 @@ import static android.content.Context.WIFI_SERVICE;
 import static android.support.v4.content.ContextCompat.getSystemService;
 
 public class StaticVariables {
-    public static String ip_address="http://10.200.117.167:8080/";
+    public static String ip_address="http://161.9.103.80:8080/";
+    public static String title=" ~ HSK ~ ";
 
 
 

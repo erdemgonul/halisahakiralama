@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -39,10 +40,12 @@ import java.util.Map;
 public class SignUpAsOwner extends AppCompatActivity {
 
     EditText mailtext;
+    EditText userNameText;
     EditText passwordtext;
     CheckBox termbox;
     Button signupbutton;
     Button haveaccountbutton;
+    TextView header;
 
 
     @Override
@@ -50,10 +53,12 @@ public class SignUpAsOwner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_as_owner);
 
+        header=findViewById(R.id.title_app);
+        header.setText(StaticVariables.title);
 
-
-        mailtext=findViewById(R.id.signupmail_inputowner);
+        mailtext=findViewById(R.id.signupemail_inputowner);
         passwordtext=findViewById(R.id.signuppassword_inputowner);
+        userNameText=findViewById(R.id.signupusername_inputowner);
         termbox=findViewById(R.id.acceptterms_checkboxowner);
         signupbutton=findViewById(R.id.signupsignup_buttonowner);
         haveaccountbutton=findViewById(R.id.haveaccount_buttonowner);
@@ -63,7 +68,7 @@ public class SignUpAsOwner extends AppCompatActivity {
             public void onClick(View view) {
                 if(termbox.isChecked()) {
                     try {
-                        newUserAsOwner(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString());
+                        newUserAsOwner(userNameText.getEditableText().toString(),passwordtext.getEditableText().toString(), mailtext.getEditableText().toString());
                         Toast.makeText(SignUpAsOwner.this, "HELALL", Toast.LENGTH_SHORT).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -86,13 +91,14 @@ public class SignUpAsOwner extends AppCompatActivity {
         });
     }
 
-    private void newUserAsOwner(String username,String password) throws JSONException {
+    private void newUserAsOwner(String username,String password, String email) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
 
         jsonBody.put("username", username);
         jsonBody.put("password", password);
+        jsonBody.put("email", email);
         jsonBody.put("role", "ROLE_STD_OWNER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {

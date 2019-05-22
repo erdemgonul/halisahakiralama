@@ -1,12 +1,12 @@
 package com.example.rup.halisahakiralama;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -23,53 +23,44 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.rup.halisahakiralama.client.City;
 import com.google.gson.Gson;
-
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ChooseHaliSaha extends Activity {
-
-    City[] array;
-    String[] halisahaArray;
+public class ApproveReservation extends AppCompatActivity {
+    String[] reservationArray;
     Button nextbutton;
     ListView listView;
     TextView textView, header;
     User user;
-    public ChooseHaliSaha() {
-        // Required empty public constructor
-    }
+    Bundle extras;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_hali_saha);
+        setContentView(R.layout.activity_approve_reservation);
 
-
-        Bundle  b=getIntent().getExtras();
-        String il=b.getString("il");
-        String ilce=b.getString("ilce") ;
         final Gson gson=new Gson();
-        user= gson.fromJson(b.getString("user"),User.class);
+        extras = getIntent().getExtras();
+        user= gson.fromJson(extras.getString("user"),User.class);
 
-        listView=findViewById(R.id.list_halisaha);
-        textView=findViewById(R.id.halisahalar_text);
-        header=findViewById(R.id.textView4);
-        header.setText(StaticVariables.title);
+        listView=findViewById(R.id.list_reservation);
+        textView=findViewById(R.id.reservation_text);
         nextbutton=findViewById(R.id.button9);
 
-        getHalisahalar(il,ilce);
+        header=findViewById(R.id.textView5);
+        header.setText(StaticVariables.title);
 
+        getPendingReservations();
     }
 
-    public void getHalisahalar(String city,String district){
+    public void getPendingReservations(){
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = StaticVariables.ip_address + "stadium/" + city + "/" + district;
+        String url = StaticVariables.ip_address + "reservation/time/sheet/user/" + user.id;
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
@@ -79,38 +70,36 @@ public class ChooseHaliSaha extends Activity {
                         Log.d("d",response);
                         Gson g = new Gson();
 
-                        final StadiumListResponse p = g.fromJson(response, StadiumListResponse.class);
+                        final ReservationListResponse p = g.fromJson(response, ReservationListResponse.class);
                         List<String> list=new ArrayList<>();
-                        for(int i=0;i<p.stadiums.size();i++){
-                            list.add(p.stadiums.get(i).name);
+                        for(int i=0;i<p.reservations.size();i++){
+                            list.add(p.reservations.get(i).stadium + "-" + p.reservations.get(i).user + "-" +
+                                    p.reservations.get(i).reservationDate + "-" + p.reservations.get(i).beginHour + "-" + p.reservations.get(i).endHour);
                         }
-                        halisahaArray=list.toArray(new String[0]);
+                        reservationArray=list.toArray(new String[0]);
                         ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
-                                (ChooseHaliSaha.this, android.R.layout.simple_list_item_1, android.R.id.text1, halisahaArray);
+                                (ApproveReservation.this, android.R.layout.simple_list_item_1, android.R.id.text1, reservationArray);
 
                         listView.setAdapter(veriAdaptoru);
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view,final int i, long l) {
-
-
-                               nextbutton.setVisibility(View.VISIBLE);
-                               nextbutton.setText( halisahaArray[i] +" görüntüle");
-                               nextbutton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
+                                nextbutton.setVisibility(View.VISIBLE);
+                                nextbutton.setText( reservationArray[i] +" görüntüle");
+                                nextbutton.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
 
 
                                 nextbutton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Intent intent = new Intent(ChooseHaliSaha.this,SetDate.class);
-                                        intent.putExtra("name",p.stadiums.get(i).name);
-                                        intent.putExtra("stadium_id",p.stadiums.get(i).id + "");
+                                        Intent intent = new Intent(ApproveReservation.this, ShowReservation.class);
                                         Gson gson=new Gson();
-                                        intent.putExtra("user",gson.toJson(user));
+                                        intent.putExtra("reservation",gson.toJson(p.reservations.get(i)));
                                         gson=new Gson();
-                                        intent.putExtra("stadium",gson.toJson(p.stadiums.get(i)));
-                                        Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id+"", Toast.LENGTH_SHORT).show();
-                                        ChooseHaliSaha.this.startActivity(intent);
+                                        intent.putExtra("user",gson.toJson(user));
+                                        Toast.makeText(ApproveReservation.this, p.reservations.get(i).id+"", Toast.LENGTH_SHORT).show();
+                                        ApproveReservation.this.startActivity(intent);
                                     }
                                 });
                             }

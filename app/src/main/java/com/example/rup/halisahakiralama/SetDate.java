@@ -28,6 +28,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.City;
 import com.example.rup.halisahakiralama.client.District;
+import com.example.rup.halisahakiralama.client.ReservationTime;
+import com.example.rup.halisahakiralama.client.Stadium;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
@@ -46,21 +48,28 @@ public class SetDate extends AppCompatActivity {
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
     TextView textView;
+    TextView header;
     EditText edittext;
     Button toNextFrag,pickDateButton;
     String[] hours;
     ListView listView;
     int  stadiumId;
     User user;
+    Stadium stadium;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_date);
 
+        header=findViewById(R.id.textView5);
+        header.setText(StaticVariables.title);
+
         Gson g=new Gson();
         Bundle extras = getIntent().getExtras();
 
-        user= g.fromJson(extras.getString("user"),User.class);
+        user = g.fromJson(extras.getString("user"),User.class);
+        stadium = g.fromJson(extras.getString("stadium"),Stadium.class);
         String  stadiumName =  extras.getString("name");
         stadiumId =Integer.valueOf(extras.getString("stadium_id"));
 
@@ -186,10 +195,16 @@ public class SetDate extends AppCompatActivity {
                                         @Override
                                         public void onClick(View view) {
                                             Intent intent = new Intent(SetDate.this, ShowHaliSaha.class);
-                                            intent.putExtra("hour",hours[i]);
+                                            ReservationTime reservationTime = new ReservationTime();
+                                            reservationTime.beginHour = hours[i].split("  ---  ")[0];
+                                            reservationTime.endHour = hours[i].split("  ---  ")[1];
                                             intent.putExtra("date",date);
-                                            final Gson gson=new Gson();
+                                            Gson gson=new Gson();
                                             intent.putExtra("user",gson.toJson(user));
+                                            gson=new Gson();
+                                            intent.putExtra("stadium",gson.toJson(stadium));
+                                            gson=new Gson();
+                                            intent.putExtra("hours",gson.toJson(reservationTime));
 
 
                                             SetDate.this.startActivity(intent);
