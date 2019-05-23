@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 
 public class ChooseJobOwner extends Activity {
-    TextView header, userText;
+    TextView  userText;
 
     GoogleSignInClient mGoogleSignInClient;
     Button reservationButton,findPlayerButton,signOutButton;
@@ -29,9 +29,9 @@ public class ChooseJobOwner extends Activity {
         Bundle extras = getIntent().getExtras();
         final User user= gson.fromJson(extras.getString("user"),User.class);
 
-        header=findViewById(R.id.textView2);
+
         userText=findViewById(R.id.textView3);
-        header.setText(StaticVariables.title);
+
         userText.setText("Hoşgeldiniz : " + user.username);
 
         reservationButton=findViewById(R.id.reservationbutton);

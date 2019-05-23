@@ -20,11 +20,11 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 
 public class ShowHaliSaha extends AppCompatActivity {
-    ListView listView;
+
     Stadium stadium;
     String date;
     ReservationTime time;
-    TextView header, name, address, amount, intervalMinutes, dateText;
+    TextView  name, address, amount, intervalMinutes, dateText;
     Button approve;
     User user;
     EditText editText;
@@ -46,11 +46,9 @@ public class ShowHaliSaha extends AppCompatActivity {
         time = gson.fromJson(b.getString("hours"),ReservationTime.class);
 
 
-        header=findViewById(R.id.textView12);
-        header.setText(StaticVariables.title);
 
-        name=findViewById(R.id.name_text);
-        name.setText("İsim: " + stadium.name);
+        name=findViewById(R.id.textView12);
+        name.setText( stadium.name);
 
         address=findViewById(R.id.adres_text);
         address.setText("Adres: " + stadium.address);

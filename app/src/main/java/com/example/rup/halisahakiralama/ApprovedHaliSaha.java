@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApprovedHaliSaha extends AppCompatActivity {
-    TextView header;
+
     Stadium stadium;
     String date, comment;
     ReservationTime time;
@@ -37,11 +37,10 @@ public class ApprovedHaliSaha extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().hide();
+
         setContentView(R.layout.activity_approved_hali_saha);
 
-        header=findViewById(R.id.textView5);
-        header.setText(StaticVariables.title);
+
 
         Bundle b = getIntent().getExtras();
         final Gson gson=new Gson();

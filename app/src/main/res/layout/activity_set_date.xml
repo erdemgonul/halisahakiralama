@@ -12,14 +12,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="212dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-light"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/halisahalar_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,32 +29,30 @@
         android:layout_width="0dp"
         android:layout_height="38dp"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="36dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="sans-serif-light"
         android:text="Bir Gün Belirleyin"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/Birthday"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/list_hours"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="383dp"
+        android:layout_height="253dp"
         android:layout_marginBottom="35dp"
         app:layout_constraintBottom_toTopOf="@+id/setdate_to_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ListView>
+        app:layout_constraintStart_toStartOf="parent"></ListView>
 
     <Button
         android:id="@+id/button10"
-        android:layout_width="286dp"
+        android:layout_width="332dp"
         android:layout_height="44dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -77,15 +75,12 @@
         android:layout_width="345dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:clickable="true"
         app:layout_constraintBottom_toTopOf="@+id/button10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.689"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/halisahalar_text" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
@@ -93,7 +88,7 @@
         android:layout_height="wrap_content"
 
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="52dp"
         android:text="Uygun Saatler"
         android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/list_hours"
@@ -101,24 +96,31 @@
 
     <Button
         android:id="@+id/setdate_to_button"
-        android:layout_width="347dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/next_button"
+
+
         android:backgroundTint="@color/LightGrey"
         android:fontFamily="sans-serif"
         android:text="Devam Etmek İçin Bir Şehir Seç"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/White"
+        android:textSize="20sp"
 
-        android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/list_iller"
+
         app:layout_constraintVertical_bias="0.409" />
 
 

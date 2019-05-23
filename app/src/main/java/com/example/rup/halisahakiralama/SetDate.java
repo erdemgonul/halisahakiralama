@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -48,7 +49,7 @@ public class SetDate extends AppCompatActivity {
     Calendar myCalendar;
     DatePickerDialog.OnDateSetListener date;
     TextView textView;
-    TextView header;
+
     EditText edittext;
     Button toNextFrag,pickDateButton;
     String[] hours;
@@ -56,7 +57,6 @@ public class SetDate extends AppCompatActivity {
     int  stadiumId;
     User user;
     Stadium stadium;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,15 +65,13 @@ public class SetDate extends AppCompatActivity {
 
         setContentView(R.layout.activity_set_date);
 
-        header=findViewById(R.id.textView5);
-        header.setText(StaticVariables.title);
+
 
         Gson g=new Gson();
         Bundle extras = getIntent().getExtras();
 
         user = g.fromJson(extras.getString("user"),User.class);
         stadium = g.fromJson(extras.getString("stadium"),Stadium.class);
-        String  stadiumName =  extras.getString("name");
         stadiumId =Integer.valueOf(extras.getString("stadium_id"));
 
 
@@ -244,4 +242,19 @@ public class SetDate extends AppCompatActivity {
         };
         queue.add(getRequest);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), ChooseHaliSaha.class);
+
+        final Gson gson=new Gson();
+        Bundle extras = getIntent().getExtras();
+        user= gson.fromJson(extras.getString("user"),User.class);
+        myIntent.putExtra("user",gson.toJson(user));
+        myIntent.putExtra("stadium",gson.toJson(stadium));
+        myIntent.putExtra("stadium_id",stadiumId);
+
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
+
 }

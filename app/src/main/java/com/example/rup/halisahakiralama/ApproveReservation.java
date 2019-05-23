@@ -34,7 +34,7 @@ public class ApproveReservation extends AppCompatActivity {
     String[] reservationArray;
     Button nextbutton;
     ListView listView;
-    TextView textView, header;
+    TextView textView;
     User user;
     Bundle extras;
 
@@ -51,8 +51,7 @@ public class ApproveReservation extends AppCompatActivity {
         textView=findViewById(R.id.reservation_text);
         nextbutton=findViewById(R.id.button9);
 
-        header=findViewById(R.id.textView5);
-        header.setText(StaticVariables.title);
+
 
         getPendingReservations();
     }

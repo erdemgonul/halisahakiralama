@@ -43,7 +43,7 @@ public class SignIn extends AppCompatActivity {
     EditText passwordtext;
     SignInButton signinbutton;
     Button forgotbutton,registerbutton,tosignasownerbutton,signasbackend;
-    TextView header;
+
 
     int RC_SIGN_IN=1;
     GoogleSignInClient mGoogleSignInClient;
@@ -58,8 +58,6 @@ public class SignIn extends AppCompatActivity {
 
         setContentView(R.layout.activity_sign_in);
 
-        header=findViewById(R.id.title_app);
-        header.setText(StaticVariables.title);
 
         com.google.android.gms.common.SignInButton  b=findViewById(R.id.sign_in_button);
         setGoogleButtonText(b,"Google İle Oturum Aç");

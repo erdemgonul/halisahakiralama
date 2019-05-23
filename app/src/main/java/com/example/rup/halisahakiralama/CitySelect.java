@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -38,7 +39,7 @@ public class CitySelect extends AppCompatActivity {
 
     ViewPager pager;
     Button toNextFrag;
-    TextView header;
+
 
     private ListView listView;
     private  String[] iller={"null"};
@@ -124,6 +125,16 @@ public class CitySelect extends AppCompatActivity {
     public CitySelect() {
         // Required empty public constructor
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), ChooseJob.class);
+        final Gson gson=new Gson();
+        Bundle extras = getIntent().getExtras();
+        user= gson.fromJson(extras.getString("user"),User.class);
+        myIntent.putExtra("user",gson.toJson(user));
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -132,8 +143,6 @@ public class CitySelect extends AppCompatActivity {
 
         setContentView(R.layout.activity_location_select);
 
-        header=findViewById(R.id.textView4);
-        header.setText(StaticVariables.title);
 
         toNextFrag = findViewById(R.id.button7);
 

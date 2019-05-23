@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 
 public class ChooseJob extends AppCompatActivity {
 
-    TextView header, userText;
+    TextView  userText;
     GoogleSignInClient mGoogleSignInClient;
     Button findHaliSahaButton,findPlayerButton,signOutButton;
     @Override
@@ -33,9 +33,9 @@ public class ChooseJob extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         final User user= gson.fromJson(extras.getString("user"),User.class);
 
-        header=findViewById(R.id.textView2);
+
         userText=findViewById(R.id.textView3);
-        header.setText(StaticVariables.title);
+
         userText.setText("Hoşgeldiniz : " + user.username);
 
         findHaliSahaButton=findViewById(R.id.button2);
@@ -84,7 +84,7 @@ public class ChooseJob extends AppCompatActivity {
                         ChooseJob.this.startActivity(intent);
                     }
                 });
-        Intent intent=new Intent(ChooseJob.this,SignIn.class);
+        Intent intent=new Intent(ChooseJob.this,ChooseAuth.class);
         ChooseJob.this.startActivity(intent);
     }
 }

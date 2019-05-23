@@ -10,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,8 +40,9 @@ public class ChooseHaliSaha extends AppCompatActivity {
     String[] halisahaArray;
     Button nextbutton;
     ListView listView;
-    TextView textView, header;
+    TextView textView;
     User user;
+    String il,ilce;
     public ChooseHaliSaha() {
         // Required empty public constructor
     }
@@ -54,20 +56,33 @@ public class ChooseHaliSaha extends AppCompatActivity {
 
 
         Bundle  b=getIntent().getExtras();
-        String il=b.getString("il");
-        String ilce=b.getString("ilce") ;
+        il=b.getString("il");
+        ilce=b.getString("ilce") ;
         final Gson gson=new Gson();
         user= gson.fromJson(b.getString("user"),User.class);
 
         listView=findViewById(R.id.list_halisaha);
         textView=findViewById(R.id.halisahalar_text);
-        header=findViewById(R.id.textView4);
-        header.setText(StaticVariables.title);
+
         nextbutton=findViewById(R.id.button9);
 
         getHalisahalar(il,ilce);
 
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), IlceSelect.class);
+
+        final Gson gson=new Gson();
+        Bundle extras = getIntent().getExtras();
+        user= gson.fromJson(extras.getString("user"),User.class);
+        myIntent.putExtra("user",gson.toJson(user));
+        myIntent.putExtra("il",il);
+        myIntent.putExtra("ilce",ilce);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
+
 
     public void getHalisahalar(String city,String district){
 

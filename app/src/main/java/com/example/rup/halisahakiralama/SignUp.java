@@ -36,7 +36,7 @@ public class SignUp extends AppCompatActivity {
     CheckBox termbox;
     Button signupbutton;
     Button haveaccountbutton;
-    TextView header;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,9 @@ public class SignUp extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
         setContentView(R.layout.activity_sign_up);
 
-        header=findViewById(R.id.title_app);
-        header.setText(StaticVariables.title);
 
-        mailtext=findViewById(R.id.signupemail_inputowner);
+
+        mailtext=findViewById(R.id.signupmail_input2);
         userNameText=findViewById(R.id.signupusername_input);
         passwordtext=findViewById(R.id.signuppassword_input);
         termbox=findViewById(R.id.acceptterms_checkbox);

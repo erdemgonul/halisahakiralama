@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,7 +35,7 @@ import java.util.Map;
 public class IlceSelect extends AppCompatActivity {
 
     Button toNextFrag;
-    TextView header;
+
 
     private ListView listView;
     private  String[] ilceler = {"null"};
@@ -50,8 +51,7 @@ public class IlceSelect extends AppCompatActivity {
 
         setContentView(R.layout.activity_ilce_select);
 
-        header=findViewById(R.id.textView4);
-        header.setText(StaticVariables.title);
+
 
         textView=(TextView) findViewById(R.id.ilceler_text);
         listView=(ListView) findViewById(R.id.list_ilceler);
@@ -138,4 +138,16 @@ public class IlceSelect extends AppCompatActivity {
         };
         queue.add(getRequest);
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), CitySelect.class);
+        final Gson gson=new Gson();
+        Bundle extras = getIntent().getExtras();
+        user= gson.fromJson(extras.getString("user"),User.class);
+        myIntent.putExtra("user",gson.toJson(user));
+        myIntent.putExtra("il",ilName);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
+
 }

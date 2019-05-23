@@ -51,7 +51,7 @@ public class SignUpAsOwner extends AppCompatActivity {
     CheckBox termbox;
     Button signupbutton;
     Button haveaccountbutton;
-    TextView header;
+
 
 
     @Override
@@ -60,12 +60,10 @@ public class SignUpAsOwner extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
         setContentView(R.layout.activity_sign_up_as_owner);
 
-        header=findViewById(R.id.title_app);
-        header.setText(StaticVariables.title);
 
-        mailtext=findViewById(R.id.signupemail_inputowner);
+        mailtext=findViewById(R.id.signupmail_input2);
         passwordtext=findViewById(R.id.signuppassword_inputowner);
-        userNameText=findViewById(R.id.signupusername_inputowner);
+        userNameText=findViewById(R.id.signupusername_input);
         termbox=findViewById(R.id.acceptterms_checkboxowner);
         signupbutton=findViewById(R.id.signupsignup_buttonowner);
         haveaccountbutton=findViewById(R.id.haveaccount_buttonowner);
