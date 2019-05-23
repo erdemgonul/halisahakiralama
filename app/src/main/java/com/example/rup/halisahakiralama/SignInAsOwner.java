@@ -1,14 +1,18 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,7 +44,15 @@ public class SignInAsOwner extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+
+
+
+
         setContentView(R.layout.activity_sign_in_as_owner);
+        com.google.android.gms.common.SignInButton  b=findViewById(R.id.sign_in_button_owner);
+        setGoogleButtonText(b,"Google İle Oturum Aç");
 
         header=findViewById(R.id.title_app);
         header.setText(StaticVariables.title);
@@ -50,7 +62,7 @@ public class SignInAsOwner extends AppCompatActivity {
 
         signinbutton=findViewById(R.id.sign_in_button_owner);
         forgotbutton=findViewById(R.id.signinforgotpassword_button_owner);
-        registerbutton=findViewById(R.id.signinsignup_button_owner);
+
         changeactivity=findViewById(R.id.hey123);
 
         System.out.println("SELAM");
@@ -60,12 +72,7 @@ public class SignInAsOwner extends AppCompatActivity {
                 SignInAsOwner.this.startActivity(new Intent(SignInAsOwner.this,ForgotPassword.class));
             }
         });
-        registerbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignInAsOwner.this.startActivity(new Intent(SignInAsOwner.this,SignUp.class));
-            }
-        });
+
 
         signasbackend=findViewById(R.id.buttonowner);
         signasbackend.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +139,12 @@ public class SignInAsOwner extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), ChooseAuth.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
     @Override
     protected void onStart() {
         super.onStart();
@@ -146,7 +158,21 @@ public class SignInAsOwner extends AppCompatActivity {
             }
         }
     }
+    protected void setGoogleButtonText(SignInButton signInButton, String buttonText) {
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
 
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                tv.setTextColor(Color.parseColor("#333333"));
+                tv.setTextSize(15);
+
+                return;
+            }
+        }
+    }
     private void signUserAsOwner(final String username, final String password) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "login";

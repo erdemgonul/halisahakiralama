@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -56,6 +57,7 @@ public class SignUpAsOwner extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
         setContentView(R.layout.activity_sign_up_as_owner);
 
         header=findViewById(R.id.title_app);
@@ -111,8 +113,15 @@ public class SignUpAsOwner extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), ChooseAuth.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
 
     private void newUserAsOwner(String username,String password, String mail, String token) throws JSONException {
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();

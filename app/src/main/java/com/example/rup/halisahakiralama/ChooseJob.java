@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.api.client.json.Json;
 import com.google.gson.Gson;
 
-public class ChooseJob extends Activity {
+public class ChooseJob extends AppCompatActivity {
 
     TextView header, userText;
     GoogleSignInClient mGoogleSignInClient;
@@ -24,6 +25,8 @@ public class ChooseJob extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+
         setContentView(R.layout.activity_choose_job);
 
         final Gson gson=new Gson();

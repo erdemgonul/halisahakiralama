@@ -32,6 +32,10 @@ public class ShowHaliSaha extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+
+
         setContentView(R.layout.activity_show_hali_saha);
 
         Bundle b = getIntent().getExtras();

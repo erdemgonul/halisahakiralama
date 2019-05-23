@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseAuth">
+
+    <TextView
+        android:id="@+id/description_app3"
+        android:layout_width="347dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="404dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Halı Sahan Mı Var?"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/signinmail_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/description_app2"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="48dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Halı Saha Mı Arıyorsun?"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/signinmail_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/go_signup"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="164dp"
+        android:width="250dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/myPurple"
+        android:fontFamily="sans-serif"
+
+        android:text="hesap yarat"
+        android:textAllCaps="false"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/go_signup2"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="484dp"
+        android:width="250dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/myPurple"
+        android:fontFamily="sans-serif"
+
+        android:text="hesap yarat"
+        android:textAllCaps="false"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/go_signin2"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="568dp"
+        android:width="250dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/myBlue"
+        android:fontFamily="sans-serif"
+
+        android:text="yönetici hesabına giriş yap"
+        android:textAllCaps="false"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/go_signin"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="252dp"
+        android:width="250dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/myBlue"
+        android:fontFamily="sans-serif"
+        android:text="hesabına giriş yap"
+
+        android:textAllCaps="false"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/description_app3"
+        app:layout_constraintTop_toBottomOf="@+id/go_signin"
+        app:layout_constraintVertical_bias="0.703"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/description_app4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="175dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:text="yoksa"
+            android:textAlignment="center"
+            android:textColor="@color/DimGray"
+            android:textSize="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/description_app3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@+id/go_signin"
+            app:layout_constraintVertical_bias="0.062" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/DimGray"
+            app:layout_constraintBottom_toBottomOf="@+id/description_app4"
+            app:layout_constraintEnd_toStartOf="@+id/description_app4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="150dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/DimGray"
+            app:layout_constraintBottom_toBottomOf="@+id/description_app4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/description_app4"
+            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>

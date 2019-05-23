@@ -37,6 +37,7 @@ public class ApprovedHaliSaha extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().hide();
         setContentView(R.layout.activity_approved_hali_saha);
 
         header=findViewById(R.id.textView5);

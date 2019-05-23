@@ -5,7 +5,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,6 +41,7 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
         setContentView(R.layout.activity_sign_up);
 
         header=findViewById(R.id.title_app);
@@ -98,6 +99,12 @@ public class SignUp extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), ChooseAuth.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
 
     private void newUser(String username,String password, String mail, String token) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
