@@ -60,10 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@drawable/next_button"
-        android:text="kaydol"
+        android:text="ilçe seç"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
-
+        android:backgroundTint="@color/LightGrey"
         android:textColor="@color/White"
         android:textSize="20sp"
         android:theme="@style/Base.V23.Theme.AppCompat"

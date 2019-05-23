@@ -167,14 +167,14 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="248dp"
+        android:layout_width="300dp"
         android:layout_height="49dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myGreen"
+        android:backgroundTint="#45c08a"
         android:fontFamily="sans-serif"
-        android:textAllCaps="false"
         android:text="Halısaha Kiralama"
+        android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
@@ -185,13 +185,13 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="248dp"
+        android:layout_width="300dp"
         android:layout_height="49dp"
 
         android:layout_marginBottom="32dp"
 
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myPurple"
+        android:backgroundTint="#a2356d"
         android:fontFamily="sans-serif"
         android:text="Rakip Bulma"
         android:textAllCaps="false"
@@ -205,15 +205,15 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="248dp"
+        android:layout_width="300dp"
         android:layout_height="49dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myBlue"
+        android:backgroundTint="#00e1d5"
         android:fontFamily="sans-serif"
         android:text="Rezervasyonlarım"
-        android:textColor="@color/White"
         android:textAllCaps="false"
+        android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toTopOf="@+id/signoutbutton"
@@ -223,14 +223,14 @@
 
     <Button
         android:id="@+id/signoutbutton"
-        android:layout_width="248dp"
+        android:layout_width="300dp"
         android:layout_height="49dp"
         android:layout_marginBottom="52dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
-        android:textAllCaps="false"
         android:fontFamily="sans-serif"
         android:text="Çıkış yap"
+        android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"

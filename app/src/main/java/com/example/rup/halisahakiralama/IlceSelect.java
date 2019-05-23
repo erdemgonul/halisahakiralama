@@ -102,6 +102,7 @@ public class IlceSelect extends AppCompatActivity {
                                 toNextFrag.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+
                                         Intent intent = new Intent(IlceSelect.this, ChooseHaliSaha.class);
                                         intent.putExtra("ilce",ilceler[i]);
                                         intent.putExtra("il",ilName);

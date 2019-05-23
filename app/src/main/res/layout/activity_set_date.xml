@@ -101,27 +101,26 @@
         android:layout_height="70dp"
 
         android:layout_marginTop="8dp"
+
+
         android:background="@drawable/next_button"
-
-
         android:backgroundTint="@color/LightGrey"
         android:fontFamily="sans-serif"
         android:text="Devam Etmek İçin Bir Şehir Seç"
         android:textAllCaps="false"
+
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/White"
-        android:textSize="20sp"
 
+        android:textSize="20sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
+
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/list_iller"
-
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintTop_toBottomOf="@+id/list_iller" />
 
 
 </android.support.constraint.ConstraintLayout>

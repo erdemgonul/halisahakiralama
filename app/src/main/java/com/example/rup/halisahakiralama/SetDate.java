@@ -6,9 +6,11 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -98,9 +100,20 @@ public class SetDate extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO Auto-generated method stub
                createDatePicker();
+
             }
         });
+        edittext.setOnTouchListener(new View.OnTouchListener(){
 
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = edittext.getInputType(); // backup the input type
+                edittext.setInputType(InputType.TYPE_NULL); // disable soft input
+                edittext.onTouchEvent(event); // call native handler
+                edittext.setInputType(inType); // restore input type
+                return true; // consume touch even
+            }
+        });
         toNextFrag=findViewById(R.id.setdate_to_button);
         toNextFrag.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,7 +138,7 @@ public class SetDate extends AppCompatActivity {
 
 
         listView=findViewById(R.id.list_hours);
-
+        listView.setVisibility(View.INVISIBLE);
 
     }
     private void createDatePicker(){
@@ -160,12 +173,12 @@ public class SetDate extends AppCompatActivity {
                             list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
                         }
                         hours=list.toArray(new String[0]);
-                        Toast.makeText(SetDate.this, list.size()+"", Toast.LENGTH_SHORT).show();
+
                         ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])){
                             @Override
                             public View getView(int position, View convertView, ViewGroup parent) {
 
-
+                                listView.setVisibility(View.VISIBLE);
                                 View view =super.getView(position, convertView, parent);
                                 TextView textView=(TextView) view.findViewById(android.R.id.text1);
                                if(!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY")) {
