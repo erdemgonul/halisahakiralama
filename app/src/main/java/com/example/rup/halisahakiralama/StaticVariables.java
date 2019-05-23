@@ -10,7 +10,7 @@ import static android.support.v4.content.ContextCompat.getSystemService;
 
 public class StaticVariables {
     public static String ip_address="http://10.200.117.167:8080/";
-
+ 
 
 
 }
