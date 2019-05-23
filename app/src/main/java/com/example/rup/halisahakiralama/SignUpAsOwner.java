@@ -62,11 +62,11 @@ public class SignUpAsOwner extends AppCompatActivity {
 
 
         mailtext=findViewById(R.id.signupmail_input2);
-        passwordtext=findViewById(R.id.signuppassword_inputowner);
         userNameText=findViewById(R.id.signupusername_input);
-        termbox=findViewById(R.id.acceptterms_checkboxowner);
-        signupbutton=findViewById(R.id.signupsignup_buttonowner);
-        haveaccountbutton=findViewById(R.id.haveaccount_buttonowner);
+        passwordtext=findViewById(R.id.signuppassword_input);
+        termbox=findViewById(R.id.acceptterms_checkbox);
+        signupbutton=findViewById(R.id.signupsignup_button);
+        haveaccountbutton=findViewById(R.id.haveaccount_button);
 
         signupbutton.setOnClickListener(new View.OnClickListener() {
             @Override

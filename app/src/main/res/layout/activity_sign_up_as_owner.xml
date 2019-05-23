@@ -9,30 +9,31 @@
 
     <TextView
         android:id="@+id/description_app"
-        android:layout_width="358dp"
-        android:layout_height="84dp"
+        android:layout_width="0dp"
+        android:layout_height="41dp"
         android:layout_marginStart="65dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="65dp"
         android:layout_marginBottom="50dp"
         android:fontFamily="sans-serif-light"
-        android:text="Halı Saha Sahibi Olarak Kayıt Ol"
+        android:text="Kaydol"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/signupmail_inputowner"
+
+        app:layout_constraintBottom_toTopOf="@+id/signupmail_input2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045" />
+        app:layout_constraintVertical_bias="0.205"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <EditText
 
-        android:id="@+id/signupmail_inputowner"
+        android:id="@+id/signupusername_input"
         android:layout_width="335dp"
         android:layout_height="60dp"
-
         android:layout_marginStart="65dp"
         android:layout_marginEnd="65dp"
         android:layout_marginBottom="32dp"
@@ -41,15 +42,36 @@
         android:drawablePadding="10dp"
         android:ems="10"
         android:hint="username"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/signuppassword_inputowner"
+        app:layout_constraintBottom_toTopOf="@+id/signuppassword_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/signuppassword_inputowner"
+
+        android:id="@+id/signupmail_input2"
+        android:layout_width="335dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="32dp"
+        android:autofillHints=""
+        android:drawableLeft="@drawable/button_email"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="email"
+        android:inputType="text"
+
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/signupusername_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/signuppassword_input"
         android:layout_width="335dp"
         android:layout_height="60dp"
         android:layout_marginBottom="32dp"
@@ -60,42 +82,41 @@
         android:inputType="textPassword"
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/acceptterms_checkboxowner"
+        app:layout_constraintBottom_toTopOf="@+id/acceptterms_checkbox"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
-        android:id="@+id/acceptterms_checkboxowner"
-        android:layout_width="321dp"
-        android:layout_height="wrap_content"
-
-        android:layout_marginBottom="100dp"
+        android:id="@+id/acceptterms_checkbox"
+        android:layout_width="333dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="60dp"
         android:text="Sözleşmeyi okudum ve kabul ediyorum."
-        android:textSize="16sp"
 
-        app:layout_constraintBottom_toTopOf="@+id/haveaccount_buttonowner"
+        app:layout_constraintBottom_toTopOf="@+id/haveaccount_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/signupsignup_buttonowner"
-
+        android:id="@+id/signupsignup_button"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="70dp"
         android:background="@drawable/next_button"
-        android:fontFamily="sans-serif"
-        android:text="giriş yap"
+        android:text="kaydol"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+
         android:textColor="@color/White"
         android:textSize="20sp"
-        android:textAllCaps="false"
         android:theme="@style/Base.V23.Theme.AppCompat"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/haveaccount_buttonowner"
+        android:id="@+id/haveaccount_button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:width="250dp"
@@ -103,10 +124,10 @@
         android:fontFamily="sans-serif"
         android:text="zaten hesabın var mı ? oturum aç"
         android:textAllCaps="false"
+
         android:textColor="@color/White"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/signupsignup_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/signupsignup_buttonowner"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>
