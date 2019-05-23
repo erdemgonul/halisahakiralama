@@ -2,15 +2,18 @@ package com.example.rup.halisahakiralama;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -34,7 +37,7 @@ import org.json.JSONObject;
 
 import static android.support.v4.content.ContextCompat.getSystemService;
 
-public class SignIn extends Activity {
+public class SignIn extends AppCompatActivity {
     EditText mailtext;
     EditText passwordtext;
     SignInButton signinbutton;
@@ -45,7 +48,19 @@ public class SignIn extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+
+
+
+
         setContentView(R.layout.activity_sign_in);
+
+        com.google.android.gms.common.SignInButton  b=findViewById(R.id.sign_in_button);
+        setGoogleButtonText(b,"Google İle Oturum Aç");
+
+
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().requestProfile()
@@ -77,13 +92,6 @@ public class SignIn extends Activity {
             }
         });
 
-        tosignasownerbutton=findViewById(R.id.halisahagiris_button);
-        tosignasownerbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignIn.this.startActivity(new Intent(SignIn.this,SignInAsOwner.class));
-            }
-        });
         signinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,6 +112,12 @@ public class SignIn extends Activity {
             }
         });
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), ChooseAuth.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 
     @Override
@@ -232,5 +246,21 @@ public class SignIn extends Activity {
         });
 
         queue.add(jsonObject);
+    }
+
+    protected void setGoogleButtonText(SignInButton signInButton, String buttonText) {
+        // Find the TextView that is inside of the SignInButton and set its text
+        for (int i = 0; i < signInButton.getChildCount(); i++) {
+            View v = signInButton.getChildAt(i);
+
+            if (v instanceof TextView) {
+                TextView tv = (TextView) v;
+                tv.setText(buttonText);
+                tv.setTextColor(Color.parseColor("#333333"));
+                tv.setTextSize(15);
+
+                return;
+            }
+        }
     }
 }

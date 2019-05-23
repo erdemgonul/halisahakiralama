@@ -7,55 +7,36 @@
     tools:context=".SignUp">
 
     <TextView
-        android:id="@+id/title_app"
-        android:layout_width="338dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Halı Saha Kiralama"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/description_app"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/description_app"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="41dp"
         android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="sans-serif-light"
-        android:text="Kayıt Ol"
+        android:text="Kaydol"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/signupmail_input"
         app:layout_constraintEnd_toEndOf="parent"
+
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <EditText
         android:id="@+id/signupmail_input"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_width="335dp"
+        android:layout_height="60dp"
 
         android:layout_marginStart="65dp"
-        android:layout_marginLeft="65dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="65dp"
-        android:layout_marginRight="65dp"
+        android:layout_marginBottom="32dp"
+        android:autofillHints=""
         android:drawableLeft="@drawable/button_username"
         android:drawablePadding="10dp"
         android:ems="10"
@@ -63,20 +44,15 @@
         android:inputType="textEmailAddress"
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signuppassword_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description_app"
-        app:layout_constraintVertical_bias="0.08"
-        android:autofillHints="" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/signuppassword_input"
-        android:layout_width="281dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="388dp"
+        android:layout_width="335dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="32dp"
         android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
         android:drawablePadding="10dp"
         android:ems="10"
@@ -84,60 +60,51 @@
         android:inputType="textPassword"
         android:textColor="@android:color/darker_gray"
         android:textSize="17dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/acceptterms_checkbox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signupmail_input" />
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/acceptterms_checkbox"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_width="333dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="100dp"
         android:text="Sözleşmeyi okudum ve kabul ediyorum."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signuppassword_input"
 
-        />
+        app:layout_constraintBottom_toTopOf="@+id/haveaccount_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signupsignup_button"
-        android:layout_width="320dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="460dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4751A6"
-        android:fontFamily="sans-serif"
-        android:text="sign up"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/next_button"
+        android:text="kaydol"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/White"
-        android:textSize="16sp"
+        android:textSize="20sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/haveaccount_button"
-        android:layout_width="274dp"
-        android:layout_height="36dp"
-        android:layout_marginBottom="56dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:width="250dp"
-        android:background="@android:color/transparent"
+        android:background="@drawable/third_button"
         android:fontFamily="sans-serif"
-        android:text="zaten bir hesabın var mı? oturum aç"
+        android:text="zaten hesabın var mı ? oturum aç"
         android:textAllCaps="false"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/signupsignup_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
 

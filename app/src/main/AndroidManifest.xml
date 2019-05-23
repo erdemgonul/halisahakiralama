@@ -16,22 +16,27 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
+        android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SignUpAsOwner"></activity>
-        <activity android:name=".SignInAsOwner" />
-        <activity android:name=".IlceSelect" />
-        <activity android:name=".ApprovedHaliSaha" />
-        <activity android:name=".ShowHaliSaha" />
-        <activity android:name=".SetDate" />
-        <activity android:name=".ChooseJob" />
-        <activity android:name=".SignIn">
+        <activity android:name=".StartApp">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChooseAuth">
+
+        </activity>
+        <activity android:name=".SignUpAsOwner" />
+        <activity android:name=".SignInAsOwner" />
+        <activity android:name=".IlceSelect" />
+        <activity android:name=".ApprovedHaliSaha" />
+        <activity android:name=".ShowHaliSaha" />
+        <activity android:name=".SetDate" />
+        <activity android:name=".ChooseJob" />
+        <activity android:name=".SignIn"></activity>
         <activity android:name=".SignUp" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".CitySelect" />
