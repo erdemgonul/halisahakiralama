@@ -28,6 +28,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -193,7 +194,7 @@ public class SignIn extends Activity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                System.out.println("FUCK");
+                System.out.println("FUCK" + error.getMessage());
                 Toast.makeText(SignIn.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
 
             }

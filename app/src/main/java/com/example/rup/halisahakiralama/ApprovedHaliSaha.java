@@ -76,13 +76,6 @@ public class ApprovedHaliSaha extends AppCompatActivity {
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                User user=new User();
-                try {
-                    JSONObject object=response.getJSONObject("id");
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
             }
         }, new Response.ErrorListener() {
             @Override

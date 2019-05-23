@@ -3,6 +3,7 @@ package com.example.rup.halisahakiralama;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -26,6 +27,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.District;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -67,12 +72,28 @@ public class SignUpAsOwner extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(termbox.isChecked()) {
-                    try {
-                        newUserAsOwner(userNameText.getEditableText().toString(),passwordtext.getEditableText().toString(), mailtext.getEditableText().toString());
-                        Toast.makeText(SignUpAsOwner.this, "HELALL", Toast.LENGTH_SHORT).show();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    FirebaseInstanceId.getInstance().getInstanceId()
+                            .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                    if (!task.isSuccessful()) {
+                                        return;
+                                    }
+
+                                    // Get new Instance ID token
+                                    String token = task.getResult().getToken();
+
+                                    try {
+                                        newUserAsOwner(userNameText.getEditableText().toString(),passwordtext.getEditableText().toString(), mailtext.getEditableText().toString(), token);
+                                    } catch (JSONException e) {
+                                        System.out.println("FUCK2");
+                                        Toast.makeText(SignUpAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                                    }
+                                    Toast.makeText(SignUpAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
                 }
                 else
                 {
@@ -91,21 +112,22 @@ public class SignUpAsOwner extends AppCompatActivity {
         });
     }
 
-    private void newUserAsOwner(String username,String password, String email) throws JSONException {
+    private void newUserAsOwner(String username,String password, String mail, String token) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
 
         jsonBody.put("username", username);
         jsonBody.put("password", password);
-        jsonBody.put("email", email);
+        jsonBody.put("email", mail);
+        jsonBody.put("fcmPushToken", token);
         jsonBody.put("role", "ROLE_STD_OWNER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                User user=new User();
-                SignUpAsOwner.this.startActivity(new Intent(SignUpAsOwner.this,SignInAsOwner.class));
+                SignUpAsOwner.this.startActivity(new Intent(SignUpAsOwner.this,SignIn.class));
+
             }
         }, new Response.ErrorListener() {
             @Override

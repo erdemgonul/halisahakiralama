@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "102507126209",
+    "firebase_url": "https://halisahakiralama.firebaseio.com",
+    "project_id": "halisahakiralama",
+    "storage_bucket": "halisahakiralama.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102507126209:android:c2737a97b773a421",
+        "android_client_info": {
+          "package_name": "com.example.rup.halisahakiralama"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102507126209-7422ki8hu2ag9i4gr7jgr7v25c3cg55o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8VOc581g9cIxbw4Zm1Oo5P7LQ-djCzYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "102507126209-0l8cben3fg7fsc7nv2aog1up8617krep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
