@@ -47,11 +47,11 @@
     <Button
         android:id="@+id/go_signup"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="49dp"
         android:layout_marginTop="164dp"
         android:width="250dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myPurple"
+        android:backgroundTint="#4d76ff"
         android:fontFamily="sans-serif"
 
         android:text="hesap yarat"
@@ -66,11 +66,11 @@
     <Button
         android:id="@+id/go_signup2"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="49dp"
         android:layout_marginTop="484dp"
         android:width="250dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myPurple"
+        android:backgroundTint="#4d76ff"
         android:fontFamily="sans-serif"
 
         android:text="hesap yarat"
@@ -85,11 +85,11 @@
     <Button
         android:id="@+id/go_signin2"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="49dp"
         android:layout_marginTop="568dp"
         android:width="250dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myBlue"
+        android:backgroundTint="@color/myGreen"
         android:fontFamily="sans-serif"
 
         android:text="yönetici hesabına giriş yap"
@@ -104,11 +104,11 @@
     <Button
         android:id="@+id/go_signin"
         android:layout_width="300dp"
-        android:layout_height="60dp"
+        android:layout_height="49dp"
         android:layout_marginTop="252dp"
         android:width="250dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myBlue"
+        android:backgroundTint="@color/myGreen"
         android:fontFamily="sans-serif"
         android:text="hesabına giriş yap"
 

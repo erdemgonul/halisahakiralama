@@ -191,7 +191,7 @@
         android:layout_marginBottom="32dp"
 
         android:background="@drawable/rounded_button"
-        android:backgroundTint="#a2356d"
+        android:backgroundTint="#4d76ff"
         android:fontFamily="sans-serif"
         android:text="Rakip Bulma"
         android:textAllCaps="false"
@@ -209,7 +209,7 @@
         android:layout_height="49dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="#00e1d5"
+        android:backgroundTint="@color/myPurple"
         android:fontFamily="sans-serif"
         android:text="Rezervasyonlarım"
         android:textAllCaps="false"
