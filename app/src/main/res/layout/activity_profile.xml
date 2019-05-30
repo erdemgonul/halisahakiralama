@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChooseJob">
+    tools:context=".Profil">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/editprofil"
+        app:layout_constraintBottom_toTopOf="@+id/teamButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
@@ -27,7 +27,7 @@
             android:layout_marginEnd="175dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
-            android:text="ya da"
+            android:text="Takım"
             android:textAlignment="center"
             android:textColor="@color/DimGray"
             android:textSize="24dp"
@@ -75,10 +75,10 @@
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/oyuncubul"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/playerButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
@@ -89,7 +89,7 @@
             android:layout_marginEnd="175dp"
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
-            android:text="ya da"
+            android:text="Oyuncu"
             android:textAlignment="center"
             android:textColor="@color/DimGray"
             android:textSize="24dp"
@@ -136,45 +136,44 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif-light"
-        android:text="Neye İhtiyacın Var?"
+        android:text="Profilim"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/rezervationbuttuon"
+        app:layout_constraintBottom_toTopOf="@+id/profilButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.769"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/rezervationbuttuon"
+        android:id="@+id/profilButton"
         android:layout_width="300dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="96dp"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#45c08a"
         android:fontFamily="sans-serif"
-        android:text="Halısaha Kiralama"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/oyuncubul"
+        android:id="@+id/playerButton"
         android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_height="103dp"
 
-        android:layout_marginBottom="96dp"
+        android:layout_marginBottom="28dp"
 
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4d76ff"
         android:fontFamily="sans-serif"
-        android:text="Oyuncu Bulma"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"
@@ -184,52 +183,33 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/rakipbul"
-        android:layout_width="300dp"
-        android:layout_height="49dp"
-
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4d76ff"
-        android:fontFamily="sans-serif"
-        android:text="Rakip Bulma"
-        android:textAllCaps="false"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/editprofil"
+        android:id="@+id/teamButton"
         android:layout_width="300dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="24dp"
+        android:layout_height="103dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/myPurple"
         android:fontFamily="sans-serif"
-        android:text="Profil İşlemlerim"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/signoutbutton"
+        app:layout_constraintBottom_toTopOf="@+id/backbutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/signoutbutton"
+        android:id="@+id/backbutton"
         android:layout_width="300dp"
         android:layout_height="49dp"
         android:layout_marginBottom="52dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
-        android:text="Çıkış yap"
+        android:text="Geri"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"

@@ -21,7 +21,7 @@ public class ChooseJob extends AppCompatActivity {
 
     TextView  userText;
     GoogleSignInClient mGoogleSignInClient;
-    Button findHaliSahaButton,findPlayerButton,signOutButton;
+    Button findHaliSahaButton,findPlayerButton,findTeamButton, profilEdit, signOutButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,18 +34,21 @@ public class ChooseJob extends AppCompatActivity {
         final User user= gson.fromJson(extras.getString("user"),User.class);
 
 
-        userText=findViewById(R.id.textView3);
+        //userText=findViewById(R.id.textView3);
 
-        userText.setText("Hoşgeldiniz : " + user.username);
+        //userText.setText("Hoşgeldiniz : " + user.username);
 
-        findHaliSahaButton=findViewById(R.id.button2);
-        findPlayerButton=findViewById(R.id.button3);
+        findHaliSahaButton=findViewById(R.id.rezervationbuttuon);
+        findPlayerButton=findViewById(R.id.oyuncubul);
+        findTeamButton=findViewById(R.id.rakipbul);
+        profilEdit=findViewById(R.id.editprofil);
         findHaliSahaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent=new Intent(ChooseJob.this, CitySelect.class);
-               intent.putExtra("user",gson.toJson(user));
+                intent.putExtra("user",gson.toJson(user));
+                intent.putExtra("option","Rezervation");
                 ChooseJob.this.startActivity(intent);
             }
         });
@@ -53,6 +56,26 @@ public class ChooseJob extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(ChooseJob.this, CitySelect.class);
+                intent.putExtra("user",gson.toJson(user));
+                intent.putExtra("option","FindPlayer");
+                ChooseJob.this.startActivity(intent);
+            }
+        });
+
+        findTeamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ChooseJob.this, CitySelect.class);
+                intent.putExtra("user",gson.toJson(user));
+                intent.putExtra("option","FindTeam");
+                ChooseJob.this.startActivity(intent);
+            }
+        });
+
+        profilEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(ChooseJob.this, Profil.class);
                 intent.putExtra("user",gson.toJson(user));
                 ChooseJob.this.startActivity(intent);
             }

@@ -44,6 +44,7 @@ public class CitySelect extends AppCompatActivity {
     private ListView listView;
     private  String[] iller={"null"};
     private  String[] ilceler = {"null"};
+    String option;
     ArrayAdapter<String>adapter;
     ArrayAdapter<String>adapter2;
     List<City>  illerList;
@@ -91,6 +92,7 @@ public class CitySelect extends AppCompatActivity {
                                         intent.putExtra("il",iller[i]);
                                         Gson gson=new Gson();
                                         intent.putExtra("user",gson.toJson(user));
+                                        intent.putExtra("option",option);
                                         CitySelect.this.startActivity(intent);
                                     }
                                 });
@@ -131,7 +133,9 @@ public class CitySelect extends AppCompatActivity {
         final Gson gson=new Gson();
         Bundle extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
+        option= gson.fromJson(extras.getString("option"),String.class);
         myIntent.putExtra("user",gson.toJson(user));
+        myIntent.putExtra("option",option);
         startActivityForResult(myIntent, 0);
         return true;
     }
@@ -149,20 +153,9 @@ public class CitySelect extends AppCompatActivity {
         final Gson gson=new Gson();
         Bundle extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
-
-
+        option= gson.fromJson(extras.getString("option"),String.class);
+        System.out.println("mustafaaaa " + option);
         getCities();
-
-
-
-
-
-
-
-
-
-
-
     }
 
 }

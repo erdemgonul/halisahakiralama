@@ -40,7 +40,7 @@ public class ChooseHaliSaha extends AppCompatActivity {
     String[] halisahaArray;
     Button nextbutton;
     ListView listView;
-    TextView textView;
+    TextView textView, header;
     User user;
     String il,ilce;
     public ChooseHaliSaha() {
@@ -63,6 +63,9 @@ public class ChooseHaliSaha extends AppCompatActivity {
 
         listView=findViewById(R.id.list_halisaha);
         textView=findViewById(R.id.halisahalar_text);
+        textView.setText(ilce + " 'deki Halı Sahalar");
+        header=findViewById(R.id.textView4);
+        header.setText(StaticVariables.title);
 
         nextbutton=findViewById(R.id.button9);
 

@@ -41,8 +41,8 @@ public class IlceSelect extends AppCompatActivity {
     private  String[] ilceler = {"null"};
     ArrayAdapter<String>adapter;
     List<District>  ilcelerList;
-    TextView textView;
-    String  ilName;
+    TextView textView, header;
+    String  ilName, option;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,8 @@ public class IlceSelect extends AppCompatActivity {
 
 
         textView=(TextView) findViewById(R.id.ilceler_text);
+        header=(TextView) findViewById(R.id.textView4);
+        header.setText(StaticVariables.title);
         listView=(ListView) findViewById(R.id.list_ilceler);
         toNextFrag=(Button) findViewById(R.id.button8);
 
@@ -61,6 +63,8 @@ public class IlceSelect extends AppCompatActivity {
         ilName =  extras.getString("il");
         final Gson gson=new Gson();
         user= gson.fromJson(extras.getString("user"),User.class);
+        option= gson.fromJson(extras.getString("option"),String.class);
+        System.out.println("mustafaaaa " + option);
         getDistrictsByCity(ilName);
 
 
@@ -102,13 +106,22 @@ public class IlceSelect extends AppCompatActivity {
                                 toNextFrag.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-
-                                        Intent intent = new Intent(IlceSelect.this, ChooseHaliSaha.class);
-                                        intent.putExtra("ilce",ilceler[i]);
-                                        intent.putExtra("il",ilName);
-                                        final Gson gson=new Gson();
-                                        intent.putExtra("user",gson.toJson(user));
-                                        IlceSelect.this.startActivity(intent);
+                                        if(option.equals("FindPlayer")) {
+                                            Intent intent = new Intent(IlceSelect.this, ChoosePlayer.class);
+                                            intent.putExtra("ilce",ilceler[i]);
+                                            intent.putExtra("il",ilName);
+                                            final Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
+                                            IlceSelect.this.startActivity(intent);
+                                        }
+                                        else if(option.equals("Rezervation")) {
+                                            Intent intent = new Intent(IlceSelect.this, ChooseHaliSaha.class);
+                                            intent.putExtra("ilce",ilceler[i]);
+                                            intent.putExtra("il",ilName);
+                                            final Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
+                                            IlceSelect.this.startActivity(intent);
+                                        }
                                     }
                                 });
                             }
@@ -145,8 +158,10 @@ public class IlceSelect extends AppCompatActivity {
         final Gson gson=new Gson();
         Bundle extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
+        option= gson.fromJson(extras.getString("option"),String.class);
         myIntent.putExtra("user",gson.toJson(user));
         myIntent.putExtra("il",ilName);
+        myIntent.putExtra("option",option);
         startActivityForResult(myIntent, 0);
         return true;
     }

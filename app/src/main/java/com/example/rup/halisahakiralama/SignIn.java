@@ -147,6 +147,7 @@ public class SignIn extends AppCompatActivity {
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            System.out.println("mustafaaaa " + e.getMessage());
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -189,6 +190,7 @@ public class SignIn extends AppCompatActivity {
                     user.role=object.getString("role");
                     user.id=object.getString("id");
                     user.email=object.getString("email");
+                    user.isGoogleSign=object.getBoolean("isGoogleSign");
 
                     System.out.println("---------- DENEME ");
                     Toast.makeText(SignIn.this, "HELALL", Toast.LENGTH_SHORT).show();
@@ -222,6 +224,7 @@ public class SignIn extends AppCompatActivity {
         jsonBody.put("username", username);
         jsonBody.put("password", password);
         jsonBody.put("email", email);
+        jsonBody.put("isGoogleSign", true);
         jsonBody.put("role", "ROLE_USER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
@@ -235,6 +238,7 @@ public class SignIn extends AppCompatActivity {
                     user.role=object.getString("role");
                     user.email=object.getString("email");
                     user.id=object.getString("id");
+                    user.isGoogleSign=object.getBoolean("isGoogleSign");
                 } catch (JSONException e) {
                     try {
                         signUser(username,password);

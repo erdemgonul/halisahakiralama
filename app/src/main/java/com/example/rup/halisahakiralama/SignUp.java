@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -57,27 +58,35 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(termbox.isChecked()) {
+                    if(isValidEmail(mailtext.getEditableText().toString())) {
+                        System.out.println("FUCK");
+                        Toast.makeText(SignUp.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
 
-                    FirebaseInstanceId.getInstance().getInstanceId()
-                            .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                                    if (!task.isSuccessful()) {
-                                        return;
+                        FirebaseInstanceId.getInstance().getInstanceId()
+                                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                        if (!task.isSuccessful()) {
+                                            return;
+                                        }
+
+                                        // Get new Instance ID token
+                                        String token = task.getResult().getToken();
+
+                                        try {
+                                            newUser(userNameText.getEditableText().toString(), passwordtext.getEditableText().toString(), mailtext.getEditableText().toString(), token);
+                                        } catch (JSONException e) {
+                                            System.out.println("FUCK2");
+                                            Toast.makeText(SignUp.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                                        }
+                                        Toast.makeText(SignUp.this, "helalll", Toast.LENGTH_SHORT).show();
                                     }
-
-                                    // Get new Instance ID token
-                                    String token = task.getResult().getToken();
-
-                                    try {
-                                        newUser(userNameText.getEditableText().toString(),passwordtext.getEditableText().toString(), mailtext.getEditableText().toString(), token);
-                                    } catch (JSONException e) {
-                                        System.out.println("FUCK2");
-                                        Toast.makeText(SignUp.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
-                                    }
-                                    Toast.makeText(SignUp.this, "helalll", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                });
+                    }
+                    else {
+                        System.out.println("FUCK");
+                        Toast.makeText(SignUp.this, "Lütfen Geçerli bir mail adresi giriniz. ", Toast.LENGTH_SHORT).show();
+                    }
 
 
                 }
@@ -114,6 +123,7 @@ public class SignUp extends AppCompatActivity {
         jsonBody.put("password", password);
         jsonBody.put("email", mail);
         jsonBody.put("fcmPushToken", token);
+        jsonBody.put("isGoogleSign", false);
         jsonBody.put("role", "ROLE_USER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
@@ -133,6 +143,10 @@ public class SignUp extends AppCompatActivity {
         });
 
         queue.add(jsonObject);
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
 

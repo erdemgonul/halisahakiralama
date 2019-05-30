@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
@@ -72,7 +73,8 @@ public class SignUpAsOwner extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(termbox.isChecked()) {
-                    FirebaseInstanceId.getInstance().getInstanceId()
+                    if(isValidEmail(mailtext.getEditableText().toString())) {
+                        FirebaseInstanceId.getInstance().getInstanceId()
                             .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<InstanceIdResult> task) {
@@ -94,7 +96,13 @@ public class SignUpAsOwner extends AppCompatActivity {
                             });
 
 
+                    }
+                    else {
+                        System.out.println("FUCK");
+                        Toast.makeText(SignUpAsOwner.this, "Lütfen Geçerli bir mail adresi giriniz. ", Toast.LENGTH_SHORT).show();
+                    }
                 }
+
                 else
                 {
                     termbox.setTextColor(Color.RED);
@@ -147,5 +155,9 @@ public class SignUpAsOwner extends AppCompatActivity {
         });
 
         queue.add(jsonObject);
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 }
