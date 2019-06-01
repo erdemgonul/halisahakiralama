@@ -42,7 +42,7 @@ public class ChooseHaliSaha extends AppCompatActivity {
     ListView listView;
     TextView textView, header;
     User user;
-    String il,ilce;
+    String il,ilce, option;
     public ChooseHaliSaha() {
         // Required empty public constructor
     }
@@ -58,6 +58,7 @@ public class ChooseHaliSaha extends AppCompatActivity {
         Bundle  b=getIntent().getExtras();
         il=b.getString("il");
         ilce=b.getString("ilce") ;
+        option=b.getString("option") ;
         final Gson gson=new Gson();
         user= gson.fromJson(b.getString("user"),User.class);
 
@@ -123,14 +124,15 @@ public class ChooseHaliSaha extends AppCompatActivity {
                                 nextbutton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Intent intent = new Intent(ChooseHaliSaha.this,SetDate.class);
-                                        intent.putExtra("name",p.stadiums.get(i).name);
-                                        intent.putExtra("stadium_id",p.stadiums.get(i).id + "");
-                                        Gson gson=new Gson();
-                                        intent.putExtra("user",gson.toJson(user));
-                                        gson=new Gson();
-                                        intent.putExtra("stadium",gson.toJson(p.stadiums.get(i)));
-                                        Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id+"", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(ChooseHaliSaha.this, SetDate.class);
+                                        intent.putExtra("name", p.stadiums.get(i).name);
+                                        intent.putExtra("stadium_id", p.stadiums.get(i).id + "");
+                                        intent.putExtra("option", option);
+                                        Gson gson = new Gson();
+                                        intent.putExtra("user", gson.toJson(user));
+                                        gson = new Gson();
+                                        intent.putExtra("stadium", gson.toJson(p.stadiums.get(i)));
+                                        Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id + "", Toast.LENGTH_SHORT).show();
                                         ChooseHaliSaha.this.startActivity(intent);
                                     }
                                 });

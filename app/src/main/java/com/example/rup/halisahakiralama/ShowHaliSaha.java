@@ -1,6 +1,11 @@
 package com.example.rup.halisahakiralama;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +30,7 @@ public class ShowHaliSaha extends AppCompatActivity {
     String date;
     ReservationTime time;
     TextView  name, address, amount, intervalMinutes, dateText;
-    Button approve;
+    Button approve,arabutton;
     User user;
     EditText editText;
 
@@ -69,6 +74,14 @@ public class ShowHaliSaha extends AppCompatActivity {
         });
 
         editText=findViewById(R.id.editText);
+
+        arabutton=findViewById(R.id.ara_button);
+        arabutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callPhoneNumber();
+            }
+        });
     }
 
     public void approve(View v){
@@ -82,5 +95,36 @@ public class ShowHaliSaha extends AppCompatActivity {
         gson=new Gson();
         intent.putExtra("hours",gson.toJson(time));
         startActivity(intent);
+    }
+
+    public void callPhoneNumber()
+    {
+        try
+        {
+            if(Build.VERSION.SDK_INT > 22)
+            {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+
+                    ActivityCompat.requestPermissions(ShowHaliSaha.this, new String[]{Manifest.permission.CALL_PHONE}, 101);
+
+                    return;
+                }
+
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + "05388508090"));
+                startActivity(callIntent);
+
+            }
+            else {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + "05366594646"));
+                startActivity(callIntent);
+            }
+        }
+        catch (Exception ex)
+        {
+            ex.printStackTrace();
+        }
     }
 }

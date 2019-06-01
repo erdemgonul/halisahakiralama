@@ -59,6 +59,8 @@ public class SetDate extends AppCompatActivity {
     int  stadiumId;
     User user;
     Stadium stadium;
+    String option;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +77,7 @@ public class SetDate extends AppCompatActivity {
         user = g.fromJson(extras.getString("user"),User.class);
         stadium = g.fromJson(extras.getString("stadium"),Stadium.class);
         stadiumId =Integer.valueOf(extras.getString("stadium_id"));
-
+        option= extras.getString("option");
 
         myCalendar = Calendar.getInstance();
 
@@ -155,105 +157,203 @@ public class SetDate extends AppCompatActivity {
         getTimeSlotsOfStadium(dateStr,stadiumId);
     }
     public void getTimeSlotsOfStadium(final String date, int id){
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = StaticVariables.ip_address + "reservation/time/sheet/" + id + "/" + date;
-        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
-                new com.android.volley.Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        Log.d("d",response);
-                        Gson g = new Gson();
+        if(option.equals("Rezervation")) {
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = StaticVariables.ip_address + "reservation/time/sheet/" + id + "/" + date;
+            StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                    new com.android.volley.Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Log.d("d", response);
+                            Gson g = new Gson();
 
-                        final TimeSlotResponseList p = g.fromJson(response, TimeSlotResponseList.class);
+                            final TimeSlotResponseList p = g.fromJson(response, TimeSlotResponseList.class);
 
-                        List<String> list=new ArrayList<>();
-                        for(int i=0;i<p.timeSlotDTOs.size();i++){
-                            list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
-                        }
-                        hours=list.toArray(new String[0]);
-
-                        ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])){
-                            @Override
-                            public View getView(int position, View convertView, ViewGroup parent) {
-
-                                listView.setVisibility(View.VISIBLE);
-                                View view =super.getView(position, convertView, parent);
-                                TextView textView=(TextView) view.findViewById(android.R.id.text1);
-                               if(!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY")) {
-
-                                    Log.d("d" , position + "");
-                                   /*YOUR CHOICE OF COLOR*/
-                                   textView.setBackgroundColor(Color.RED);
-                                   textView.setClickable(false);
-                                    textView.setTextColor(Color.WHITE);
-
-                               }
-                                return view;
+                            List<String> list = new ArrayList<>();
+                            for (int i = 0; i < p.timeSlotDTOs.size(); i++) {
+                                list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
                             }
+                            hours = list.toArray(new String[0]);
 
-                        };
-                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            public void onItemClick(AdapterView<?> adapterView, View view,final int i, long l) {
-                                TextView v=(TextView) view;
+                            ArrayAdapter<String> veriAdaptoru = new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])) {
+                                @Override
+                                public View getView(int position, View convertView, ViewGroup parent) {
 
-                                if(v.getCurrentTextColor()!= Color.WHITE) {
+                                    listView.setVisibility(View.VISIBLE);
+                                    View view = super.getView(position, convertView, parent);
+                                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                                    if (!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY")) {
 
+                                        Log.d("d", position + "");
+                                        /*YOUR CHOICE OF COLOR*/
+                                        textView.setBackgroundColor(Color.RED);
+                                        textView.setClickable(false);
+                                        textView.setTextColor(Color.WHITE);
 
-                                    toNextFrag.setText( hours[i] +" için devam et");
-                                    toNextFrag.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
-
-                                    toNextFrag.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            Intent intent = new Intent(SetDate.this, ShowHaliSaha.class);
-                                            ReservationTime reservationTime = new ReservationTime();
-                                            reservationTime.beginHour = hours[i].split("  ---  ")[0];
-                                            reservationTime.endHour = hours[i].split("  ---  ")[1];
-                                            intent.putExtra("date",date);
-                                            Gson gson=new Gson();
-                                            intent.putExtra("user",gson.toJson(user));
-                                            gson=new Gson();
-                                            intent.putExtra("stadium",gson.toJson(stadium));
-                                            gson=new Gson();
-                                            intent.putExtra("hours",gson.toJson(reservationTime));
-
-
-                                            SetDate.this.startActivity(intent);
-                                        }
-                                    });
-
+                                    }
+                                    return view;
                                 }
-                            }
-                        });
 
-                        listView.setAdapter(veriAdaptoru);
+                            };
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                                    TextView v = (TextView) view;
+
+                                    if (v.getCurrentTextColor() != Color.WHITE) {
 
 
+                                        toNextFrag.setText(hours[i] + " için devam et");
+                                        toNextFrag.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
 
+                                        toNextFrag.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                Intent intent = new Intent(SetDate.this, ShowHaliSaha.class);
+                                                ReservationTime reservationTime = new ReservationTime();
+                                                reservationTime.beginHour = hours[i].split("  ---  ")[0];
+                                                reservationTime.endHour = hours[i].split("  ---  ")[1];
+                                                intent.putExtra("date", date);
+                                                Gson gson = new Gson();
+                                                intent.putExtra("user", gson.toJson(user));
+                                                gson = new Gson();
+                                                intent.putExtra("stadium", gson.toJson(stadium));
+                                                gson = new Gson();
+                                                intent.putExtra("hours", gson.toJson(reservationTime));
+
+
+                                                SetDate.this.startActivity(intent);
+                                            }
+                                        });
+
+                                    }
+                                }
+                            });
+
+                            listView.setAdapter(veriAdaptoru);
+
+
+                        }
+                    },
+                    new com.android.volley.Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO Auto-generated method stub
+
+                        }
                     }
-                },
-                new com.android.volley.Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-
-                    }
+            ) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> params = new HashMap<String, String>();
+                    String creds = String.format("%s:%s", user.username, user.password);
+                    String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                    params.put("Authorization", auth);
+                    return params;
                 }
-        ) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s",user.username,user.password);
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
-                params.put("Authorization", auth);
-                return params;
-            }
-        };
-        queue.add(getRequest);
+            };
+            queue.add(getRequest);
+        }
+
+        else if(option.equals("FindPlayer")) {
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = StaticVariables.ip_address + "reservation/time/sheet/" + id;
+            StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                    new com.android.volley.Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Log.d("d", response);
+                            Gson g = new Gson();
+
+                            final TimeSlotResponseList p = g.fromJson(response, TimeSlotResponseList.class);
+
+                            List<String> list = new ArrayList<>();
+                            for (int i = 0; i < p.timeSlotDTOs.size(); i++) {
+                                list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
+                            }
+                            hours = list.toArray(new String[0]);
+
+                            ArrayAdapter<String> veriAdaptoru = new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])) {
+                                @Override
+                                public View getView(int position, View convertView, ViewGroup parent) {
+
+                                    listView.setVisibility(View.VISIBLE);
+                                    View view = super.getView(position, convertView, parent);
+                                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                                    if (!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY")) {
+
+                                        Log.d("d", position + "");
+                                        /*YOUR CHOICE OF COLOR*/
+                                        textView.setBackgroundColor(Color.RED);
+                                        textView.setClickable(false);
+                                        textView.setTextColor(Color.WHITE);
+
+                                    }
+                                    return view;
+                                }
+
+                            };
+                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                                    TextView v = (TextView) view;
+
+                                    if (v.getCurrentTextColor() != Color.WHITE) {
+
+
+                                        toNextFrag.setText(hours[i] + " için devam et");
+                                        toNextFrag.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
+
+                                        toNextFrag.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View view) {
+                                                Intent intent = new Intent(SetDate.this, ChoosePlayer.class);
+                                                ReservationTime reservationTime = new ReservationTime();
+                                                reservationTime.beginHour = hours[i].split("  ---  ")[0];
+                                                reservationTime.endHour = hours[i].split("  ---  ")[1];
+                                                intent.putExtra("date", date);
+                                                Gson gson = new Gson();
+                                                intent.putExtra("user", gson.toJson(user));
+                                                gson = new Gson();
+                                                intent.putExtra("stadiumId", stadium.id + "");
+                                                gson = new Gson();
+                                                intent.putExtra("hours", gson.toJson(reservationTime));
+
+
+                                                SetDate.this.startActivity(intent);
+                                            }
+                                        });
+
+                                    }
+                                }
+                            });
+
+                            listView.setAdapter(veriAdaptoru);
+
+
+                        }
+                    },
+                    new com.android.volley.Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO Auto-generated method stub
+
+                        }
+                    }
+            ) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> params = new HashMap<String, String>();
+                    String creds = String.format("%s:%s", user.username, user.password);
+                    String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                    params.put("Authorization", auth);
+                    return params;
+                }
+            };
+            queue.add(getRequest);
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

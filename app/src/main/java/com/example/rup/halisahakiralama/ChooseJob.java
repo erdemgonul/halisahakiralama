@@ -1,10 +1,12 @@
 package com.example.rup.halisahakiralama;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,11 +15,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.api.client.json.Json;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
-
-public class ChooseJob extends AppCompatActivity {
+import android.provider.Settings.Secure;
+public class ChooseJob extends Activity {
 
     TextView  userText;
     GoogleSignInClient mGoogleSignInClient;
@@ -25,7 +30,7 @@ public class ChooseJob extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
 
         setContentView(R.layout.activity_choose_job);
 
@@ -34,9 +39,7 @@ public class ChooseJob extends AppCompatActivity {
         final User user= gson.fromJson(extras.getString("user"),User.class);
 
 
-        //userText=findViewById(R.id.textView3);
 
-        //userText.setText("Hoşgeldiniz : " + user.username);
 
         findHaliSahaButton=findViewById(R.id.rezervationbuttuon);
         findPlayerButton=findViewById(R.id.oyuncubul);

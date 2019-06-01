@@ -25,7 +25,7 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.63" />
 
     <TextView
         android:id="@+id/date_text"
@@ -33,7 +33,7 @@
         android:layout_height="42dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="sans-serif-light"
         android:text="deneme2"
         android:textAlignment="viewStart"
@@ -84,19 +84,19 @@
         android:layout_height="38dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-light"
         android:text="deneme5"
         android:textAlignment="viewStart"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/signupsignup_button"
+        app:layout_constraintBottom_toTopOf="@+id/oyuncuyuara_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/ara_button"
+        android:id="@+id/oyuncuyuara_button"
         android:layout_width="357dp"
         android:layout_height="47dp"
         android:layout_marginStart="16dp"
@@ -105,7 +105,7 @@
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/LightGreen"
         android:fontFamily="sans-serif"
-        android:text="Halısahayı Telefonla Ara"
+        android:text="Oyuncuyu Ara"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"

@@ -63,7 +63,7 @@ public class IlceSelect extends AppCompatActivity {
         ilName =  extras.getString("il");
         final Gson gson=new Gson();
         user= gson.fromJson(extras.getString("user"),User.class);
-        option= gson.fromJson(extras.getString("option"),String.class);
+        option= extras.getString("option");
         System.out.println("mustafaaaa " + option);
         getDistrictsByCity(ilName);
 
@@ -106,22 +106,14 @@ public class IlceSelect extends AppCompatActivity {
                                 toNextFrag.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        if(option.equals("FindPlayer")) {
-                                            Intent intent = new Intent(IlceSelect.this, ChoosePlayer.class);
-                                            intent.putExtra("ilce",ilceler[i]);
-                                            intent.putExtra("il",ilName);
-                                            final Gson gson=new Gson();
-                                            intent.putExtra("user",gson.toJson(user));
-                                            IlceSelect.this.startActivity(intent);
-                                        }
-                                        else if(option.equals("Rezervation")) {
                                             Intent intent = new Intent(IlceSelect.this, ChooseHaliSaha.class);
                                             intent.putExtra("ilce",ilceler[i]);
                                             intent.putExtra("il",ilName);
+                                            intent.putExtra("option",option);
                                             final Gson gson=new Gson();
                                             intent.putExtra("user",gson.toJson(user));
                                             IlceSelect.this.startActivity(intent);
-                                        }
+
                                     }
                                 });
                             }
