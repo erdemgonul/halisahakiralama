@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.google.firebase.FirebaseApp;
+
 
 public class StartApp extends Activity {
 
@@ -14,6 +16,7 @@ public class StartApp extends Activity {
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
+        FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_start_app);
 
         /* New Handler to start the Menu-Activity

@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.rup.halisahakiralama.client.Player;
 import com.example.rup.halisahakiralama.client.Team;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -60,20 +62,78 @@ public class Profil extends AppCompatActivity {
         player=findViewById(R.id.playerButton);
         team=findViewById(R.id.teamButton);
         back=findViewById(R.id.backbutton);
-
+        String text = "Kullanıcı Adı : " + user.username + "\n" + "E-Posta Adresi : " + user.email;
+        profil.setText(text);
+        getPlayer();
         getTeam();
 
-        /*findHaliSahaButton.setOnClickListener(new View.OnClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent=new Intent(Profil.this, CitySelect.class);
+                Intent intent=new Intent(Profil.this, ChooseJob.class);
                 intent.putExtra("user",gson.toJson(user));
-                intent.putExtra("option","Rezervation");
                 Profil.this.startActivity(intent);
             }
-        });*/
+        });
 
+    }
+
+    public void getPlayer(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "player/user/" + user.id + "";
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(Profil.this,"hey", Toast.LENGTH_LONG).show();
+                        // response
+                        Log.d("d",response);
+                        Gson g = new Gson();
+
+                        Player p = g.fromJson(response, Player.class);
+                        if(p != null) {
+                            System.out.println("mustafaaaaa   " + p);
+                            String text = "Oyuncu Adı : " + p.name + "\n" + "Oyuncu Soyadı : " + p.surName + "Oyuncu Mevki : " + p.position + "\n" + "Puan : " + p.rate;
+                            player.setText(text);
+                        }
+                        else {
+                            player.setText("Oyuncu Yarat");
+                            player.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    /*final Gson gson=new Gson();
+                                    Intent intent=new Intent(Profil.this, CreatePlayer.class);
+                                    intent.putExtra("user",gson.toJson(user));
+                                    Profil.this.startActivity(intent);*/
+                                }
+                            });
+                        }
+
+
+
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Toast.makeText(Profil.this, "HATA", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s",user.username,user.password);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
     }
 
     public void getTeam(){
@@ -94,11 +154,6 @@ public class Profil extends AppCompatActivity {
                             System.out.println("mustafaaaaa   " + p);
                             String text = "Takım Adı : " + p.name + "\n" + "Puan : " + p.rate;
                             team.setText(text);
-                            team.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                }
-                            });
                         }
                         else {
                             team.setText("Takım Yarat");
@@ -132,5 +187,16 @@ public class Profil extends AppCompatActivity {
             }
         };
         queue.add(getRequest);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent myIntent = new Intent(getApplicationContext(), ChooseJob.class);
+        final Gson gson=new Gson();
+        Bundle extras = getIntent().getExtras();
+        user= gson.fromJson(extras.getString("user"),User.class);
+        myIntent.putExtra("user",gson.toJson(user));
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }

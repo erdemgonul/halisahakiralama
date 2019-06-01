@@ -13,7 +13,7 @@
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/teamButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -31,11 +31,10 @@
             android:textAlignment="center"
             android:textColor="@color/DimGray"
             android:textSize="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/description_app3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view2"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin"
-            app:layout_constraintVertical_bias="0.062" />
+            app:layout_constraintVertical_bias="0.062"
+            tools:ignore="MissingConstraints" />
 
         <View
             android:id="@+id/view2"
@@ -49,8 +48,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/or2"
             app:layout_constraintEnd_toStartOf="@+id/or2"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <View
             android:id="@+id/view"
@@ -64,18 +62,17 @@
             app:layout_constraintBottom_toBottomOf="@+id/or2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/or2"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
+            app:layout_constraintStart_toEndOf="@+id/or2" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
 
-        android:layout_height="30dp"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/playerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -83,21 +80,17 @@
 
         <TextView
             android:id="@+id/or1"
-            android:layout_width="65dp"
+            android:layout_width="105dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
             android:layout_marginEnd="175dp"
-            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
             android:text="Oyuncu"
             android:textAlignment="center"
             android:textColor="@color/DimGray"
             android:textSize="24dp"
-            app:layout_constraintBottom_toTopOf="@id/or1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view4"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin"
-            app:layout_constraintVertical_bias="0.062" />
+            app:layout_constraintStart_toEndOf="@+id/view4" />
 
         <View
             android:id="@+id/view4"
@@ -111,8 +104,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/or1"
             app:layout_constraintEnd_toStartOf="@+id/or1"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <View
             android:id="@+id/view3"
@@ -126,8 +118,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/or1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/or1"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
+            app:layout_constraintStart_toEndOf="@+id/or1" />
     </android.support.constraint.ConstraintLayout>
 
     <TextView
@@ -151,7 +142,7 @@
         android:id="@+id/profilButton"
         android:layout_width="300dp"
         android:layout_height="96dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#45c08a"
         android:fontFamily="sans-serif"
@@ -169,7 +160,7 @@
         android:layout_width="300dp"
         android:layout_height="103dp"
 
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="12dp"
 
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4d76ff"
@@ -188,7 +179,7 @@
         android:id="@+id/teamButton"
         android:layout_width="300dp"
         android:layout_height="103dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="@color/myPurple"
         android:fontFamily="sans-serif"
