@@ -3,14 +3,30 @@ package com.example.rup.halisahakiralama;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.rup.halisahakiralama.client.District;
+import com.example.rup.halisahakiralama.client.NotifyNumber;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -22,21 +38,28 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 import android.provider.Settings.Secure;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class ChooseJob extends Activity {
 
-    TextView  userText;
+    TextView  userText,notificationText;
     GoogleSignInClient mGoogleSignInClient;
-    Button findHaliSahaButton,findPlayerButton,findTeamButton, profilEdit, signOutButton;
+    Button findHaliSahaButton,findPlayerButton,findTeamButton, profilEdit, signOutButton,notificationButton;
+    User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
-
         setContentView(R.layout.activity_choose_job);
 
         final Gson gson=new Gson();
         Bundle extras = getIntent().getExtras();
-        final User user= gson.fromJson(extras.getString("user"),User.class);
+        user= gson.fromJson(extras.getString("user"),User.class);
 
 
 
@@ -45,6 +68,20 @@ public class ChooseJob extends Activity {
         findPlayerButton=findViewById(R.id.oyuncubul);
         findTeamButton=findViewById(R.id.rakipbul);
         profilEdit=findViewById(R.id.editprofil);
+        notificationButton=findViewById(R.id.requests_button);
+        notificationText=findViewById(R.id.requests_text);
+
+
+        notificationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ChooseJob.this, Notifications.class);
+                intent.putExtra("user",gson.toJson(user));
+                intent.putExtra("option","Rezervation");
+                ChooseJob.this.startActivity(intent);
+            }
+        });
+
         findHaliSahaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -97,11 +134,17 @@ public class ChooseJob extends Activity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-
+        getNotificationNumber();
 
     }
 
     private void signOut() {
+
+
+        SharedPreferences myPreferences
+                = PreferenceManager.getDefaultSharedPreferences(ChooseJob.this);
+        myPreferences.edit().remove("user").commit();
+
         mGoogleSignInClient.signOut()
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
@@ -112,5 +155,40 @@ public class ChooseJob extends Activity {
                 });
         Intent intent=new Intent(ChooseJob.this,ChooseAuth.class);
         ChooseJob.this.startActivity(intent);
+    }
+    private void getNotificationNumber(){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "notification/get/unread/number";
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+
+                        Gson gson=new Gson();
+                        NotifyNumber notifyNumber=gson.fromJson(response, NotifyNumber.class);
+                        notificationText.setText(notifyNumber.id + "");
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s",user.username,user.password);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+
     }
 }

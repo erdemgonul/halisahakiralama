@@ -136,22 +136,6 @@ public class ChoosePlayerResult extends AppCompatActivity {
         jsonBody.put("endHour", hours.endHour);
 
 
-        //  DEVICEID YAKALAMA KODU YUKARIDA TANIMLADIGIM TOKENIN ICINE ATIYORUM SANA HTTP POSTLARKEN token ismiyle yolluyorum
-
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String newToken = instanceIdResult.getToken();
-                token=newToken;
-                ChoosePlayerResult.this.getPreferences(Context.MODE_PRIVATE).edit().putString("fb", newToken).apply();
-            }
-        });
-
-        Log.d("newToken",getPreferences(Context.MODE_PRIVATE).getString("fb", "empty :("));
-
-
-        jsonBody.put("token",token);
-
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody,
 

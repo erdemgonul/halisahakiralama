@@ -2,8 +2,10 @@ package com.example.rup.halisahakiralama;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.wifi.WifiManager;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -194,9 +196,15 @@ public class SignIn extends AppCompatActivity {
 
                     System.out.println("---------- DENEME ");
                     Toast.makeText(SignIn.this, "HELALL", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences myPreferences
+                            = PreferenceManager.getDefaultSharedPreferences(SignIn.this);
+                    SharedPreferences.Editor myEditor = myPreferences.edit();
+                    Gson gson=new Gson();
+                    myEditor.putString("user",gson.toJson(user) );
+                    myEditor.commit();
                     Intent intent=new Intent(SignIn.this,ChooseJob.class);
 
-                    Gson gson=new Gson();
                     intent.putExtra("user",gson.toJson(user));
                     SignIn.this.startActivity(intent);
                 } catch (JSONException e) {

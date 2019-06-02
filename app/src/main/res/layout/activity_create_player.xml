@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreatePlayer">
+
+    <Button
+        android:id="@+id/possiblecitiesbutton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/next_button"
+        android:backgroundTint="@color/LightGrey"
+        android:text="oynayabileceğin yerleri seç"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+
+        android:theme="@style/Base.V23.Theme.AppCompat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <EditText
+        android:id="@+id/createplayeraddress"
+        android:layout_width="393dp"
+        android:layout_height="59dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="128dp"
+        android:drawableLeft="@drawable/button_address"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="address"
+        android:inputType="phone"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/possiblecitiesbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/createplayerphone"
+        android:layout_width="394dp"
+        android:layout_height="59dp"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="32dp"
+        android:drawableLeft="@drawable/button_phone"
+        android:drawablePadding="10dp"
+        android:ems="10"
+        android:hint="telefon numarası"
+        android:inputType="phone"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toTopOf="@+id/createplayeraddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/playerselect_text2"
+        android:layout_width="339dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Oyuncu Yarat"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/createplayerphone"
+        tools:layout_editor_absoluteX="0dp">
+
+        <EditText
+            android:id="@+id/createplayersurname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:drawableLeft="@drawable/button_username"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="soy isim"
+            android:inputType="textPassword"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/createplayername"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/createplayername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:drawableLeft="@drawable/button_username"
+            android:drawablePadding="10dp"
+            android:ems="10"
+            android:hint="isim"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="17dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
