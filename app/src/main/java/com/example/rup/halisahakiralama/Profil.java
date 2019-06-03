@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,12 +41,11 @@ import java.util.Map;
 public class Profil extends AppCompatActivity {
 
     User user;
-    Button profil,team,player, back;
-
+    Button profil,team,player,editprofile, back,createplayer;
+    EditText username,email,teamname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
 
         setContentView(R.layout.activity_profile);
 
@@ -58,12 +58,13 @@ public class Profil extends AppCompatActivity {
 
         //userText.setText("Hoşgeldiniz : " + user.username);
 
-        profil=findViewById(R.id.profilButton);
-        player=findViewById(R.id.playerButton);
-        team=findViewById(R.id.teamButton);
+        username=findViewById(R.id.usernameprofiletext);
+        email=findViewById(R.id.mailprofiletext);
+        teamname=findViewById(R.id.teamnameprofiletext);
+        editprofile=findViewById(R.id.editprofilebutton);
+        createplayer=findViewById(R.id.create_player_button);
         back=findViewById(R.id.backbutton);
         String text = "Kullanıcı Adı : " + user.username + "\n" + "E-Posta Adresi : " + user.email;
-        profil.setText(text);
 
 
 
@@ -77,10 +78,9 @@ public class Profil extends AppCompatActivity {
             }
         });
 
-        player.setOnClickListener(new View.OnClickListener() {
+        createplayer.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
-                                          System.out.println("WTF");
                                           Intent intent=new Intent(Profil.this, CreatePlayer.class);
                                           intent.putExtra("user",gson.toJson(user));
                                           Profil.this.startActivity(intent);
@@ -88,7 +88,17 @@ public class Profil extends AppCompatActivity {
 
 
             });
+        editprofile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Intent intent=new Intent(Profil.this, CreatePlayer.class);
+                intent.putExtra("user",gson.toJson(user));
+                Profil.this.startActivity(intent);
+            }
+
+
+        });
 
 
         getPlayer();

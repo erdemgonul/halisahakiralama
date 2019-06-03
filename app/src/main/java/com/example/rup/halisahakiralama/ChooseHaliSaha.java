@@ -50,8 +50,6 @@ public class ChooseHaliSaha extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
-
         setContentView(R.layout.activity_choose_hali_saha);
 
 
@@ -65,8 +63,6 @@ public class ChooseHaliSaha extends AppCompatActivity {
         listView=findViewById(R.id.list_halisaha);
         textView=findViewById(R.id.halisahalar_text);
         textView.setText(ilce + " 'deki Halı Sahalar");
-        header=findViewById(R.id.textView4);
-        header.setText(StaticVariables.title);
 
         nextbutton=findViewById(R.id.button9);
 

@@ -7,30 +7,13 @@
     tools:context=".IlceSelect">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="sans-serif-light"
-        android:text="Deneme123"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/ilceler_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/ilceler_text"
         android:layout_width="0dp"
         android:layout_height="41dp"
         android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="sans-serif-light"
         android:text="Istanbul'da Bir İlçe Seç"
         android:textAlignment="center"
@@ -39,7 +22,8 @@
         app:layout_constraintBottom_toTopOf="@+id/list_ilceler"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ListView

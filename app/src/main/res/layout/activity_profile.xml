@@ -6,6 +6,176 @@
     android:layout_height="match_parent"
     tools:context=".Profil">
 
+    <LinearLayout
+        android:id="@+id/profileteam1layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/backbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/teamownerprofile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:fontFamily="sans-serif-light"
+            android:paddingStart="5dp"
+            android:text="Takım Sahibi"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="179dp" />
+
+        <EditText
+            android:id="@+id/teamownernameprofiletext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:lineSpacingExtra="100sp"
+            android:paddingStart="10dp"
+            android:text="rup"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profileteam2layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/profileteam1layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/teamname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:fontFamily="sans-serif-light"
+            android:paddingStart="5dp"
+            android:text="Takım Adı"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="179dp" />
+
+        <EditText
+            android:id="@+id/teamnameprofiletext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:lineSpacingExtra="100sp"
+            android:paddingStart="10dp"
+            android:text="rup"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/userprofile1layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/profileuserlayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/usernameprofile2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:fontFamily="sans-serif-light"
+            android:paddingStart="5dp"
+            android:text="Kullanıcı Adı "
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="179dp" />
+
+        <EditText
+            android:id="@+id/usernameprofiletext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:lineSpacingExtra="100sp"
+            android:paddingStart="10dp"
+            android:text="rup"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profileuserlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/createplayerbutton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/usernameprofile3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:fontFamily="sans-serif-light"
+            android:paddingStart="5dp"
+            android:text="E-Posta Adresi"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="179dp" />
+
+        <EditText
+            android:id="@+id/mailprofiletext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingStart="10dp"
+            android:text="rup@gmail.com"
+            android:textAlignment="viewStart"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
@@ -13,8 +183,8 @@
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/teamButton"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/profileteam2layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
@@ -23,17 +193,14 @@
             android:id="@+id/or2"
             android:layout_width="79dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
             android:layout_marginEnd="175dp"
-            android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-light"
             android:text="Takım"
             android:textAlignment="center"
-            android:textColor="@color/DimGray"
+            android:textColor="@android:color/black"
             android:textSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view2"
-            app:layout_constraintVertical_bias="0.062"
             tools:ignore="MissingConstraints" />
 
         <View
@@ -44,11 +211,11 @@
             android:layout_marginTop="52dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/DimGray"
+            android:background="#D5D5D5"
             app:layout_constraintBottom_toBottomOf="@+id/or2"
             app:layout_constraintEnd_toStartOf="@+id/or2"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <View
             android:id="@+id/view"
@@ -58,67 +225,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/DimGray"
+            android:background="#D5D5D5"
             app:layout_constraintBottom_toBottomOf="@+id/or2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/or2" />
-    </android.support.constraint.ConstraintLayout>
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/playerButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/or1"
-            android:layout_width="105dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="175dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Oyuncu"
-            android:textAlignment="center"
-            android:textColor="@color/DimGray"
-            android:textSize="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view4" />
-
-        <View
-            android:id="@+id/view4"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/DimGray"
-            app:layout_constraintBottom_toBottomOf="@+id/or1"
-            app:layout_constraintEnd_toStartOf="@+id/or1"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/DimGray"
-            app:layout_constraintBottom_toBottomOf="@+id/or1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/or1" />
     </android.support.constraint.ConstraintLayout>
 
     <TextView
@@ -126,88 +237,71 @@
         android:layout_width="365dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-light"
         android:text="Profilim"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/profilButton"
+        app:layout_constraintBottom_toTopOf="@+id/editprofilebutton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.769"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/profilButton"
-        android:layout_width="300dp"
-        android:layout_height="96dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#45c08a"
+        android:id="@+id/editprofilebutton"
+        android:layout_width="250dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/border_button"
+        android:backgroundTintMode="src_in"
         android:fontFamily="sans-serif"
+        android:text="Profili Düzenle"
         android:textAllCaps="false"
-        android:textColor="@color/White"
+        android:textColor="@android:color/black"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintBottom_toTopOf="@+id/userprofile1layout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <Button
-        android:id="@+id/playerButton"
-        android:layout_width="300dp"
-        android:layout_height="103dp"
-
-        android:layout_marginBottom="12dp"
-
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4d76ff"
+        android:id="@+id/createplayerbutton"
+        android:layout_width="339dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/border_button"
+        android:backgroundTintMode="src_in"
         android:fontFamily="sans-serif"
+        android:text="Oyuncu Yarat"
         android:textAllCaps="false"
-        android:textColor="@color/White"
+        android:textColor="@android:color/black"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <Button
-        android:id="@+id/teamButton"
-        android:layout_width="300dp"
-        android:layout_height="103dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myPurple"
-        android:fontFamily="sans-serif"
-        android:textAllCaps="false"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/backbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/backbutton"
-        android:layout_width="300dp"
+        android:layout_width="387dp"
         android:layout_height="49dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
-        android:text="Geri"
+        android:text="Menüye Dön"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

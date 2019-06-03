@@ -47,15 +47,12 @@ public class IlceSelect extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
-
         setContentView(R.layout.activity_ilce_select);
 
 
 
         textView=(TextView) findViewById(R.id.ilceler_text);
         header=(TextView) findViewById(R.id.textView4);
-        header.setText(StaticVariables.title);
         listView=(ListView) findViewById(R.id.list_ilceler);
         toNextFrag=(Button) findViewById(R.id.button8);
 

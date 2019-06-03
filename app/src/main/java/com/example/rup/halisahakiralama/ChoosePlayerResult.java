@@ -48,8 +48,6 @@ public class ChoosePlayerResult extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // for add back arrow in action bar
-
 
         setContentView(R.layout.activity_choose_player_result);
 

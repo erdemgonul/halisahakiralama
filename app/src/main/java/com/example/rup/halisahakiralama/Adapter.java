@@ -129,8 +129,8 @@ public class Adapter  extends BaseAdapter {
 
     }
     public void approveRequest(int i,Context context,final User user){
-
-        RequestQueue queue = Volley.newRequestQueue(context);
+        System.out.println("deneme");
+        RequestQueue queue = Volley.newRequestQueue(Notifications.context);
         String url = StaticVariables.ip_address + "player/claim/approve/" + Notifications.notifications.get(i).getId();
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
@@ -138,14 +138,14 @@ public class Adapter  extends BaseAdapter {
                     @Override
                     public void onResponse(String response) {
 
-
+                        System.out.println(response);
                     }
                 },
                 new com.android.volley.Response.ErrorListener()
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        System.out.println(error);
                     }
                 }
         ) {
