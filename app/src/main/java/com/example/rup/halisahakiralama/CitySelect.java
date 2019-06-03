@@ -50,6 +50,7 @@ public class CitySelect extends AppCompatActivity {
     List<City>  illerList;
     List<District>  ilcelerList;
     User user;
+    Bundle extras;
     public void getCities(){
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "cities";
@@ -88,12 +89,30 @@ public class CitySelect extends AppCompatActivity {
                                 toNextFrag.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Intent intent = new Intent(CitySelect.this, IlceSelect.class);
-                                        intent.putExtra("il",iller[i]);
-                                        Gson gson=new Gson();
-                                        intent.putExtra("user",gson.toJson(user));
-                                        intent.putExtra("option",option);
-                                        CitySelect.this.startActivity(intent);
+                                        if(extras.getBoolean("fromCreatePlayer")==true){
+                                            Intent intent = new Intent(CitySelect.this, SelectMultipleDistricts.class);
+                                            intent.putExtra("il",iller[i]);
+                                            Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
+                                            intent.putExtra("option",option);
+                                            intent.putExtra("name",extras.getString("name"));
+                                            intent.putExtra("surname",extras.getString("surname"));
+                                            intent.putExtra("phone",extras.getString("phone"));
+                                            intent.putExtra("address",extras.getString("address"));
+                                            intent.putExtra("roles",extras.getString("roles"));
+                                            intent.putExtra("fromCreatePlayer",true);
+                                            CitySelect.this.startActivity(intent);
+
+                                        }else{
+                                            Intent intent = new Intent(CitySelect.this, IlceSelect.class);
+                                            intent.putExtra("il",iller[i]);
+                                            Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
+                                            intent.putExtra("option",option);
+                                            CitySelect.this.startActivity(intent);
+
+                                        }
+
                                     }
                                 });
                             }
@@ -151,7 +170,7 @@ public class CitySelect extends AppCompatActivity {
         toNextFrag = findViewById(R.id.button7);
 
         final Gson gson=new Gson();
-        Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
         option= gson.fromJson(extras.getString("option"),String.class);
         System.out.println("mustafaaaa " + option);

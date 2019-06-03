@@ -64,8 +64,8 @@ public class Profil extends AppCompatActivity {
         back=findViewById(R.id.backbutton);
         String text = "Kullanıcı Adı : " + user.username + "\n" + "E-Posta Adresi : " + user.email;
         profil.setText(text);
-        getPlayer();
-        getTeam();
+
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +76,25 @@ public class Profil extends AppCompatActivity {
                 Profil.this.startActivity(intent);
             }
         });
+
+        player.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          System.out.println("WTF");
+                                          Intent intent=new Intent(Profil.this, CreatePlayer.class);
+                                          intent.putExtra("user",gson.toJson(user));
+                                          Profil.this.startActivity(intent);
+                                      }
+
+
+            });
+
+
+
+        getPlayer();
+        getTeam();
+
+
 
     }
 
@@ -100,15 +119,7 @@ public class Profil extends AppCompatActivity {
                         }
                         else {
                             player.setText("Oyuncu Yarat");
-                            player.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    /*final Gson gson=new Gson();
-                                    Intent intent=new Intent(Profil.this, CreatePlayer.class);
-                                    intent.putExtra("user",gson.toJson(user));
-                                    Profil.this.startActivity(intent);*/
-                                }
-                            });
+
                         }
 
 

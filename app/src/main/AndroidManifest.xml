@@ -19,7 +19,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CreatePlayer"></activity>
+        <activity android:name=".ShowPlayerResult"></activity>
+        <activity android:name=".SelectMultipleDistricts" />
+        <activity android:name=".ChooseRolePlayer" />
+        <activity android:name=".CreatePlayer" />
         <activity android:name=".Notifications" />
         <activity android:name=".ChoosePlayerResult" />
         <activity android:name=".StartApp">

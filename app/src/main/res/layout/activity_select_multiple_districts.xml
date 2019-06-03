@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SelectMultipleDistricts">
+
+    <Button
+        android:id="@+id/tonext2"
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:background="@drawable/next_button"
+        android:backgroundTint="@color/LightGrey"
+        android:fontFamily="sans-serif"
+        android:text="Devam Etmek İçin Bir Şehir Seç"
+        android:textAllCaps="false"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/White"
+
+
+        android:textSize="20sp"
+        android:theme="@style/Base.V23.Theme.AppCompat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="374dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Oynayabileceğin İlçeleri Belirle"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/possibledistrictslist"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <ListView
+        android:id="@+id/possibledistrictslist"
+        android:layout_width="395dp"
+        android:layout_height="484dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tonext2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</android.support.constraint.ConstraintLayout>

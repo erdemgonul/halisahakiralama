@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseRolePlayer">
+
+    <ListView
+        android:id="@+id/mevki_list"
+        android:layout_width="395dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tonextpossiblecities"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/tonextpossiblecities"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/next_button"
+        android:backgroundTint="@color/LightGrey"
+        android:text="şehir seç"
+        android:textAllCaps="false"
+
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        android:theme="@style/Base.V23.Theme.AppCompat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/playerselect_text3"
+        android:layout_width="359dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Oynayabildiğin Mevkiileri İşaretle"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="303dp"
+        android:layout_height="393dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/soccerfield"
+        app:layout_constraintBottom_toTopOf="@+id/mevki_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.46"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerselect_text3">
+
+
+        <Button
+            android:id="@+id/buttonforward"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="52dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/myBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonmid2"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/myBlue"
+            app:layout_constraintBottom_toTopOf="@+id/buttonkeeper"
+            app:layout_constraintEnd_toStartOf="@+id/buttonmid3"
+            app:layout_constraintHorizontal_bias="0.49"
+            app:layout_constraintStart_toEndOf="@+id/buttonmid1"
+            app:layout_constraintTop_toBottomOf="@+id/buttonforward"
+            app:layout_constraintVertical_bias="0.311" />
+
+        <Button
+            android:id="@+id/buttondef1"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/myBlue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttondef2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonmid1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/buttondef2"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/myBlue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonmid3"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/buttonkeeper"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/myBlue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonmid3"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="168dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/myBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonmid1"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="168dp"
+            android:background="@drawable/circle_button"
+            android:backgroundTint="@color/myBlue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
