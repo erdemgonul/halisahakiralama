@@ -100,7 +100,7 @@
             android:drawablePadding="10dp"
             android:ems="10"
             android:hint="soy isim"
-            android:inputType="textPassword"
+            android:inputType="text"
             android:textColor="@android:color/darker_gray"
             android:textSize="17dp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -28,8 +28,8 @@ public class CreatePlayer extends AppCompatActivity {
         toButton=findViewById(R.id.possiblecitiesbutton);
         name=findViewById(R.id.createplayername);
         surname=findViewById(R.id.createplayersurname);
-        phone=findViewById(R.id.createplayeraddress);
-        address=findViewById(R.id.createplayerphone);
+        address=findViewById(R.id.createplayeraddress);
+        phone=findViewById(R.id.createplayerphone);
 
         toButton.setOnClickListener(new View.OnClickListener() {
             @Override

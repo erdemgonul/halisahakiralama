@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ShowPlayerResult"></activity>
+        <activity android:name=".TeamCreateJoin"></activity>
+        <activity android:name=".CreateTeam" />
+        <activity android:name=".ShowPlayerResult" />
         <activity android:name=".SelectMultipleDistricts" />
         <activity android:name=".ChooseRolePlayer" />
         <activity android:name=".CreatePlayer" />

@@ -60,25 +60,25 @@ public class ChooseRolePlayer extends AppCompatActivity {
                         switch (v.getId()){
 
                             case R.id.buttonkeeper:
-                                sentRoles.remove("keeper");
+                                sentRoles.remove("GOALKEEPER");
                                 break;
                             case R.id.buttondef1:
-                                sentRoles.remove("def_left");
+                                sentRoles.remove("DEFENDER_1");
                                 break;
                             case R.id.buttondef2:
-                                sentRoles.remove("def_right");
+                                sentRoles.remove("DEFENDER_2");
                                 break;
                             case R.id.buttonmid1:
-                                sentRoles.remove("mid_left");
+                                sentRoles.remove("MIDFIELDER_1");
                                 break;
                             case R.id.buttonmid2:
-                                sentRoles.remove("mid");
+                                sentRoles.remove("MIDFIELDER_2");
                                 break;
                             case R.id.buttonmid3:
-                                sentRoles.remove("mid_right");
+                                sentRoles.remove("MIDFIELDER_3");
                                 break;
                             case R.id.buttonforward:
-                                sentRoles.remove("forward");
+                                sentRoles.remove("STRIKER");
                                 break;
                         }
                     }else{
@@ -87,25 +87,25 @@ public class ChooseRolePlayer extends AppCompatActivity {
                         switch (v.getId()){
 
                             case R.id.buttonkeeper:
-                                sentRoles.add("keeper");
+                                sentRoles.add("GOALKEEPER");
                                 break;
                             case R.id.buttondef1:
-                                sentRoles.add("def_left");
+                                sentRoles.add("DEFENDER_1");
                                 break;
                             case R.id.buttondef2:
-                                sentRoles.add("def_right");
+                                sentRoles.add("DEFENDER_2");
                                 break;
                             case R.id.buttonmid1:
-                                sentRoles.add("mid_left");
+                                sentRoles.add("MIDFIELDER_1");
                                 break;
                             case R.id.buttonmid2:
-                                sentRoles.add("mid");
+                                sentRoles.add("MIDFIELDER_2");
                                 break;
                             case R.id.buttonmid3:
-                                sentRoles.add("mid_right");
+                                sentRoles.add("MIDFIELDER_3");
                                 break;
                             case R.id.buttonforward:
-                                sentRoles.add("forward");
+                                sentRoles.add("STRIKER");
                                 break;
                         }
                     }
