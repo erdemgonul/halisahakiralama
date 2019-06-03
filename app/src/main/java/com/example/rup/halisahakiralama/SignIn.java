@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,8 +32,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -87,13 +91,26 @@ public class SignIn extends AppCompatActivity {
         signasbackend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    signUser(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString());
+                FirebaseInstanceId.getInstance().getInstanceId()
+                        .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                if (!task.isSuccessful()) {
+                                    return;
+                                }
 
+                                // Get new Instance ID token
+                                String token = task.getResult().getToken();
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                                try {
+                                    signUser(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString(), token);
+                                } catch (JSONException e) {
+                                    System.out.println("FUCK2");
+                                    Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                                }
+                                Toast.makeText(SignIn.this, "helalll", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
 
@@ -137,10 +154,29 @@ public class SignIn extends AppCompatActivity {
     }
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            final GoogleSignInAccount account = completedTask.getResult(ApiException.class);
 
             System.out.println(account.getDisplayName());
-            newUser(account.getDisplayName(),account.getEmail(), account.getEmail());
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                return;
+                            }
+
+                            // Get new Instance ID token
+                            String token = task.getResult().getToken();
+
+                            try {
+                                newUser(account.getDisplayName(),account.getEmail(), account.getEmail(), token);
+                            } catch (JSONException e) {
+                                System.out.println("FUCK2");
+                                Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                            }
+                            Toast.makeText(SignIn.this, "helalll", Toast.LENGTH_SHORT).show();
+                        }
+                    });
             //BURDA HTTP POST ATICAN JAVAYA
             // Signed in successfully, show authenticated UI.
             Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
@@ -151,8 +187,6 @@ public class SignIn extends AppCompatActivity {
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             System.out.println("mustafaaaa " + e.getMessage());
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 
@@ -160,24 +194,40 @@ public class SignIn extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account!=null){
-            try {
-                signUser(account.getDisplayName(),account.getEmail());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                return;
+                            }
+
+                            // Get new Instance ID token
+                            String token = task.getResult().getToken();
+
+                            try {
+                                signUser(account.getDisplayName(),account.getEmail(), token);
+                            } catch (JSONException e) {
+                                System.out.println("FUCK2");
+                                Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                            }
+                            Toast.makeText(SignIn.this, "helalll", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
         }
     }
 
-    private void signUser(final String username, final String password) throws JSONException {
+    private void signUser(final String username, final String password, final String token) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "login";
         JSONObject jsonBody = new JSONObject();
 
         jsonBody.put("username", username);
         jsonBody.put("password", password);
+        jsonBody.put("fcmPushToken", token);
         jsonBody.put("role", "ROLE_USER");
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
@@ -224,7 +274,7 @@ public class SignIn extends AppCompatActivity {
         queue.add(jsonObject);
     }
 
-    private void newUser(final String username, final String password, final String email) throws JSONException {
+    private void newUser(final String username, final String password, final String email, final String token) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
@@ -234,6 +284,7 @@ public class SignIn extends AppCompatActivity {
         jsonBody.put("email", email);
         jsonBody.put("isGoogleSign", true);
         jsonBody.put("role", "ROLE_USER");
+        jsonBody.put("fcmPushToken", token);
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
@@ -249,7 +300,7 @@ public class SignIn extends AppCompatActivity {
                     user.isGoogleSign=object.getBoolean("isGoogleSign");
                 } catch (JSONException e) {
                     try {
-                        signUser(username,password);
+                        signUser(username,password, token);
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }
