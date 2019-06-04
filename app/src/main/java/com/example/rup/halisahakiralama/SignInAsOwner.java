@@ -1,7 +1,6 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -29,7 +28,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
@@ -235,9 +233,9 @@ public class SignInAsOwner extends AppCompatActivity {
                 User user=new User();
                 try {
                     System.out.println(response);
-                    JSONObject object=response.getJSONObject("playerDTO");
+                    JSONObject object=response.getJSONObject("userDTO");
                     user.username=object.getString("username");
-                    user.password=object.getString("originalPassword");
+                    user.password=object.getString("password");
                     user.role=object.getString("role");
                     user.email=object.getString("email");
                     user.id=object.getString("id");
@@ -281,9 +279,9 @@ public class SignInAsOwner extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 User user=new User();
                 try {
-                    JSONObject object=response.getJSONObject("playerDTO");
+                    JSONObject object=response.getJSONObject("userDTO");
                     user.username=object.getString("username");
-                    user.password=object.getString("originalPassword");
+                    user.password=object.getString("password");
                     user.role=object.getString("role");
                     user.id=object.getString("id");
                     user.email=object.getString("email");

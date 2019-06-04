@@ -7,7 +7,6 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -17,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.District;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -45,7 +45,7 @@ public class CreateTeamResult extends AppCompatActivity {
         teamname=findViewById(R.id.teamnametext);
         possible_districts=findViewById(R.id.teamsummarydistricts);
         teamowner=findViewById(R.id.teamownertext);
-
+        city=findViewById(R.id.teamsummarycity);
         teamname.setText("Takım Adı : " + extras.getString("name"));
         teamowner.setText("Takım Kurucusu: " +user.username);
 

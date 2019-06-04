@@ -1,6 +1,5 @@
 package com.example.rup.halisahakiralama;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -16,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,6 +25,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.City;
 import com.example.rup.halisahakiralama.client.District;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -89,7 +88,7 @@ public class CitySelect extends AppCompatActivity {
                                 toNextFrag.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        if(extras.getBoolean("fromCreatePlayer")==true){
+                                        if(extras.getBoolean("fromCreatePlayer")){
                                             Intent intent = new Intent(CitySelect.this, SelectMultipleDistricts.class);
                                             intent.putExtra("il",iller[i]);
                                             Gson gson=new Gson();
@@ -111,6 +110,7 @@ public class CitySelect extends AppCompatActivity {
                                             intent.putExtra("user",gson.toJson(user));
                                             intent.putExtra("name",extras.getString("name"));
                                             intent.putExtra("fromCreateTeam",true);
+                                            intent.putExtra("option",option);
                                             CitySelect.this.startActivity(intent);
                                         }
 
@@ -182,7 +182,7 @@ public class CitySelect extends AppCompatActivity {
         final Gson gson=new Gson();
         extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
-        option= gson.fromJson(extras.getString("option"),String.class);
+        option= extras.getString("option");
         System.out.println("mustafaaaa " + option);
         getCities();
     }

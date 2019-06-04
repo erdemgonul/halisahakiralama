@@ -1,12 +1,10 @@
 package com.example.rup.halisahakiralama;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.util.Log;
@@ -26,6 +24,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.City;
+import com.example.rup.halisahakiralama.client.TeamListResponse;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 
@@ -43,6 +43,7 @@ public class ChooseHaliSaha extends AppCompatActivity {
     TextView textView, header;
     User user;
     String il,ilce, option;
+    Bundle  b;
     public ChooseHaliSaha() {
         // Required empty public constructor
     }
@@ -53,12 +54,13 @@ public class ChooseHaliSaha extends AppCompatActivity {
         setContentView(R.layout.activity_choose_hali_saha);
 
 
-        Bundle  b=getIntent().getExtras();
+        b=getIntent().getExtras();
         il=b.getString("il");
         ilce=b.getString("ilce") ;
         option=b.getString("option") ;
         final Gson gson=new Gson();
         user= gson.fromJson(b.getString("user"),User.class);
+
 
         listView=findViewById(R.id.list_halisaha);
         textView=findViewById(R.id.halisahalar_text);
@@ -66,7 +68,10 @@ public class ChooseHaliSaha extends AppCompatActivity {
 
         nextbutton=findViewById(R.id.button9);
 
+
         getHalisahalar(il,ilce);
+
+
 
     }
     @Override
@@ -82,7 +87,6 @@ public class ChooseHaliSaha extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
     }
-
 
     public void getHalisahalar(String city,String district){
 
@@ -120,16 +124,28 @@ public class ChooseHaliSaha extends AppCompatActivity {
                                 nextbutton.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        Intent intent = new Intent(ChooseHaliSaha.this, SetDate.class);
-                                        intent.putExtra("name", p.stadiums.get(i).name);
-                                        intent.putExtra("stadium_id", p.stadiums.get(i).id + "");
-                                        intent.putExtra("option", option);
-                                        Gson gson = new Gson();
-                                        intent.putExtra("user", gson.toJson(user));
-                                        gson = new Gson();
-                                        intent.putExtra("stadium", gson.toJson(p.stadiums.get(i)));
-                                        Toast.makeText(ChooseHaliSaha.this, p.stadiums.get(i).id + "", Toast.LENGTH_SHORT).show();
-                                        ChooseHaliSaha.this.startActivity(intent);
+
+                                        if(option.equals("FindTeam")){
+                                            Intent intent = new Intent(ChooseHaliSaha.this, SetDate.class);
+                                            intent.putExtra("name", p.stadiums.get(i).name);
+                                            intent.putExtra("stadium_id", p.stadiums.get(i).id + "");
+                                            intent.putExtra("option", option);
+                                            Gson gson = new Gson();
+                                            intent.putExtra("user", gson.toJson(user));
+                                            intent.putExtra("stadium", gson.toJson(p.stadiums.get(i)));
+                                            ChooseHaliSaha.this.startActivity(intent);
+                                        }else{
+                                            Intent intent = new Intent(ChooseHaliSaha.this, SetDate.class);
+                                            intent.putExtra("name", p.stadiums.get(i).name);
+                                            intent.putExtra("stadium_id", p.stadiums.get(i).id + "");
+                                            intent.putExtra("option", option);
+                                            Gson gson = new Gson();
+                                            intent.putExtra("user", gson.toJson(user));
+                                            gson = new Gson();
+                                            intent.putExtra("stadium", gson.toJson(p.stadiums.get(i)));
+                                            ChooseHaliSaha.this.startActivity(intent);
+                                        }
+
                                     }
                                 });
                             }

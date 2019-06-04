@@ -3,7 +3,6 @@ package com.example.rup.halisahakiralama;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -22,9 +21,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.rup.halisahakiralama.client.City;
 import com.example.rup.halisahakiralama.client.District;
+import com.example.rup.halisahakiralama.client.Team;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,16 +60,62 @@ public class IlceSelect extends AppCompatActivity {
         toNextFrag=(Button) findViewById(R.id.button8);
 
         Bundle extras = getIntent().getExtras();
-        ilName =  extras.getString("il");
+
         final Gson gson=new Gson();
         user= gson.fromJson(extras.getString("user"),User.class);
         option= extras.getString("option");
-        System.out.println("mustafaaaa " + option);
-        getDistrictsByCity(ilName);
+        if(option.equals("FindTeam")){
+            getTeam();
+        }else{
+
+            ilName =  extras.getString("il");
+            getDistrictsByCity(ilName);
+
+
+        }
 
 
     }
+    public void getTeam(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "team/user/" + user.id + "";
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson g = new Gson();
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            String x=jsonObject.getString("teamDTO");
+                            Gson gson=new Gson();
+                            Team t=gson.fromJson(x,Team.class);
+                            ilName=t.cityName;
+                            getDistrictsByCity(ilName);
+                        } catch (JSONException e) {
 
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s",user.username,user.password);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+    }
     public void getDistrictsByCity(final String cityName){
                             RequestQueue queue = Volley.newRequestQueue(this);
                             String url = StaticVariables.ip_address + cityName  + "/districts";
@@ -110,7 +159,6 @@ public class IlceSelect extends AppCompatActivity {
                                             final Gson gson=new Gson();
                                             intent.putExtra("user",gson.toJson(user));
                                             IlceSelect.this.startActivity(intent);
-
                                     }
                                 });
                             }

@@ -186,16 +186,7 @@ public class SignUp extends AppCompatActivity {
                         Toast.makeText(SignUp.this, "HATA", Toast.LENGTH_SHORT).show();
                     }
                 }
-        ) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s","rup1","rup1");
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
-                params.put("Authorization", auth);
-                return params;
-            }
-        };
+        );
         queue.add(getRequest);
 
     }
@@ -238,16 +229,7 @@ public class SignUp extends AppCompatActivity {
                         Toast.makeText(SignUp.this, "HATA", Toast.LENGTH_SHORT).show();
                     }
                 }
-        ) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s","rup1","rup1");
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
-                params.put("Authorization", auth);
-                return params;
-            }
-        };
+        );
         queue.add(getRequest);
 
     }

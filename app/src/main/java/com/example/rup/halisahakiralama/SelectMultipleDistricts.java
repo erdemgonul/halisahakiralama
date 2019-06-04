@@ -1,15 +1,11 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -20,9 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.District;
-import com.example.rup.halisahakiralama.client.DistrictListResponse;
-import com.example.rup.halisahakiralama.client.NotificationListResponse;
-import com.example.rup.halisahakiralama.client.PlayerListResponse;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

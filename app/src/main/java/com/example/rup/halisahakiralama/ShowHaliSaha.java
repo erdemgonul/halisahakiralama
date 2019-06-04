@@ -9,20 +9,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.rup.halisahakiralama.client.ReservationTime;
 import com.example.rup.halisahakiralama.client.Stadium;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-
-import java.io.InputStreamReader;
-import java.io.StringReader;
 
 public class ShowHaliSaha extends AppCompatActivity {
 

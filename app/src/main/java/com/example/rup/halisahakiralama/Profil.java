@@ -2,24 +2,16 @@ package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -32,19 +24,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.Player;
 import com.example.rup.halisahakiralama.client.Team;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Profil extends AppCompatActivity {
@@ -222,7 +208,7 @@ public class Profil extends AppCompatActivity {
                             if(x.equals("null") || x.isEmpty()){
                                teamlayout.setVisibility(View.GONE);
                             }else{
-                                Team p = g.fromJson(response, Team.class);
+                                Team p = g.fromJson(x, Team.class);
                                 if(p != null) {
                                     teamname.setText("" + p.name);
                                 }

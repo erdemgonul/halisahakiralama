@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 public class CreatePlayer extends AppCompatActivity {

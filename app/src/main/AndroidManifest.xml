@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CreateTeamResult"></activity>
+        <activity android:name=".ChooseTeam"></activity>
+        <activity android:name=".ChooseTeamResult" />
+        <activity android:name=".CreateTeamResult" />
         <activity android:name=".ChangePassword" />
         <activity android:name=".ShowPlayer" />
         <activity android:name=".TeamCreateJoin" />

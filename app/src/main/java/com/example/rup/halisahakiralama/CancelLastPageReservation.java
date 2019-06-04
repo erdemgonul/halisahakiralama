@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.Reservation;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import java.util.HashMap;

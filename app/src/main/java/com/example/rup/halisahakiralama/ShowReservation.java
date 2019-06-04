@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.rup.halisahakiralama.client.Reservation;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 public class ShowReservation extends AppCompatActivity {

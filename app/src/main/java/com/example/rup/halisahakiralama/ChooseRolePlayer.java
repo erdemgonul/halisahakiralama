@@ -1,7 +1,6 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,8 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.District;
-import com.example.rup.halisahakiralama.client.DistrictMetadata;
-import com.example.rup.halisahakiralama.client.ListStringRequest;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import org.json.JSONException;

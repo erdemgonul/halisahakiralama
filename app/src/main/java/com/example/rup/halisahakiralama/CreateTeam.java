@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 public class CreateTeam extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class CreateTeam extends AppCompatActivity {
                 intent.putExtra("name",createname.getText() + "");
                 final Gson gson=new Gson();
                 intent.putExtra("user",gson.toJson(user));
+                intent.putExtra("fromCreateTeam",true);
                 CreateTeam.this.startActivity(intent);
             }
         });

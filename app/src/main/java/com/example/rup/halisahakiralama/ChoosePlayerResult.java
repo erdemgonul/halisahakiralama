@@ -1,7 +1,6 @@
 package com.example.rup.halisahakiralama;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -10,7 +9,6 @@ import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,10 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.Player;
 import com.example.rup.halisahakiralama.client.ReservationTime;
-import com.example.rup.halisahakiralama.client.Stadium;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -43,7 +38,6 @@ public class ChoosePlayerResult extends AppCompatActivity {
     Button approve,arabutton;
     User user;
     EditText editText;
-    String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

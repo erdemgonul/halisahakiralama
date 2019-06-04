@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseTeamResult">
+
+
+    <TextView
+        android:id="@+id/rakipresultheader"
+        android:layout_width="386dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Rakip Onay Ekranı"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/rakiptakimname"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.261" />
+
+    <TextView
+        android:id="@+id/rakiptakimname"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="sans-serif-light"
+        android:text="deneme2"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/rakiptakimdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/rakiptakimdate"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="sans-serif-light"
+        android:text="deneme4"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/rakiptakimsaat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/rakiptakimsaat"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="sans-serif-light"
+        android:text="ücret"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/takimiara_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/takimiara_button"
+        android:layout_width="357dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/LightGreen"
+        android:fontFamily="sans-serif"
+        android:text="Takım Sahibini Ara"
+        android:textColor="@color/White"
+        android:textSize="16sp"
+        android:theme="@style/Base.V23.Theme.AppCompat"
+        app:layout_constraintBottom_toTopOf="@+id/takimdetay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/takimdetay"
+        android:layout_width="345dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Açıklama eklemek isterseniz bu alana yazınız."
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/takimrakiponay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/takimrakiponay"
+
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+
+        android:background="@drawable/next_button"
+
+
+        android:backgroundTint="#4751A6"
+        android:fontFamily="sans-serif"
+        android:text="Başvuru Yap"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@color/White"
+        android:textSize="20sp"
+        android:theme="@style/Base.V23.Theme.AppCompat"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        />
+</android.support.constraint.ConstraintLayout>

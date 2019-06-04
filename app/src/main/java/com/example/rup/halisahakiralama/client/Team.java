@@ -6,8 +6,9 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class Team {
+    @Key public Long id;
     @Key public String name;
-    @Key public String owner;
+    @Key public String cityName;
     @Key public BigDecimal rate;
-    @Key public List<String> players;
+
 }

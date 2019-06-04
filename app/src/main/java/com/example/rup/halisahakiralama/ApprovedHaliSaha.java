@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -18,6 +17,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.ReservationTime;
 import com.example.rup.halisahakiralama.client.Stadium;
+import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import org.json.JSONException;

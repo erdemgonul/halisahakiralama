@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -18,11 +17,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.rup.halisahakiralama.client.Notification;
+import com.example.rup.halisahakiralama.client.User;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -131,7 +128,14 @@ public class Adapter  extends BaseAdapter {
     public void approveRequest(int i,Context context,final User user){
         System.out.println("deneme");
         RequestQueue queue = Volley.newRequestQueue(Notifications.context);
-        String url = StaticVariables.ip_address + "player/claim/approve/" + Notifications.notifications.get(i).getId();
+        String url="" ;
+        if(Notifications.notifications.get(i).getType().equals("TeamClaim")){
+            url = StaticVariables.ip_address + "team/claim/approve/" + Notifications.notifications.get(i).getId();
+
+        }else if(Notifications.notifications.get(i).getType().equals("PlayerClaim")){
+            url = StaticVariables.ip_address + "player/claim/approve/" + Notifications.notifications.get(i).getId();
+        }
+
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
