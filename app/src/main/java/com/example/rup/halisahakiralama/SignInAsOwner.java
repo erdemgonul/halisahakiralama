@@ -3,6 +3,7 @@ package com.example.rup.halisahakiralama;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,8 +27,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -74,11 +78,26 @@ public class SignInAsOwner extends AppCompatActivity {
         signasbackend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    signUserAsOwner(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                FirebaseInstanceId.getInstance().getInstanceId()
+                        .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                if (!task.isSuccessful()) {
+                                    return;
+                                }
+
+                                // Get new Instance ID token
+                                String token = task.getResult().getToken();
+
+                                try {
+                                    signUserAsOwner(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString(), token);
+                                } catch (JSONException e) {
+                                    System.out.println("FUCK2");
+                                    Toast.makeText(SignInAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                                }
+                                Toast.makeText(SignInAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
         signinbutton.setOnClickListener(new View.OnClickListener() {
@@ -106,8 +125,6 @@ public class SignInAsOwner extends AppCompatActivity {
 
 
 
-
-
     }
 
     @Override
@@ -122,8 +139,27 @@ public class SignInAsOwner extends AppCompatActivity {
     }
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            newUser(account.getDisplayName(),account.getEmail(), account.getEmail());
+            final GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                return;
+                            }
+
+                            // Get new Instance ID token
+                            String token = task.getResult().getToken();
+
+                            try {
+                                signUserAsOwner(account.getDisplayName(),account.getEmail(), token);
+                            } catch (JSONException e) {
+                                System.out.println("FUCK2");
+                                Toast.makeText(SignInAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                            }
+                            Toast.makeText(SignInAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
+                        }
+                    });
             Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
             SignInAsOwner.this.startActivity(new Intent(SignInAsOwner.this,ChooseJob.class));
 
@@ -131,8 +167,6 @@ public class SignInAsOwner extends AppCompatActivity {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
     @Override
@@ -145,13 +179,28 @@ public class SignInAsOwner extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account!=null){
-            try {
-                signUserAsOwner(account.getDisplayName(),account.getEmail());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                return;
+                            }
+
+                            // Get new Instance ID token
+                            String token = task.getResult().getToken();
+
+                            try {
+                                signUserAsOwner(account.getDisplayName(),account.getEmail(), token);
+                            } catch (JSONException e) {
+                                System.out.println("FUCK2");
+                                Toast.makeText(SignInAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                            }
+                            Toast.makeText(SignInAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
     protected void setGoogleButtonText(SignInButton signInButton, String buttonText) {
@@ -169,7 +218,7 @@ public class SignInAsOwner extends AppCompatActivity {
             }
         }
     }
-    private void signUserAsOwner(final String username, final String password) throws JSONException {
+    private void signUserAsOwner(final String username, final String password, final String token) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "login";
         JSONObject jsonBody = new JSONObject();
@@ -177,6 +226,8 @@ public class SignInAsOwner extends AppCompatActivity {
         jsonBody.put("username", username);
         jsonBody.put("password", password);
         jsonBody.put("role", "ROLE_STD_OWNER");
+        jsonBody.put("fcmPushToken", token);
+
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
@@ -214,7 +265,7 @@ public class SignInAsOwner extends AppCompatActivity {
 
         queue.add(jsonObject);
     }
-    private void newUser(final String username, final String password, final String email) throws JSONException {
+    private void newUser(final String username, final String password, final String email, final String token) throws JSONException {
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "user";
         JSONObject jsonBody = new JSONObject();
@@ -223,6 +274,7 @@ public class SignInAsOwner extends AppCompatActivity {
         jsonBody.put("password", password);
         jsonBody.put("email", email);
         jsonBody.put("role", "ROLE_STD_OWNER");
+        jsonBody.put("fcmPushToken", token);
 
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
@@ -237,7 +289,7 @@ public class SignInAsOwner extends AppCompatActivity {
                     user.email=object.getString("email");
                 } catch (JSONException e) {
                     try {
-                        signUserAsOwner(username,password);
+                        signUserAsOwner(username,password, token);
                     } catch (JSONException e1) {
                         e1.printStackTrace();
                     }
