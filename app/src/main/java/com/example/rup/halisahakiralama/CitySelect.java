@@ -103,7 +103,18 @@ public class CitySelect extends AppCompatActivity {
                                             intent.putExtra("fromCreatePlayer",true);
                                             CitySelect.this.startActivity(intent);
 
-                                        }else{
+                                        }else if(extras.getBoolean("fromCreateTeam")){
+
+                                            Intent intent = new Intent(CitySelect.this, SelectMultipleDistricts.class);
+                                            intent.putExtra("il",iller[i]);
+                                            Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
+                                            intent.putExtra("name",extras.getString("name"));
+                                            intent.putExtra("fromCreateTeam",true);
+                                            CitySelect.this.startActivity(intent);
+                                        }
+
+                                        else{
                                             Intent intent = new Intent(CitySelect.this, IlceSelect.class);
                                             intent.putExtra("il",iller[i]);
                                             Gson gson=new Gson();

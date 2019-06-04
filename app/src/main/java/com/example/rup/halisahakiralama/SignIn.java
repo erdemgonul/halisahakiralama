@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,13 +20,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.R;
+import com.example.rup.halisahakiralama.client.Player;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -42,6 +46,9 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.support.v4.content.ContextCompat.getSystemService;
 
 public class SignIn extends AppCompatActivity {
@@ -50,7 +57,7 @@ public class SignIn extends AppCompatActivity {
     SignInButton signinbutton;
     Button forgotbutton,registerbutton,signasbackend;
 
-
+    User user;
     int RC_SIGN_IN=1;
     GoogleSignInClient mGoogleSignInClient;
     @Override
@@ -95,7 +102,6 @@ public class SignIn extends AppCompatActivity {
                                     System.out.println("FUCK2");
                                     Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
                                 }
-                                Toast.makeText(SignIn.this, "helalll", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
@@ -157,17 +163,18 @@ public class SignIn extends AppCompatActivity {
 
                             try {
                                 newUser(account.getDisplayName(),account.getEmail(), account.getEmail(), token);
+                                System.out.println("BU SEFER BURDAYIM");
+                                //BURDA HTTP POST ATICAN JAVAYA
+                                // Signed in successfully, show authenticated UI.
+
+
                             } catch (JSONException e) {
-                                System.out.println("FUCK2");
-                                Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+
                             }
-                            Toast.makeText(SignIn.this, "helalll", Toast.LENGTH_SHORT).show();
+
                         }
                     });
-            //BURDA HTTP POST ATICAN JAVAYA
-            // Signed in successfully, show authenticated UI.
-            Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
-            //SignIn.this.startActivity(new Intent(SignIn.this,ChooseJob.class));
+
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -197,10 +204,8 @@ public class SignIn extends AppCompatActivity {
                             try {
                                 signUser(account.getDisplayName(),account.getEmail(), token);
                             } catch (JSONException e) {
-                                System.out.println("FUCK2");
                                 Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(SignIn.this, "helalll", Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -220,26 +225,24 @@ public class SignIn extends AppCompatActivity {
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                User user=new User();
+
                 try {
+
+                    Gson gson=new Gson();
                     JSONObject object=response.getJSONObject("playerDTO");
-                    user.username=object.getString("username");
-                    user.password=object.getString("originalPassword");
-                    user.role=object.getString("role");
-                    user.id=object.getString("id");
-                    user.email=object.getString("email");
-                    user.isGoogleSign=object.getBoolean("isGoogleSign");
+                    user= gson.fromJson(String.valueOf(object),User.class);
 
                     SharedPreferences myPreferences
                             = PreferenceManager.getDefaultSharedPreferences(SignIn.this);
                     SharedPreferences.Editor myEditor = myPreferences.edit();
-                    Gson gson=new Gson();
+
                     myEditor.putString("user",gson.toJson(user) );
                     myEditor.commit();
-                    Intent intent=new Intent(SignIn.this,ChooseJob.class);
 
+                    Intent intent=new Intent(SignIn.this,ChooseJob.class);
                     intent.putExtra("user",gson.toJson(user));
                     SignIn.this.startActivity(intent);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                     mailtext.setError("Kullanıcı Adı veya Şifre Yanlış");
@@ -275,33 +278,18 @@ public class SignIn extends AppCompatActivity {
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                User user=new User();
                 try {
-                    JSONObject object=response.getJSONObject("playerDTO");
-                    user.username=object.getString("username");
-                    user.password=object.getString("originalPassword");
-                    user.role=object.getString("role");
-                    user.email=object.getString("email");
-                    user.id=object.getString("id");
-                    user.isGoogleSign=object.getBoolean("isGoogleSign");
+                    signUser(username,password,token);
                 } catch (JSONException e) {
-                    try {
-                        signUser(username,password, token);
-                    } catch (JSONException e1) {
-                        e1.printStackTrace();
-                    }
+                    e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                System.out.println("FUCK");
-                Toast.makeText(SignIn.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
-
             }
         });
-
         queue.add(jsonObject);
     }
 

@@ -58,17 +58,30 @@ public class SelectMultipleDistricts extends AppCompatActivity {
         tonext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SelectMultipleDistricts.this, ShowPlayerResult.class);
-                intent.putExtra("il",cityname);
+
+
                 Gson gson=new Gson();
-                intent.putExtra("user",gson.toJson(user));
-                intent.putExtra("name",extras.getString("name"));
-                intent.putExtra("surname",extras.getString("surname"));
-                intent.putExtra("phone",extras.getString("phone"));
-                intent.putExtra("address",extras.getString("address"));
-                intent.putExtra("roles",extras.getString("roles"));
-                intent.putExtra("districts",gson.toJson(addedDistricts));
-                SelectMultipleDistricts.this.startActivity(intent);
+                if(extras.getBoolean("fromCreatePlayer")){
+                    Intent intent = new Intent(SelectMultipleDistricts.this, ShowPlayerResult.class);
+                    intent.putExtra("il",cityname);
+                    intent.putExtra("user",gson.toJson(user));
+                    intent.putExtra("name",extras.getString("name"));
+                    intent.putExtra("surname",extras.getString("surname"));
+                    intent.putExtra("phone",extras.getString("phone"));
+                    intent.putExtra("address",extras.getString("address"));
+                    intent.putExtra("roles",extras.getString("roles"));
+                    intent.putExtra("districts",gson.toJson(addedDistricts));
+                    SelectMultipleDistricts.this.startActivity(intent);
+                }
+                else if(extras.getBoolean("fromCreateTeam")){
+                    Intent intent = new Intent(SelectMultipleDistricts.this, CreateTeamResult.class);
+                    intent.putExtra("il",cityname);
+                    intent.putExtra("districts",gson.toJson(addedDistricts));
+                    intent.putExtra("user",gson.toJson(user));
+                    intent.putExtra("name",extras.getString("name"));
+                    intent.putExtra("fromCreateTeam",true);
+                    SelectMultipleDistricts.this.startActivity(intent);
+                }
             }
         });
     }
@@ -105,7 +118,7 @@ public class SelectMultipleDistricts extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 String creds = String.format("%s:%s",user.username,user.password);
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
                 params.put("Authorization", auth);
                 return params;
             }

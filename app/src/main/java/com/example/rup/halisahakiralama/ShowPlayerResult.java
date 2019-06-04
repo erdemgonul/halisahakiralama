@@ -1,5 +1,6 @@
 package com.example.rup.halisahakiralama;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -104,6 +105,11 @@ public class ShowPlayerResult extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         System.out.println("mustafaaaa" + response.toString());
+
+                        Intent intent = new Intent(ShowPlayerResult.this, Profil.class);
+                        final Gson gson=new Gson();
+                        intent.putExtra("user",gson.toJson(user));
+                        ShowPlayerResult.this.startActivity(intent);
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -119,7 +125,7 @@ public class ShowPlayerResult extends AppCompatActivity {
                     public Map<String, String> getHeaders() throws AuthFailureError {
                         HashMap<String, String> params = new HashMap<String, String>();
                         String creds = String.format("%s:%s",user.username,user.password);
-                        String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                        String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
                         params.put("Authorization", auth);
                         return params;
                     }

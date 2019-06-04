@@ -153,7 +153,7 @@ public class Adapter  extends BaseAdapter {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 String creds = String.format("%s:%s",user.username,user.password);
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
                 params.put("Authorization", auth);
                 return params;
             }
@@ -185,7 +185,7 @@ public class Adapter  extends BaseAdapter {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 String creds = String.format("%s:%s",user.username,user.password);
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
                 params.put("Authorization", auth);
                 return params;
             }

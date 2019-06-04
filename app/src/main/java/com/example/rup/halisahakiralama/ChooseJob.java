@@ -134,6 +134,8 @@ public class ChooseJob extends Activity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
+
+        System.out.println("BOŞ");
         getNotificationNumber();
 
     }
@@ -183,7 +185,8 @@ public class ChooseJob extends Activity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 String creds = String.format("%s:%s",user.username,user.password);
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
+
                 params.put("Authorization", auth);
                 return params;
             }

@@ -1,11 +1,463 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout6"
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutOut"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profil">
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="365dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Profilim"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.14" />
+
+
+    <ScrollView
+        android:id="@+id/scrollProfile"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tonext123"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/constraintLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Profil">
+
+            <LinearLayout
+                android:id="@+id/profileplayername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/toplayerpage"
+                tools:layout_editor_absoluteX="23dp">
+
+                <TextView
+                    android:id="@+id/playernameprofiletext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingStart="5dp"
+                    android:text="Oyuncu Adı"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="179dp" />
+
+                <EditText
+                    android:id="@+id/playernameprofile"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="100sp"
+                    android:paddingStart="10dp"
+                    android:text="rupoyuncu"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/breaker"
+                android:layout_width="match_parent"
+
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/profileplayername"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/dividerte"
+                    android:layout_width="107dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="175dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Oyuncu"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/view2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:ignore="MissingConstraints" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="120dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#D5D5D5"
+                    app:layout_constraintBottom_toBottomOf="@+id/or2"
+                    app:layout_constraintEnd_toStartOf="@+id/or2"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/viewr"
+                    android:layout_width="140dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#D5D5D5"
+                    app:layout_constraintBottom_toBottomOf="@+id/or2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/dividerte"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/passwordbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/profileuserlayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/teamparola"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingStart="5dp"
+                    android:text="Parola"
+                    android:textColor="@android:color/black"
+
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="179dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/passwordtextprofile"
+                        android:layout_width="200dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginEnd="10dp"
+                        android:cursorVisible="false"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:inputType="textPassword"
+                        android:lineSpacingExtra="100sp"
+                        android:paddingStart="10dp"
+                        android:text="@string/error_incorrect_password"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/changepasswordbutton"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_button"
+                        android:text="şifre değiştir"
+                        android:textAllCaps="false" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profileteam2layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/toteampage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/teamname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingStart="5dp"
+                    android:text="Takım Adı"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="179dp" />
+
+                <EditText
+                    android:id="@+id/teamnameprofiletext"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="100sp"
+                    android:paddingStart="10dp"
+                    android:text="rup"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/userprofile1layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/passwordbar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/usernameprofile2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingStart="5dp"
+                    android:text="Kullanıcı Adı "
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="179dp" />
+
+                <EditText
+                    android:id="@+id/usernameprofiletext"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:drawableRight="@drawable/button_edit"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:lineSpacingExtra="100sp"
+                    android:paddingStart="10dp"
+                    android:text="rup"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profileuserlayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/editprofilebutton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/usernameprofile3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingStart="5dp"
+                    android:text="E-Posta Adresi"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="179dp" />
+
+                <EditText
+                    android:id="@+id/mailprofiletext"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="36dp"
+                    android:layout_marginEnd="36dp"
+                    android:drawableRight="@drawable/button_edit"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:paddingStart="10dp"
+                    android:text="rup@gmail.com"
+                    android:textAlignment="viewStart"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/profileteam2layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/or3"
+                    android:layout_width="79dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="sans-serif-light"
+
+                    android:text="Takım"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="24dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    tools:ignore="MissingConstraints" />
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="130dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#D5D5D5"
+                    app:layout_constraintBottom_toBottomOf="@+id/or3"
+                    app:layout_constraintEnd_toStartOf="@+id/or3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="150dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#D5D5D5"
+                    app:layout_constraintBottom_toBottomOf="@+id/or3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
+
+
+            <Button
+                android:id="@+id/editprofilebutton"
+                android:layout_width="330dp"
+                android:layout_height="37dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/border_button"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="sans-serif"
+                android:text="Profili Düzenle"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:theme="@style/Base.V23.Theme.AppCompat"
+                app:layout_constraintBottom_toTopOf="@+id/breaker"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.493"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <Button
+                android:id="@+id/toplayerpage"
+                android:layout_width="339dp"
+                android:layout_height="37dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/border_button"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="sans-serif"
+                android:text="Oyuncu Bilgileri"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:theme="@style/Base.V23.Theme.AppCompat"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/toteampage"
+                android:layout_width="339dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_button"
+                android:backgroundTintMode="src_in"
+                android:fontFamily="sans-serif"
+                android:text="Takım Yarat"
+                android:textAllCaps="false"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                android:theme="@style/Base.V23.Theme.AppCompat"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="114dp" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </ScrollView>
 
     <Button
         android:id="@+id/tonext123"
@@ -27,374 +479,7 @@
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/breaker"
-        android:layout_width="match_parent"
-
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/toplayerpage"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/dividerte"
-            android:layout_width="107dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="175dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Oyuncu"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/view2"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="MissingConstraints" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="120dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#D5D5D5"
-            app:layout_constraintBottom_toBottomOf="@+id/or2"
-            app:layout_constraintEnd_toStartOf="@+id/or2"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/viewr"
-            android:layout_width="140dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#D5D5D5"
-            app:layout_constraintBottom_toBottomOf="@+id/or2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/dividerte"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/passwordbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/profileuserlayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/teamparola"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
-                android:fontFamily="sans-serif-light"
-                android:paddingStart="5dp"
-                android:text="Parola"
-                android:textColor="@android:color/black"
-
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="179dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/passwordtextprofile"
-                    android:layout_width="200dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="36dp"
-                    android:layout_marginEnd="10dp"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:lineSpacingExtra="100sp"
-                    android:paddingStart="10dp"
-                    android:focusable="false"
-                    android:cursorVisible="false"
-                    android:text="@string/error_incorrect_password"
-                    android:textSize="18sp" />
-
-                <Button
-                    android:id="@+id/changepasswordbutton"
-                    android:layout_width="150dp"
-                    android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_button"
-                    android:text="şifre değiştir"
-                    android:textAllCaps="false" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/profileteam2layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/tonext123"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/teamname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp"
-            android:fontFamily="sans-serif-light"
-            android:paddingStart="5dp"
-            android:text="Takım Adı"
-            android:textColor="@android:color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="179dp" />
-
-        <EditText
-            android:id="@+id/teamnameprofiletext"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginEnd="36dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:lineSpacingExtra="100sp"
-            android:paddingStart="10dp"
-            android:text="rup"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/userprofile1layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/passwordbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/usernameprofile2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
-                android:fontFamily="sans-serif-light"
-                android:paddingStart="5dp"
-                android:text="Kullanıcı Adı "
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="179dp" />
-
-            <EditText
-                android:id="@+id/usernameprofiletext"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:lineSpacingExtra="100sp"
-                android:drawableRight="@drawable/button_edit"
-                android:paddingStart="10dp"
-                android:text="rup"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/profileuserlayout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/editprofilebutton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/usernameprofile3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
-                android:fontFamily="sans-serif-light"
-                android:paddingStart="5dp"
-                android:text="E-Posta Adresi"
-                android:textColor="@android:color/black"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="179dp" />
-
-            <EditText
-                android:id="@+id/mailprofiletext"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginStart="36dp"
-                android:layout_marginEnd="36dp"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:paddingStart="10dp"
-                android:text="rup@gmail.com"
-                android:drawableRight="@drawable/button_edit"
-                android:textAlignment="viewStart"
-                android:textSize="18sp" />
-
-        </LinearLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/constraintLayout2"
-            android:layout_width="match_parent"
-
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/profileteam2layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView
-                android:id="@+id/or3"
-                android:layout_width="79dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:fontFamily="sans-serif-light"
-
-                android:text="Takım"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"
-                android:textSize="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/view"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0"
-                tools:ignore="MissingConstraints" />
-
-            <View
-                android:id="@+id/view4"
-                android:layout_width="130dp"
-                android:layout_height="1dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="#D5D5D5"
-                app:layout_constraintBottom_toBottomOf="@+id/or3"
-                app:layout_constraintEnd_toStartOf="@+id/or3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="150dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="#D5D5D5"
-                app:layout_constraintBottom_toBottomOf="@+id/or3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="365dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="36dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-light"
-            android:text="Profilim"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/userprofile1layout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.079" />
-
-        <Button
-            android:id="@+id/editprofilebutton"
-            android:layout_width="330dp"
-            android:layout_height="47dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/border_button"
-            android:backgroundTintMode="src_in"
-            android:fontFamily="sans-serif"
-            android:text="Profili Düzenle"
-            android:textAllCaps="false"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:theme="@style/Base.V23.Theme.AppCompat"
-            app:layout_constraintBottom_toTopOf="@+id/breaker"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-    <Button
-        android:id="@+id/toplayerpage"
-        android:layout_width="339dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/border_button"
-        android:backgroundTintMode="src_in"
-        android:fontFamily="sans-serif"
-        android:text="Oyuncu Bilgileri"
-        android:textAllCaps="false"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 

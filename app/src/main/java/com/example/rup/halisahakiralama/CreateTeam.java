@@ -33,7 +33,7 @@ public class CreateTeam extends AppCompatActivity {
         tonext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateTeam.this, ChooseRolePlayer.class);
+                Intent intent = new Intent(CreateTeam.this, CitySelect.class);
 
                 intent.putExtra("name",createname.getText() + "");
                 final Gson gson=new Gson();

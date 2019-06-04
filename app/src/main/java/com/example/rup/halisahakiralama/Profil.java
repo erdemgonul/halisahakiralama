@@ -12,10 +12,12 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,18 +50,22 @@ import java.util.Map;
 public class Profil extends AppCompatActivity {
 
     User user;
-    Button profil,team,player,editprofile, back,createplayer,toplayer,changepassword;
-    EditText username,email,teamname,password;
+    Button team,editprofile, back,toplayer,changepassword;
+    EditText username,email,teamname,password,playernameEdit;
+    LinearLayout teamlayout,playerlayout,maillayout,parolalayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_profile);
 
         final Gson gson=new Gson();
         Bundle extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
-
+        playerlayout=findViewById(R.id.profileplayername);
+        playernameEdit=findViewById(R.id.playernameprofile);
+        parolalayout=findViewById(R.id.passwordbar);
+        teamlayout=findViewById(R.id.profileteam2layout);
         username=findViewById(R.id.usernameprofiletext);
         email=findViewById(R.id.mailprofiletext);
         teamname=findViewById(R.id.teamnameprofiletext);
@@ -68,7 +74,24 @@ public class Profil extends AppCompatActivity {
         password=findViewById(R.id.passwordtextprofile);
         changepassword=findViewById(R.id.changepasswordbutton);
         back=findViewById(R.id.tonext123);
+        maillayout=findViewById(R.id.profileuserlayout2);
+        team=findViewById(R.id.toteampage);
 
+
+        if(user.isGoogleSign){
+            parolalayout.setVisibility(View.GONE);
+            maillayout.setVisibility(View.GONE);
+        }
+
+
+        team.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Profil.this, CreateTeam.class);
+                intent.putExtra("user",gson.toJson(user));
+                Profil.this.startActivity(intent);
+            }
+        });
         toplayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,35 +144,46 @@ public class Profil extends AppCompatActivity {
         username.setText("" + user.username);
         email.setText("" + user.email);
         getTeam();
-
+        getPlayer();
     }
 
-
-    public void getTeam(){
+    public void getPlayer(){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = StaticVariables.ip_address + "team/user/" + user.id + "";
+        String url = StaticVariables.ip_address + "player/user/" + user.id + "";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(Profil.this,"hey", Toast.LENGTH_LONG).show();
-                        // response
-                        Log.d("d",response);
                         Gson g = new Gson();
 
-                        Team p = g.fromJson(response, Team.class);
-                        if(p != null) {
-                            teamname.setText("" + p.name);
-                        }
-                        else {
-                            team.setText("Takım Yarat");
-                            team.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
+                            if(response==null || response.equals("")){
+                                playerlayout.setVisibility(View.GONE);
+                                toplayer.setText("Oyuncu Yarat");
+                            }else{
+
+                                JSONObject jsonObject= null;
+                                try {
+                                    jsonObject = new JSONObject(response);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            });
-                        }
+                                String x= null;
+                                try {
+                                    x = jsonObject.getString("playerDTO");
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                Player p = g.fromJson(x, Player.class);
+                                    if(p != null) {
+                                        playernameEdit.setText("" + p.name);
+                                        toplayer.setText("Oyuncuyu Değiştir");
+                                    }
+                            }
+
+
+
+
                     }
                 },
                 new com.android.volley.Response.ErrorListener()
@@ -165,7 +199,62 @@ public class Profil extends AppCompatActivity {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<String, String>();
                 String creds = String.format("%s:%s",user.username,user.password);
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+    }
+
+    public void getTeam(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "team/user/" + user.id + "";
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson g = new Gson();
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            String x=jsonObject.getString("teamDTO");
+                            if(x.equals("null") || x.isEmpty()){
+                               teamlayout.setVisibility(View.GONE);
+                            }else{
+                                Team p = g.fromJson(response, Team.class);
+                                if(p != null) {
+                                    teamname.setText("" + p.name);
+                                }
+                                else {
+                                    team.setText("Takım Yarat");
+                                    team.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                        }
+                                    });
+                                }
+                            }
+                        } catch (JSONException e) {
+
+                        }
+
+
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        teamlayout.setVisibility(View.GONE);
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s",user.username,user.password);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
                 params.put("Authorization", auth);
                 return params;
             }
