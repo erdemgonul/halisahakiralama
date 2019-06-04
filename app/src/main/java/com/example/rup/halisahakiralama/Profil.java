@@ -41,8 +41,8 @@ import java.util.Map;
 public class Profil extends AppCompatActivity {
 
     User user;
-    Button profil,team,player,editprofile, back,createplayer;
-    EditText username,email,teamname;
+    Button profil,team,player,editprofile, back,createplayer,toplayer,changepassword;
+    EditText username,email,teamname,password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,21 +53,23 @@ public class Profil extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
 
-
-        //userText=findViewById(R.id.textView3);
-
-        //userText.setText("Hoşgeldiniz : " + user.username);
-
         username=findViewById(R.id.usernameprofiletext);
         email=findViewById(R.id.mailprofiletext);
         teamname=findViewById(R.id.teamnameprofiletext);
         editprofile=findViewById(R.id.editprofilebutton);
-        createplayer=findViewById(R.id.create_player_button);
-        back=findViewById(R.id.backbutton);
-        String text = "Kullanıcı Adı : " + user.username + "\n" + "E-Posta Adresi : " + user.email;
+        toplayer=findViewById(R.id.toplayerpage);
+        password=findViewById(R.id.passwordtextprofile);
+        changepassword=findViewById(R.id.changepasswordbutton);
+        back=findViewById(R.id.tonext123);
 
-
-
+        toplayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Profil.this, ShowPlayer.class);
+                intent.putExtra("user",gson.toJson(user));
+                Profil.this.startActivity(intent);
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,85 +79,29 @@ public class Profil extends AppCompatActivity {
                 Profil.this.startActivity(intent);
             }
         });
-
-        createplayer.setOnClickListener(new View.OnClickListener() {
+        toplayer.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
                                           Intent intent=new Intent(Profil.this, CreatePlayer.class);
                                           intent.putExtra("user",gson.toJson(user));
                                           Profil.this.startActivity(intent);
                                       }
-
-
             });
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(Profil.this, CreatePlayer.class);
+                Intent intent=new Intent(Profil.this, ChooseJob.class);
                 intent.putExtra("user",gson.toJson(user));
                 Profil.this.startActivity(intent);
             }
-
-
         });
-
-
-        getPlayer();
+        username.setText("" + user.username);
+        email.setText("" + user.email);
         getTeam();
 
-
-
     }
 
-    public void getPlayer(){
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = StaticVariables.ip_address + "player/user/" + user.id + "";
-        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
-                new com.android.volley.Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(Profil.this,"hey", Toast.LENGTH_LONG).show();
-                        // response
-                        Log.d("d",response);
-                        Gson g = new Gson();
-
-                        Player p = g.fromJson(response, Player.class);
-                        if(p != null) {
-                            System.out.println("mustafaaaaa   " + p);
-                            String text = "Oyuncu Adı : " + p.name + "\n" + "Oyuncu Soyadı : " + p.surName + "Oyuncu Mevki : " + p.position + "\n" + "Puan : " + p.rate;
-                            player.setText(text);
-                        }
-                        else {
-                            player.setText("Oyuncu Yarat");
-
-                        }
-
-
-
-                    }
-                },
-                new com.android.volley.Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        Toast.makeText(Profil.this, "HATA", Toast.LENGTH_SHORT).show();
-                    }
-                }
-        ) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<String, String>();
-                String creds = String.format("%s:%s",user.username,user.password);
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
-                params.put("Authorization", auth);
-                return params;
-            }
-        };
-        queue.add(getRequest);
-    }
 
     public void getTeam(){
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -172,9 +118,7 @@ public class Profil extends AppCompatActivity {
 
                         Team p = g.fromJson(response, Team.class);
                         if(p != null) {
-                            System.out.println("mustafaaaaa   " + p);
-                            String text = "Takım Adı : " + p.name + "\n" + "Puan : " + p.rate;
-                            team.setText(text);
+                            teamname.setText("" + p.name);
                         }
                         else {
                             team.setText("Takım Yarat");
@@ -184,9 +128,6 @@ public class Profil extends AppCompatActivity {
                                 }
                             });
                         }
-
-
-
                     }
                 },
                 new com.android.volley.Response.ErrorListener()
