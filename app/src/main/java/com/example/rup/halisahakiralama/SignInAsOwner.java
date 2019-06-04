@@ -291,16 +291,18 @@ public class SignInAsOwner extends AppCompatActivity {
                     try {
                         signUserAsOwner(username,password, token);
                     } catch (JSONException e1) {
-                        e1.printStackTrace();
+                        mailtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                        passwordtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                        Toast.makeText(SignInAsOwner.this, "Giriş yapılamadı", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                System.out.println("FUCK");
-                Toast.makeText(SignInAsOwner.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                mailtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                passwordtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                Toast.makeText(SignInAsOwner.this, "Giriş yapılamadı", Toast.LENGTH_SHORT).show();
 
             }
         });

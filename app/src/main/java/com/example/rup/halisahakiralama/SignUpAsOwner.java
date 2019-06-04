@@ -35,6 +35,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,7 +55,15 @@ public class SignUpAsOwner extends AppCompatActivity {
     Button haveaccountbutton;
 
 
+    boolean isMailDuplicate,isUsernameDuplicate;
+    String token;
+    public void setMailDuplicate(boolean mailDuplicate) {
+        isMailDuplicate = mailDuplicate;
+    }
 
+    public void setUsernameDuplicate(boolean usernameDuplicate) {
+        isUsernameDuplicate = usernameDuplicate;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,15 +91,13 @@ public class SignUpAsOwner extends AppCompatActivity {
                                     }
 
                                     // Get new Instance ID token
-                                    String token = task.getResult().getToken();
 
-                                    try {
-                                        newUserAsOwner(userNameText.getEditableText().toString(),passwordtext.getEditableText().toString(), mailtext.getEditableText().toString(), token);
-                                    } catch (JSONException e) {
-                                        System.out.println("FUCK2");
-                                        Toast.makeText(SignUpAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
-                                    }
-                                    Toast.makeText(SignUpAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
+                                    token = task.getResult().getToken();
+                                    setMailDuplicate(false);
+                                    setUsernameDuplicate(false);
+                                    userNameText.setError(null);
+                                    mailtext.setError(null);
+                                    checkForMailDuplicate(mailtext.getEditableText().toString()+"");
                                 }
                             });
 
@@ -158,5 +165,105 @@ public class SignUpAsOwner extends AppCompatActivity {
 
     public final static boolean isValidEmail(CharSequence target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+    }
+    public void checkForUsernameDuplicate(final String username){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "user/all/username";
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson g = new Gson();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            JSONArray x=obj.getJSONArray("result");
+                            for (int i = 0; i < x.length(); i++) {
+                                if(username.equals(x.get(i).toString())){
+                                    setUsernameDuplicate(true);
+                                    break;
+                                }
+                            }
+                            if (!isUsernameDuplicate)
+                                newUserAsOwner(userNameText.getEditableText().toString(), passwordtext.getEditableText().toString(), mailtext.getEditableText().toString(), token);
+                            else
+                                userNameText.setError("Bu kullanıcı adı zaten alınmış");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Toast.makeText(SignUpAsOwner.this, "HATA", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s","rup1","rup1");
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+
+    }
+    public void checkForMailDuplicate(final String mail){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "user/all/email";
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson g = new Gson();
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            JSONArray x=obj.getJSONArray("result");
+                            for (int i = 0; i < x.length(); i++) {
+                                if(mail.equals(x.get(i).toString())){
+                                    isMailDuplicate=true;
+
+                                    break;
+                                }
+                            }
+
+
+                            if(!isMailDuplicate)
+                                checkForUsernameDuplicate(userNameText.getEditableText().toString()+"");
+                            else{
+                                mailtext.setError("Bu mail zaten alınmış");
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                        Toast.makeText(SignUpAsOwner.this, "HATA", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s","rup1","rup1");
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+
     }
 }

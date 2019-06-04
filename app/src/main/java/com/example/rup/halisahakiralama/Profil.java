@@ -1,9 +1,11 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
@@ -21,7 +23,9 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.Player;
@@ -32,6 +36,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,11 +98,26 @@ public class Profil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                try {
+                    callEditProfile();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 Intent intent=new Intent(Profil.this, ChooseJob.class);
                 intent.putExtra("user",gson.toJson(user));
                 Profil.this.startActivity(intent);
             }
         });
+        changepassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent=new Intent(Profil.this, ChangePassword.class);
+                intent.putExtra("user",gson.toJson(user));
+                Profil.this.startActivity(intent);
+            }
+        });
+
         username.setText("" + user.username);
         email.setText("" + user.email);
         getTeam();
@@ -160,5 +182,47 @@ public class Profil extends AppCompatActivity {
         myIntent.putExtra("user",gson.toJson(user));
         startActivityForResult(myIntent, 0);
         return true;
+    }
+
+    private void callEditProfile() throws JSONException {
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "update/user";
+        JSONObject jsonBody = new JSONObject();
+
+        jsonBody.put("username", username.getText()+"");
+        jsonBody.put("id", user.id);
+        jsonBody.put("password", "");
+        jsonBody.put("email", email.getText()+"");
+
+        JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+               signOut();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                System.out.println("FUCK");
+                Toast.makeText(Profil.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        queue.add(jsonObject);
+    }
+    private void signOut() {
+
+
+        SharedPreferences myPreferences
+                = PreferenceManager.getDefaultSharedPreferences(Profil.this);
+        myPreferences.edit().remove("user").commit();
+
+
+        Intent intent=new Intent(Profil.this,ChooseAuth.class);
+        Profil.this.startActivity(intent);
     }
 }

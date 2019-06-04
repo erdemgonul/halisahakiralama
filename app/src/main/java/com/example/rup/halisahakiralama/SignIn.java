@@ -48,7 +48,7 @@ public class SignIn extends AppCompatActivity {
     EditText mailtext;
     EditText passwordtext;
     SignInButton signinbutton;
-    Button forgotbutton,registerbutton,tosignasownerbutton,signasbackend;
+    Button forgotbutton,registerbutton,signasbackend;
 
 
     int RC_SIGN_IN=1;
@@ -56,28 +56,16 @@ public class SignIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
-
         setContentView(R.layout.activity_sign_in);
 
 
         com.google.android.gms.common.SignInButton  b=findViewById(R.id.sign_in_button);
         setGoogleButtonText(b,"Google İle Oturum Aç");
 
-
-
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail().requestProfile()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-
-
 
         mailtext=findViewById(R.id.signinmail_input);
         passwordtext=findViewById(R.id.signinpassword_input);
@@ -234,7 +222,6 @@ public class SignIn extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 User user=new User();
                 try {
-                    System.out.println(response);
                     JSONObject object=response.getJSONObject("playerDTO");
                     user.username=object.getString("username");
                     user.password=object.getString("originalPassword");
@@ -242,9 +229,6 @@ public class SignIn extends AppCompatActivity {
                     user.id=object.getString("id");
                     user.email=object.getString("email");
                     user.isGoogleSign=object.getBoolean("isGoogleSign");
-
-                    System.out.println("---------- DENEME ");
-                    Toast.makeText(SignIn.this, "HELALL", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences myPreferences
                             = PreferenceManager.getDefaultSharedPreferences(SignIn.this);
@@ -258,14 +242,17 @@ public class SignIn extends AppCompatActivity {
                     SignIn.this.startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    mailtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                    passwordtext.setError("Kullanıcı Adı veya Şifre Yanlış");
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                System.out.println("FUCK" + error.getMessage());
-                Toast.makeText(SignIn.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                mailtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                passwordtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                Toast.makeText(SignIn.this, "Giriş yapılamadı", Toast.LENGTH_SHORT).show();
 
             }
         });

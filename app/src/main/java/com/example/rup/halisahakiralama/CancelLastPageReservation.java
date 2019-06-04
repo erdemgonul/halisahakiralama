@@ -50,7 +50,7 @@ public class CancelLastPageReservation extends AppCompatActivity {
         });
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = StaticVariables.ip_address + "stadium/approve/" + reservation.id + "/" + false;
+        String url = StaticVariables.ip_address + "stadium/approve/" + user.id + "/" + reservation.id + "/" + false;
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
                 {
