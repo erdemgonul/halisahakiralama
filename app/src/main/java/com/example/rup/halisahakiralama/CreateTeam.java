@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
@@ -15,6 +16,7 @@ public class CreateTeam extends AppCompatActivity {
 
     Button tonext;
     EditText createname;
+
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,11 @@ public class CreateTeam extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         user= gson.fromJson(extras.getString("user"),User.class);
 
+
+        if(extras.getString("fromFindRakip")!=null){
+            TextView changeText=findViewById(R.id.playerselect_text4);
+            changeText.setText(extras.getString("fromFindRakip"));
+        }
         tonext=findViewById(R.id.nextteamcreate);
         createname=findViewById(R.id.createteamname);
 

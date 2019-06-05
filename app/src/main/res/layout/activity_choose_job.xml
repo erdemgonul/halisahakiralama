@@ -6,6 +6,71 @@
     android:layout_height="match_parent"
     tools:context=".ChooseJob">
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2">
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/rezervationbutton"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_weight="1"
+                android:backgroundTint="#ED553B"
+                android:drawableTop="@drawable/button_rentsoccerfield"
+                android:text="HALI SAHA KİRALAMA"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/oyuncubul"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_weight="1"
+                android:backgroundTint="#F6D55C"
+                android:drawableTop="@drawable/button_rentsoccerfield"
+                android:text="OYUNCU KİRALAMA"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/rakipbul"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/CornflowerBlue"
+                android:drawableTop="@drawable/button_rentsoccerfield"
+                android:text="RAKİP TAKIM BULMA"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/editprofil"
+                android:layout_width="0dp"
+                android:layout_height="170dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/BlueViolet"
+                android:drawableTop="@drawable/button_rentsoccerfield"
+                android:text="PROFİL İŞLEMLERİ"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
@@ -13,8 +78,8 @@
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/editprofil"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/signoutbutton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
@@ -68,157 +133,20 @@
             app:layout_constraintTop_toBottomOf="@+id/go_signin" />
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-
-        android:layout_height="30dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="52dp"
-        app:layout_constraintBottom_toTopOf="@+id/oyuncubul"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/or1"
-            android:layout_width="65dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:layout_marginEnd="175dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-light"
-            android:text="ya da"
-            android:textAlignment="center"
-            android:textColor="@color/DimGray"
-            android:textSize="24dp"
-            app:layout_constraintBottom_toTopOf="@id/or1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/view4"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin"
-            app:layout_constraintVertical_bias="0.062" />
-
-        <View
-            android:id="@+id/view4"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/DimGray"
-            app:layout_constraintBottom_toBottomOf="@+id/or1"
-            app:layout_constraintEnd_toStartOf="@+id/or1"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="150dp"
-            android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@color/DimGray"
-            app:layout_constraintBottom_toBottomOf="@+id/or1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/or1"
-            app:layout_constraintTop_toBottomOf="@+id/go_signin" />
-    </android.support.constraint.ConstraintLayout>
-
     <TextView
         android:id="@+id/textView4"
         android:layout_width="365dp"
         android:layout_height="32dp"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="72dp"
         android:fontFamily="sans-serif-light"
         android:text="Neye İhtiyacın Var?"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/rezervationbuttuon"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/rezervationbuttuon"
-        android:layout_width="300dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#45c08a"
-        android:fontFamily="sans-serif"
-        android:text="Halısaha Kiralama"
-        android:textAllCaps="false"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/oyuncubul"
-        android:layout_width="300dp"
-        android:layout_height="49dp"
-
-        android:layout_marginBottom="96dp"
-
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4d76ff"
-        android:fontFamily="sans-serif"
-        android:text="Oyuncu Bulma"
-        android:textAllCaps="false"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/rakipbul"
-        android:layout_width="300dp"
-        android:layout_height="49dp"
-
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4d76ff"
-        android:fontFamily="sans-serif"
-        android:text="Rakip Bulma"
-        android:textAllCaps="false"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/editprofil"
-        android:layout_width="300dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/myPurple"
-        android:fontFamily="sans-serif"
-        android:text="Profil İşlemlerim"
-        android:textAllCaps="false"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/signoutbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -241,15 +169,18 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="73dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.384">
 
         <Button
             android:id="@+id/requests_button"
@@ -259,7 +190,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/ic_notifications_active_black_24dp"
-            android:backgroundTint="#ff8246"
+            android:backgroundTint="@color/Red"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -274,7 +205,7 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif-black"
             android:text="3"
-            android:textColor="#ff8246"
+            android:textColor="@color/Red"
             android:textSize="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

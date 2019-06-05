@@ -88,11 +88,18 @@ public class Adapter  extends BaseAdapter {
 
 
         if(Notifications.notifications.get(position).getApproval()){
-            holder.btn_ok.setVisibility(View.VISIBLE);
-            holder.btn_no.setVisibility(View.VISIBLE);
+            if(Notifications.notifications.get(position).getRead()){
+                holder.btn_ok.setVisibility(View.GONE);
+                holder.btn_no.setVisibility(View.GONE);
+            }else{
+
+                holder.btn_ok.setVisibility(View.VISIBLE);
+                holder.btn_no.setVisibility(View.VISIBLE);
+            }
+
         }else{
-            holder.btn_ok.setVisibility(View.INVISIBLE);
-            holder.btn_no.setVisibility(View.INVISIBLE);
+            holder.btn_ok.setVisibility(View.GONE);
+            holder.btn_no.setVisibility(View.GONE);
         }
 
         holder.btn_ok.setOnClickListener(new View.OnClickListener() {

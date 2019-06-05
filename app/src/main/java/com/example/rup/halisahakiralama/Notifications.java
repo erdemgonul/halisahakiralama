@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.Notification;
 import com.example.rup.halisahakiralama.client.NotificationListResponse;
+import com.example.rup.halisahakiralama.client.NotifyNumber;
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
@@ -47,6 +48,46 @@ public class Notifications extends AppCompatActivity {
         adapter = new Adapter(this);
         getNotificationsFrom();
 
+    }
+    private void updateNotificationNumber(){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "notification/update/unread/number";
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+
+
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s",user.username,user.password);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
+
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        updateNotificationNumber();
     }
 
     public  void getNotificationsFrom(){

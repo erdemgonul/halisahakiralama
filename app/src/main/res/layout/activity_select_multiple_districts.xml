@@ -15,7 +15,7 @@
         android:background="@drawable/next_button"
         android:backgroundTint="@color/LightGrey"
         android:fontFamily="sans-serif"
-        android:text="Devam Etmek İçin Bir Şehir Seç"
+        android:text="Devam Et"
         android:textAllCaps="false"
 
         android:textAppearance="@style/TextAppearance.AppCompat.Button"

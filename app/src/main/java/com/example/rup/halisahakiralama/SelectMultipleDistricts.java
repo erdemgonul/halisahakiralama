@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -33,7 +34,7 @@ public class SelectMultipleDistricts extends AppCompatActivity {
     RadioTextAdapter adapter;
     ListView listView;
     String cityname;
-    Button tonext;
+    static Button tonext;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,29 +54,33 @@ public class SelectMultipleDistricts extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if(!addedDistricts.isEmpty()){
+                    Gson gson=new Gson();
+                    if(extras.getBoolean("fromCreatePlayer")){
+                        Intent intent = new Intent(SelectMultipleDistricts.this, ShowPlayerResult.class);
+                        intent.putExtra("il",cityname);
+                        intent.putExtra("user",gson.toJson(user));
+                        intent.putExtra("name",extras.getString("name"));
+                        intent.putExtra("surname",extras.getString("surname"));
+                        intent.putExtra("phone",extras.getString("phone"));
+                        intent.putExtra("address",extras.getString("address"));
+                        intent.putExtra("roles",extras.getString("roles"));
+                        intent.putExtra("districts",gson.toJson(addedDistricts));
+                        SelectMultipleDistricts.this.startActivity(intent);
+                    }
+                    else if(extras.getBoolean("fromCreateTeam")){
+                        Intent intent = new Intent(SelectMultipleDistricts.this, CreateTeamResult.class);
+                        intent.putExtra("il",cityname);
+                        intent.putExtra("districts",gson.toJson(addedDistricts));
+                        intent.putExtra("user",gson.toJson(user));
+                        intent.putExtra("name",extras.getString("name"));
+                        intent.putExtra("fromCreateTeam",true);
+                        SelectMultipleDistricts.this.startActivity(intent);
+                    }
+                }else{
+                    Toast.makeText(SelectMultipleDistricts.this, "En az bir ilçe seçmelisin", Toast.LENGTH_SHORT).show();
+                }
 
-                Gson gson=new Gson();
-                if(extras.getBoolean("fromCreatePlayer")){
-                    Intent intent = new Intent(SelectMultipleDistricts.this, ShowPlayerResult.class);
-                    intent.putExtra("il",cityname);
-                    intent.putExtra("user",gson.toJson(user));
-                    intent.putExtra("name",extras.getString("name"));
-                    intent.putExtra("surname",extras.getString("surname"));
-                    intent.putExtra("phone",extras.getString("phone"));
-                    intent.putExtra("address",extras.getString("address"));
-                    intent.putExtra("roles",extras.getString("roles"));
-                    intent.putExtra("districts",gson.toJson(addedDistricts));
-                    SelectMultipleDistricts.this.startActivity(intent);
-                }
-                else if(extras.getBoolean("fromCreateTeam")){
-                    Intent intent = new Intent(SelectMultipleDistricts.this, CreateTeamResult.class);
-                    intent.putExtra("il",cityname);
-                    intent.putExtra("districts",gson.toJson(addedDistricts));
-                    intent.putExtra("user",gson.toJson(user));
-                    intent.putExtra("name",extras.getString("name"));
-                    intent.putExtra("fromCreateTeam",true);
-                    SelectMultipleDistricts.this.startActivity(intent);
-                }
             }
         });
     }

@@ -35,6 +35,7 @@ import com.google.gson.Gson;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -72,7 +73,6 @@ public class SetDate extends AppCompatActivity {
         option= extras.getString("option");
 
         myCalendar = Calendar.getInstance();
-
         edittext= (EditText) findViewById(R.id.Birthday);
         date = new DatePickerDialog.OnDateSetListener() {
 
@@ -87,7 +87,6 @@ public class SetDate extends AppCompatActivity {
             }
 
         };
-
         edittext.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -136,9 +135,12 @@ public class SetDate extends AppCompatActivity {
 
     }
     private void createDatePicker(){
-        new DatePickerDialog(SetDate.this, date, myCalendar
+
+        DatePickerDialog datePickerDialog =new DatePickerDialog(SetDate.this, date, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                myCalendar.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
+        datePickerDialog.show();
     }
     private void updateLabel() {
         String myFormat = "yyyy-MM-dd"; //In which you need put here

@@ -11,7 +11,7 @@ public class Notification {
     @Key private String willingUser;
     @Key private String text;
     @Key private String date;
-    @Key private boolean isRead;
+    @Key private boolean read;
     @Key private boolean approval;
     @Key private String type;
     @Key private Long claimId;
@@ -64,12 +64,12 @@ public class Notification {
         this.date = date;
     }
 
-    public boolean isRead() {
-        return isRead;
+    public boolean getRead() {
+        return read;
     }
 
     public void setRead(boolean read) {
-        isRead = read;
+        this.read = read;
     }
 
     public String getType() {

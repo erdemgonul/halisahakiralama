@@ -77,6 +77,7 @@ public class IlceSelect extends AppCompatActivity {
 
     }
     public void getTeam(){
+
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "team/user/" + user.id + "";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
@@ -88,10 +89,21 @@ public class IlceSelect extends AppCompatActivity {
                         try {
                             JSONObject jsonObject=new JSONObject(response);
                             String x=jsonObject.getString("teamDTO");
-                            Gson gson=new Gson();
-                            Team t=gson.fromJson(x,Team.class);
-                            ilName=t.cityName;
-                            getDistrictsByCity(ilName);
+                            System.out.println(x);
+                            if(x==null || x.equals("null")){
+
+                                Intent intent = new Intent(IlceSelect.this, CreateTeam.class);
+                                final Gson gson=new Gson();
+                                intent.putExtra("user",gson.toJson(user));
+                                intent.putExtra("fromFindRakip","Rakip Bulmak İçin Önce Takım Yaratmalısın");
+                                IlceSelect.this.startActivity(intent);
+                            }else{
+                                Gson gson=new Gson();
+                                Team t=gson.fromJson(x,Team.class);
+                                ilName=t.cityName;
+                                getDistrictsByCity(ilName);
+                            }
+
                         } catch (JSONException e) {
 
                         }

@@ -33,9 +33,12 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_edit_black_24dp" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="height" value="100" />
+                            <entry key="outputName" value="ic_soccerfield" />
                             <entry key="overrideSize" value="true" />
-                            <entry key="sourceFile" value="C:\Users\rup" />
+                            <entry key="sourceFile" value="C:\Users\IS97510\Desktop\feedpet\app\src\main\res\drawable\soccerfield.svg" />
+                            <entry key="width" value="100" />
                           </map>
                         </option>
                       </PersistentState>

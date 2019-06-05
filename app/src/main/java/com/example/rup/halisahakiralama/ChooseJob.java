@@ -35,6 +35,14 @@ public class ChooseJob extends Activity {
     GoogleSignInClient mGoogleSignInClient;
     Button findHaliSahaButton,findPlayerButton,findTeamButton, profilEdit, signOutButton,notificationButton;
     User user;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        getNotificationNumber();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +56,7 @@ public class ChooseJob extends Activity {
 
 
 
-        findHaliSahaButton=findViewById(R.id.rezervationbuttuon);
+        findHaliSahaButton=findViewById(R.id.rezervationbutton);
         findPlayerButton=findViewById(R.id.oyuncubul);
         findTeamButton=findViewById(R.id.rakipbul);
         profilEdit=findViewById(R.id.editprofil);

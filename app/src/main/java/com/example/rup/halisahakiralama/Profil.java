@@ -205,6 +205,7 @@ public class Profil extends AppCompatActivity {
                         try {
                             JSONObject jsonObject=new JSONObject(response);
                             String x=jsonObject.getString("teamDTO");
+                            System.out.println(x);
                             if(x.equals("null") || x.isEmpty()){
                                teamlayout.setVisibility(View.GONE);
                             }else{
@@ -213,7 +214,7 @@ public class Profil extends AppCompatActivity {
                                     teamname.setText("" + p.name);
                                 }
                                 else {
-                                    team.setText("Takım Yarat");
+                                    team.setText("Takımı Değiştir");
                                     team.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -273,16 +274,10 @@ public class Profil extends AppCompatActivity {
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-               signOut();
-
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                System.out.println("FUCK");
-                Toast.makeText(Profil.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
 
             }
         });

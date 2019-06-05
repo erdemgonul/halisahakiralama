@@ -66,18 +66,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/roundedleft_button"
-            android:backgroundTint="#207dff"
-            android:textColor="@android:color/white"
-            android:text="Onayla" />
+            android:background="@drawable/next_button"
+            android:backgroundTint="@color/LawnGreen"
+            android:text="Onayla"
+            android:textColor="@android:color/white" />
 
         <Button
             android:id="@+id/notify_no_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/roundedright_button"
-            android:backgroundTint="#ff0000"
+            android:background="@drawable/next_button"
+            android:backgroundTint="@color/BlueViolet"
             android:text="REDDET"
 
             android:textColor="@android:color/white" />

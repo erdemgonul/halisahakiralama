@@ -2,6 +2,8 @@ package com.example.rup.halisahakiralama;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,21 +79,22 @@ public class RadioTextAdapter extends BaseAdapter {
             // the getTag returns the viewHolder object set as a tag to the view
             holder = (ViewHolder)convertView.getTag();
         }
-
         holder.district_text.setText(SelectMultipleDistricts.districts.get(position).name+"");
 
-
-        holder.checkradio.setOnClickListener(new View.OnClickListener() {
+        holder.district_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(holder.checkradio.isChecked()){
+                if(!holder.checkradio.isChecked()){
+                    SelectMultipleDistricts.tonext.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
                     SelectMultipleDistricts.addedDistricts.add(SelectMultipleDistricts.districts.get(position));
+                    holder.checkradio.setChecked(true);
                 }else{
                     SelectMultipleDistricts.addedDistricts.remove(SelectMultipleDistricts.districts.get(position));
                     holder.checkradio.setChecked(false);
                 }
             }
         });
+
 
         return convertView;
     }
