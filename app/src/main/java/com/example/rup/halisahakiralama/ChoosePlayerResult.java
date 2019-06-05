@@ -63,7 +63,7 @@ public class ChoosePlayerResult extends AppCompatActivity {
         address.setText("Adres: " + player.address);
 
         amount=findViewById(R.id.ucret_text);
-        amount.setText("Pozisyon:  " + player.position);
+        amount.setText("Pozisyon:  " + player.positions.substring(0, player.positions.length() - 1));
 
         dateText=findViewById(R.id.date_text);
         dateText.setText("Puan: " + player.rate);

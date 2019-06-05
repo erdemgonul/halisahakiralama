@@ -8,7 +8,7 @@ public class Player {
     @Key public long id;
     @Key public String name;
     @Key public String surName;
-    @Key public String position;
+    @Key public String positions;
     @Key public String address;
     @Key public BigDecimal rate;
 }

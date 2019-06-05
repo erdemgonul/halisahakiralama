@@ -1,13 +1,18 @@
 package com.example.rup.halisahakiralama;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,6 +22,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.example.rup.halisahakiralama.client.NotifyNumber;
 import com.example.rup.halisahakiralama.client.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -62,6 +68,8 @@ public class ChooseJob extends Activity {
         profilEdit=findViewById(R.id.editprofil);
         notificationButton=findViewById(R.id.requests_button);
         notificationText=findViewById(R.id.requests_text);
+
+
 
 
         notificationButton.setOnClickListener(new View.OnClickListener() {

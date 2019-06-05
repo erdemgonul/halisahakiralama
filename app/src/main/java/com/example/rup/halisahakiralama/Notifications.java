@@ -1,16 +1,23 @@
 package com.example.rup.halisahakiralama;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.Notification;
@@ -18,6 +25,9 @@ import com.example.rup.halisahakiralama.client.NotificationListResponse;
 import com.example.rup.halisahakiralama.client.NotifyNumber;
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +42,7 @@ public class Notifications extends AppCompatActivity {
     Adapter adapter;
     static User user;
     static Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +100,8 @@ public class Notifications extends AppCompatActivity {
 
         updateNotificationNumber();
     }
+
+
 
     public  void getNotificationsFrom(){
 

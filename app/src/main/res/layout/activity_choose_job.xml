@@ -28,7 +28,10 @@
                 android:layout_weight="1"
                 android:backgroundTint="#ED553B"
                 android:drawableTop="@drawable/button_rentsoccerfield"
-                android:text="HALI SAHA KİRALAMA"
+                android:drawableTint="@color/white"
+                android:text="Halısaha Kiralama"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
             <Button
@@ -135,8 +138,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="365dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="72dp"
@@ -144,15 +147,15 @@
         android:text="Neye İhtiyacın Var?"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="24dp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/signoutbutton"
-        android:layout_width="300dp"
-        android:layout_height="49dp"
+        android:layout_width="387dp"
+        android:layout_height="54dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
@@ -160,7 +163,7 @@
         android:text="Çıkış yap"
         android:textAllCaps="false"
         android:textColor="@color/White"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

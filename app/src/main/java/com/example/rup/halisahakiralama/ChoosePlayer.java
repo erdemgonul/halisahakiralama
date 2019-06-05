@@ -102,8 +102,8 @@ public class ChoosePlayer extends AppCompatActivity {
                         PlayerListResponse p = g.fromJson(response, PlayerListResponse.class);
                         playerList=p.players;
                         final List<String> list=new ArrayList<>();
-                        for(int i=0;i<p.players.size();i++){
-                            list.add(p.players.get(i).name);
+                        for(int i=0;i<p.players.size();i++){//burası kullanıcının adını ve mevkiini yazcağımız yer
+                            list.add(p.players.get(i).name + p.players.get(i).positions);
                         }
 
                         listView = (ListView) findViewById(R.id.list_player);
@@ -164,22 +164,6 @@ public class ChoosePlayer extends AppCompatActivity {
             }
         };
         queue.add(getRequest);
-
-
-
-
-    }
-
-    private void createDatePicker(){
-        new DatePickerDialog(ChoosePlayer.this, date, myCalendar
-                .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
-                myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-    }
-    private void updateLabel() {
-        String myFormat = "yyyy-MM-dd"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        String dateStr=sdf.format(myCalendar.getTime());
-        dateText.setText(dateStr);
     }
 
     @Override
