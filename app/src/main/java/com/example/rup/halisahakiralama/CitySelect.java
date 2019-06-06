@@ -113,6 +113,19 @@ public class CitySelect extends AppCompatActivity {
                                             intent.putExtra("option",option);
                                             CitySelect.this.startActivity(intent);
                                         }
+                                        else if( extras.getBoolean("fromCreateStadium")){
+
+                                            Intent intent = new Intent(CitySelect.this, IlceSelect.class);
+                                            intent.putExtra("stadium_name",extras.getString("stadium_name"));
+                                            intent.putExtra("stadium_phone",extras.getString("stadium_phone"));
+                                            intent.putExtra("stadium_time",extras.getString("stadium_time"));
+                                            intent.putExtra("option","fromCreateStadium");
+                                            intent.putExtra("fromCreateStadium",true);
+                                            intent.putExtra("il",iller[i]);
+                                            final Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
+                                            CitySelect.this.startActivity(intent);
+                                        }
 
                                         else{
                                             Intent intent = new Intent(CitySelect.this, IlceSelect.class);

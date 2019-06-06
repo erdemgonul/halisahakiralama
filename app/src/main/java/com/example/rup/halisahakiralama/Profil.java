@@ -89,10 +89,18 @@ public class Profil extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(user.role.equals("ROLE_USER")){
+                    Intent intent=new Intent(Profil.this, ChooseJob.class);
+                    intent.putExtra("user",gson.toJson(user));
+                    Profil.this.startActivity(intent);
 
-                Intent intent=new Intent(Profil.this, ChooseJob.class);
-                intent.putExtra("user",gson.toJson(user));
-                Profil.this.startActivity(intent);
+                }else{
+                    Intent intent=new Intent(Profil.this, ChooseJobOwner.class);
+                    intent.putExtra("user",gson.toJson(user));
+                    Profil.this.startActivity(intent);
+
+                }
+
             }
         });
         toplayer.setOnClickListener(new View.OnClickListener() {

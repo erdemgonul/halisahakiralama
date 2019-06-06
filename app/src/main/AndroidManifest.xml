@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".CreateStadiumResult"></activity>
+        <activity android:name=".CreateStadium" />
+        <activity android:name=".Reservations" />
         <activity android:name=".ChooseTeam" />
         <activity android:name=".ChooseTeamResult" />
         <activity android:name=".CreateTeamResult" />

@@ -47,6 +47,7 @@ public class IlceSelect extends AppCompatActivity {
     TextView textView, header;
     String  ilName, option;
     User user;
+    Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +60,7 @@ public class IlceSelect extends AppCompatActivity {
         listView=(ListView) findViewById(R.id.list_ilceler);
         toNextFrag=(Button) findViewById(R.id.button8);
 
-        Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();
 
         final Gson gson=new Gson();
         user= gson.fromJson(extras.getString("user"),User.class);
@@ -164,6 +165,21 @@ public class IlceSelect extends AppCompatActivity {
                                 toNextFrag.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+
+                                        if(extras.getBoolean("fromCreateStadium")){
+                                            Intent intent = new Intent(IlceSelect.this, CreateStadiumResult.class);
+                                            intent.putExtra("ilce",ilceler[i]);
+                                            intent.putExtra("il",ilName);
+                                            intent.putExtra("option",option);
+                                            final Gson gson=new Gson();
+                                            intent.putExtra("user",gson.toJson(user));
+                                            intent.putExtra("stadium_name",extras.getString("stadium_name"));
+                                            intent.putExtra("stadium_phone",extras.getString("stadium_phone"));
+                                            intent.putExtra("stadium_time",extras.getString("stadium_time"));
+                                            intent.putExtra("option","fromCreateStadium");
+                                            intent.putExtra("fromCreateStadium",true);
+                                            IlceSelect.this.startActivity(intent);
+                                        }else{
                                             Intent intent = new Intent(IlceSelect.this, ChooseHaliSaha.class);
                                             intent.putExtra("ilce",ilceler[i]);
                                             intent.putExtra("il",ilName);
@@ -171,6 +187,8 @@ public class IlceSelect extends AppCompatActivity {
                                             final Gson gson=new Gson();
                                             intent.putExtra("user",gson.toJson(user));
                                             IlceSelect.this.startActivity(intent);
+                                        }
+
                                     }
                                 });
                             }

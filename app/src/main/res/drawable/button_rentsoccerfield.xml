@@ -2,7 +2,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
 
-    <item android:drawable="@drawable/ic_soccerfield" android:width="100dp" android:height="80dp"
+    <item android:drawable="@drawable/ic_soccerfield" android:width="80dp" android:height="80dp"
         android:gravity="center" />
 
 </layer-list>

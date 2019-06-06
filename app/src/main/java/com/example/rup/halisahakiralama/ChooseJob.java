@@ -151,7 +151,7 @@ public class ChooseJob extends Activity {
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent intent=new Intent(ChooseJob.this,SignIn.class);
+                        Intent intent=new Intent(ChooseJob.this,ChooseAuth.class);
                         ChooseJob.this.startActivity(intent);
                     }
                 });

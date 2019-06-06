@@ -20,7 +20,7 @@ public class ChooseJobOwner extends Activity {
     TextView  userText;
 
     GoogleSignInClient mGoogleSignInClient;
-    Button reservationButton,findPlayerButton,signOutButton;
+    Button reservationButton,addhalisaha,signOutButton,profileButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,25 +31,32 @@ public class ChooseJobOwner extends Activity {
         final User user= gson.fromJson(extras.getString("user"),User.class);
 
 
-        userText=findViewById(R.id.textView3);
+        reservationButton=findViewById(R.id.rezervationbutton);
+        addhalisaha=findViewById(R.id.addhalisaha);
+        profileButton=findViewById(R.id.ownerprofile);
 
-        userText.setText("Hoşgeldiniz : " + user.username);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        reservationButton=findViewById(R.id.reservationbutton);
-        findPlayerButton=findViewById(R.id.playerbutton);
+                Intent intent=new Intent(ChooseJobOwner.this, Profil.class);
+                intent.putExtra("user",gson.toJson(user));
+                ChooseJobOwner.this.startActivity(intent);
+            }
+        });
         reservationButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Intent intent=new Intent(ChooseJobOwner.this, ApproveReservation.class);
-               intent.putExtra("user",gson.toJson(user));
+                intent.putExtra("user",gson.toJson(user));
                 ChooseJobOwner.this.startActivity(intent);
             }
         });
-        findPlayerButton.setOnClickListener(new View.OnClickListener() {
+        addhalisaha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ChooseJobOwner.this, CitySelect.class);
+                Intent intent=new Intent(ChooseJobOwner.this, CreateStadium.class);
                 intent.putExtra("user",gson.toJson(user));
                 ChooseJobOwner.this.startActivity(intent);
             }
@@ -77,7 +84,7 @@ public class ChooseJobOwner extends Activity {
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Intent intent=new Intent(ChooseJobOwner.this,SignIn.class);
+                        Intent intent=new Intent(ChooseJobOwner.this,ChooseAuth.class);
                         ChooseJobOwner.this.startActivity(intent);
                     }
                 });
