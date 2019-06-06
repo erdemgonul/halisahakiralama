@@ -29,8 +29,9 @@
                 android:backgroundTint="#ED553B"
                 android:drawableTop="@drawable/button_rentsoccerfield"
                 android:drawableTint="@color/white"
-                android:text="Halısaha Kiralama"
+                android:text="HALISAHA KİRALAMA"
                 android:textAllCaps="false"
+                android:paddingTop="20dp"
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
 
@@ -38,9 +39,13 @@
                 android:id="@+id/oyuncubul"
                 android:layout_width="0dp"
                 android:layout_height="170dp"
+                android:drawableTint="@color/white"
+                android:textColor="@color/white"
                 android:layout_weight="1"
                 android:backgroundTint="#F6D55C"
-                android:drawableTop="@drawable/button_rentsoccerfield"
+                android:paddingTop="20dp"
+                android:drawableTop="@drawable/addplayer"
+                android:textAllCaps="false"
                 android:text="OYUNCU BUL"
                 android:textSize="16sp" />
 
@@ -56,9 +61,12 @@
                 android:layout_width="0dp"
                 android:layout_height="170dp"
                 android:layout_weight="1"
+                android:paddingTop="20dp"
                 android:backgroundTint="@color/CornflowerBlue"
-                android:drawableTop="@drawable/button_rentsoccerfield"
+                android:drawableTop="@drawable/team"
                 android:text="RAKİP TAKIM BULMA"
+                android:drawableTint="@color/white"
+                android:textColor="@color/white"
                 android:textSize="16sp" />
 
             <Button
@@ -66,8 +74,11 @@
                 android:layout_width="0dp"
                 android:layout_height="170dp"
                 android:layout_weight="1"
+                android:drawableTint="@color/white"
+                android:textColor="@color/white"
+                android:paddingTop="20dp"
                 android:backgroundTint="@color/BlueViolet"
-                android:drawableTop="@drawable/button_rentsoccerfield"
+                android:drawableTop="@drawable/button_profile"
                 android:text="PROFİL İŞLEMLERİ"
                 android:textSize="16sp" />
 
@@ -155,19 +166,18 @@
     <Button
         android:id="@+id/signoutbutton"
         android:layout_width="387dp"
-        android:layout_height="54dp"
+        android:layout_height="60dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
-        android:fontFamily="sans-serif"
-        android:text="Çıkış yap"
+        android:fontFamily="sans-serif-medium"
+        android:text="ÇIKIŞ YAP"
         android:textAllCaps="false"
         android:textColor="@color/White"
         android:textSize="18sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.constraint.ConstraintLayout

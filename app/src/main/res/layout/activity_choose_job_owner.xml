@@ -8,101 +8,89 @@
 
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
-        android:layout_marginBottom="212dp"
-        android:fontFamily="sans-serif-light"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="184dp"
-        android:layout_marginEnd="36dp"
-        android:fontFamily="sans-serif-light"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="28dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textView4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="36dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="sans-serif-light"
         android:text="Lütfen Yapmak İstediğiniz İşlemi Seçiniz"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="24dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
 
-    <Button
-        android:id="@+id/reservationbutton"
-        android:layout_width="248dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="44dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4751A6"
-        android:fontFamily="sans-serif"
-        android:text="Rezervasyonlar"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/playerbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginBottom="32dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/signoutbutton">
 
-    <Button
-        android:id="@+id/playerbutton"
-        android:layout_width="248dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="44dp"
-        android:background="@drawable/rounded_button"
-        android:backgroundTint="#4751A6"
-        android:fontFamily="sans-serif"
-        android:text="Hlıa Saha Ekleme"
-        android:textColor="@color/White"
-        android:textSize="16sp"
-        android:theme="@style/Base.V23.Theme.AppCompat"
-        app:layout_constraintBottom_toTopOf="@+id/signoutbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/rezervationbutton"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_margin="0dp"
+            android:layout_weight="1"
+            android:backgroundTint="#ED553B"
+            android:drawableTop="@drawable/button_reservations"
+            android:drawableTint="@color/white"
+            android:text="Rezervasyonlarım"
+            android:textAllCaps="false"
+            android:paddingTop="20dp"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/addhalisaha"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/CornflowerBlue"
+            android:drawableTop="@drawable/button_rentsoccerfield"
+            android:drawableTint="@color/white"
+            android:text="Halısaha Ekle"
+            android:paddingTop="20dp"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/ownerprofile"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:layout_weight="1"
+            android:paddingTop="20dp"
+            android:backgroundTint="@color/MediumPurple"
+            android:drawableTop="@drawable/button_profile"
+            android:drawableTint="@color/white"
+            android:text="Profilim"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/signoutbutton"
-        android:layout_width="248dp"
-        android:layout_height="49dp"
-        android:layout_marginBottom="96dp"
+        android:layout_width="360dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/rounded_button"
         android:backgroundTint="#4751A6"
         android:fontFamily="sans-serif"
         android:text="çıkış yap"
         android:textColor="@color/White"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
