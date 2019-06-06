@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,23 +45,17 @@ import java.util.Map;
 
 public class ChoosePlayer extends AppCompatActivity {
 
-    City[] array;
-    String[] playerArray;
     Button nextbutton;
     ListView listView;
     TextView textView;
     User user;
     String option, stadiumId, reservationDate;
-    Calendar myCalendar;
-    DatePickerDialog.OnDateSetListener date;
-    EditText dateText;
     Player player;
-
     ArrayAdapter<String>adapter;
-    ArrayAdapter<String>adapter2;
     List<Player>  playerList;
-    List<District>  ilcelerList;
     ReservationTime hours;
+    Spinner spinner;
+    boolean atStart=false;
     public ChoosePlayer() {
         // Required empty public constructor
     }
@@ -83,9 +78,39 @@ public class ChoosePlayer extends AppCompatActivity {
         textView=findViewById(R.id.playerselect_text);
 
         nextbutton=findViewById(R.id.button9);
+        spinner=findViewById(R.id.rolespinner);
 
+        final String[] roleTypes={"", "GOALKEEPER","DEFENDER","MIDFIELDER","STRIKER"};
+        final ArrayAdapter adapterspinner = new ArrayAdapter<String>(getBaseContext(),
+                android.R.layout.simple_list_item_1,roleTypes);
+        spinner.setAdapter(adapterspinner);
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(atStart){
+                    final List<String> list=new ArrayList<>();
+                    for (int i = 0; i < playerList.size(); i++) {
+                        if(roleTypes[position].equals("")) {
+                            list.add(playerList.get(i).name + " (" +printRoles(roleTypes[position], playerList.get(i).positions) + ")" );
+                        }
+                        else if(playerList.get(i).positions.contains(roleTypes[position])){
+                            list.add(playerList.get(i).name + " (" +printRoles(roleTypes[position], playerList.get(i).positions) + ")" );
 
+                        }
+                    }
+                    adapter= new ArrayAdapter<String>(getBaseContext(),
+                            android.R.layout.simple_list_item_1,list.toArray(new String[0]));
+                    listView.setAdapter(adapter);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "player/stadium/" + stadiumId;
@@ -103,7 +128,9 @@ public class ChoosePlayer extends AppCompatActivity {
                         playerList=p.players;
                         final List<String> list=new ArrayList<>();
                         for(int i=0;i<p.players.size();i++){//burası kullanıcının adını ve mevkiini yazcağımız yer
-                            list.add(p.players.get(i).name + p.players.get(i).positions);
+                            String positions = playerList.get(i).positions.replaceAll(";", ",");
+                            positions = positions.substring(0, positions.length() - 1);
+                            list.add(playerList.get(i).name + " (" + positions + ")" );
                         }
 
                         listView = (ListView) findViewById(R.id.list_player);
@@ -113,7 +140,7 @@ public class ChoosePlayer extends AppCompatActivity {
 
                         listView.setAdapter(adapter);
 
-
+                        atStart=true;
                         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             public void onItemClick(AdapterView<?> adapterView, View view,final int i, long l) {
@@ -177,4 +204,13 @@ public class ChoosePlayer extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
     }
+    private  String printRoles(String roles, String allPositions){
+        if(roles.equals(""))
+            roles = allPositions.substring(0,allPositions.length()-1);
+
+        roles = roles.replaceAll(";",",");
+
+        return  roles;
+    }
+
 }

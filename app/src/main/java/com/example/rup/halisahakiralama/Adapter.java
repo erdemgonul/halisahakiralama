@@ -3,15 +3,23 @@ package com.example.rup.halisahakiralama;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,24 +29,33 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.rup.halisahakiralama.client.ClaimDTO;
+import com.example.rup.halisahakiralama.client.ClaimResponse;
+import com.example.rup.halisahakiralama.client.PlayerListResponse;
 import com.example.rup.halisahakiralama.client.User;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
 import static com.example.rup.halisahakiralama.Notifications.notifications;
+import static com.example.rup.halisahakiralama.Notifications.user;
 
 
 public class Adapter  extends BaseAdapter {
 
     private Context context;
-     Button giveRateBtn,dismissBtn;
+     Button giveRateBtn,dismissBtn,acceptRequest,declineRequest;
 
     Button rate1,rate2,rate3,rate4,rate5;
+    TextView requestfrom,requeststadium,requestdate;
     int point=0;
 
     public Adapter(Context context) {
@@ -99,60 +116,94 @@ public class Adapter  extends BaseAdapter {
         holder.willinguser.setText(notifications.get(position).getUser());
         holder.date.setText(String.valueOf(notifications.get(position).getDate()));
         holder.textView.setText(String.valueOf(notifications.get(position).getText()));
-
-        if(notifications.get(position).getType().equals("PlayerVote") || notifications.get(position).getType().equals("TeamVote")) {
-            holder.btn_ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    ratePlayerOrTeam(position);
-                }
-            });
-            holder.btn_no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    
-                }
-            });
-        }else{
-
-            if(notifications.get(position).getApproval()){
-                if(notifications.get(position).getRead()){
-                    holder.btn_ok.setVisibility(View.GONE);
-                    holder.btn_no.setVisibility(View.GONE);
-                }else{
-
-                    holder.btn_ok.setVisibility(View.VISIBLE);
-                    holder.btn_no.setVisibility(View.VISIBLE);
-                }
-
-            }else{
+        if(notifications.get(position).getRead()){
+            if(notifications.get(position).getRead()){
                 holder.btn_ok.setVisibility(View.GONE);
                 holder.btn_no.setVisibility(View.GONE);
+            }else{
+
+                holder.btn_ok.setVisibility(View.VISIBLE);
+                holder.btn_no.setVisibility(View.VISIBLE);
+            }
+        }else{
+            if(notifications.get(position).getType().equals("PlayerVote") || notifications.get(position).getType().equals("TeamVote")) {
+                holder.btn_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        ratePlayerOrTeam(position);
+                    }
+                });
+                holder.btn_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+            }
+            else if(notifications.get(position).getType().equals("PlayerClaim") || notifications.get(position).getType().equals("TeamClaim")){
+                holder.btn_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        try {
+                            requestDetails(position);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                holder.btn_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+
             }
 
-            holder.btn_ok.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+            else{
 
-                    approveRequest(position,Notifications.context,Notifications.user);
+                if(notifications.get(position).getApproval()){
+                    if(notifications.get(position).getRead()){
+                        holder.btn_ok.setVisibility(View.GONE);
+                        holder.btn_no.setVisibility(View.GONE);
+                    }else{
+
+                        holder.btn_ok.setVisibility(View.VISIBLE);
+                        holder.btn_no.setVisibility(View.VISIBLE);
+                    }
+
+                }else{
                     holder.btn_ok.setVisibility(View.GONE);
                     holder.btn_no.setVisibility(View.GONE);
-                    holder.approvedText.setVisibility(View.VISIBLE);
                 }
-            });
-            holder.btn_no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    cancelRequest(position,Notifications.context,Notifications.user);
-                    holder.btn_ok.setVisibility(View.GONE);
-                    holder.btn_no.setVisibility(View.GONE);
-                    holder.approvedText.setVisibility(View.VISIBLE);
-                }
-            });
+                holder.btn_ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
+                        approveRequest(position,Notifications.context,Notifications.user);
+                        holder.btn_ok.setVisibility(View.GONE);
+                        holder.btn_no.setVisibility(View.GONE);
+                        holder.approvedText.setVisibility(View.VISIBLE);
+                    }
+                });
+                holder.btn_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        cancelRequest(position,Notifications.context,Notifications.user);
+                        holder.btn_ok.setVisibility(View.GONE);
+                        holder.btn_no.setVisibility(View.GONE);
+                        holder.approvedText.setVisibility(View.VISIBLE);
+                    }
+                });
+
+            }
         }
+
 
 
 
@@ -267,14 +318,16 @@ public class Adapter  extends BaseAdapter {
 
             //olması gereken notifications.get(i).getWillingUser();
             //ama bu string olarak user ismi dönüyo bana player id'si dönmesi lazım
-            jsonBody.put("id", "2"); // buradaki value için
+            jsonBody.put("notificationId", notifications.get(i).getId()); // buradaki value için
+            jsonBody.put("username", notifications.get(i).getWillingUser()); // buradaki value için
             jsonBody.put("rate", point);
         }else if(notifications.get(i).getType().equals("TeamVote")){
 
             url = StaticVariables.ip_address + "update/team/rate";
             jsonBody = new JSONObject();
 
-            jsonBody.put("id", "2");
+            jsonBody.put("notificationId", notifications.get(i).getId()); // buradaki value için
+            jsonBody.put("username", notifications.get(i).getWillingUser());
             jsonBody.put("rate", point);
         }
 
@@ -315,6 +368,8 @@ public class Adapter  extends BaseAdapter {
                     public void onResponse(String response) {
 
                         System.out.println(response);
+
+                        Notifications.goHome();
                     }
                 },
                 new com.android.volley.Response.ErrorListener()
@@ -367,6 +422,92 @@ public class Adapter  extends BaseAdapter {
             }
         };
         queue.add(getRequest);
+    }
+
+    public void requestDetails(final int i) throws JSONException {
+
+
+        RequestQueue queue = Volley.newRequestQueue(Notifications.context);
+        String url="";
+        JSONObject jsonBody=null;
+        if(notifications.get(i).getType().equals("PlayerClaim")){
+            url = StaticVariables.ip_address + "player/claim/" +  notifications.get(i).getClaimId();
+
+        }else if(notifications.get(i).getType().equals("TeamClaim")){
+
+            url = StaticVariables.ip_address + "team/claim/" + notifications.get(i).getClaimId();
+
+        }
+
+
+        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                new com.android.volley.Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+                        final Dialog dialog=new Dialog(Notifications.context);
+                        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        dialog.setContentView(R.layout.dialogdetails);
+
+                        requestfrom= dialog.findViewById(R.id.requestfrom);
+                        requestdate= dialog.findViewById(R.id.requestdate);
+                        requeststadium= dialog.findViewById(R.id.requeststadium);
+
+                        acceptRequest=dialog.findViewById(R.id.button2);
+                        declineRequest=dialog.findViewById(R.id.button);
+
+                        JSONObject jsonObject= null;
+                        Gson g = new Gson();
+                        ClaimResponse claimResponse = g.fromJson(response, ClaimResponse.class);
+                        ClaimDTO claimDTO= claimResponse.claimDTO;
+                        requestfrom.setText(claimDTO.willing);
+                        requeststadium.setText(claimDTO.stadium);
+
+                        declineRequest.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                                cancelRequest(i,Notifications.context,Notifications.user);
+                            }
+                        });
+                        acceptRequest.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                approveRequest(i,Notifications.context,Notifications.user);
+
+                            }
+                        });
+
+
+                        dialog.show();
+                    }
+                },
+                new com.android.volley.Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+
+                    }
+                }
+        ) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> params = new HashMap<String, String>();
+                String creds = String.format("%s:%s",user.username,user.password);
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
+                params.put("Authorization", auth);
+                return params;
+            }
+        };
+        queue.add(getRequest);
+
+
+
+
+
+
+
     }
 
 

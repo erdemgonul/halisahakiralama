@@ -60,9 +60,18 @@ public class Notifications extends AppCompatActivity {
         getNotificationsFrom();
 
     }
-    private void updateNotificationNumber(){
 
-        RequestQueue queue = Volley.newRequestQueue(this);
+    public static void goHome(){
+        Notifications.updateNotificationNumber();
+        Intent intent = new Intent(context, ChooseJob.class);
+
+        Gson gson=new Gson();
+        intent.putExtra("user",gson.toJson(user));
+        context.startActivity(intent);
+    }
+    public static  void updateNotificationNumber(){
+
+        RequestQueue queue = Volley.newRequestQueue(context);
         String url = StaticVariables.ip_address + "notification/update/unread/number";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new com.android.volley.Response.Listener<String>()
