@@ -176,6 +176,8 @@ public class IlceSelect extends AppCompatActivity {
                                             intent.putExtra("stadium_name",extras.getString("stadium_name"));
                                             intent.putExtra("stadium_phone",extras.getString("stadium_phone"));
                                             intent.putExtra("stadium_time",extras.getString("stadium_time"));
+                                            intent.putExtra("stadium_price",extras.getString("stadium_price"));
+                                            intent.putExtra("stadium_address",extras.getString("stadium_address"));
                                             intent.putExtra("option","fromCreateStadium");
                                             intent.putExtra("fromCreateStadium",true);
                                             IlceSelect.this.startActivity(intent);

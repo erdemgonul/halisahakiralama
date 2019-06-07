@@ -56,17 +56,14 @@
 
     <Button
         android:id="@+id/button9"
-        android:layout_width="373dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="28dp"
-        android:background="@drawable/rounded_button"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/next_button"
         android:backgroundTint="@color/LightGrey"
         android:fontFamily="sans-serif"
         android:text="Devam Etmek İçin Bir Rezervasyon Seçiniz"
-        android:textColor="@color/White"
 
+        android:textColor="@color/White"
         android:textSize="16sp"
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"

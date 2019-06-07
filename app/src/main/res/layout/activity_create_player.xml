@@ -11,13 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@drawable/next_button"
-        android:backgroundTint="@color/LightGrey"
-        android:text="mevkii seçimi"
+        android:backgroundTint="#22B473"
+        android:text="mevkii seçimine geç"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"
         android:textColor="@color/White"
         android:textSize="20sp"
-
         android:theme="@style/Base.V23.Theme.AppCompat"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />

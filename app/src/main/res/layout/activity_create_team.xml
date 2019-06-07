@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@drawable/next_button"
-        android:backgroundTint="@color/LightGrey"
+        android:backgroundTint="#22B473"
         android:text="takım yarat"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Button"

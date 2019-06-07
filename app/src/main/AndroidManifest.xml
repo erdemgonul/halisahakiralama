@@ -21,7 +21,6 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".CreateStadiumResult"></activity>
         <activity android:name=".CreateStadium" />
-        <activity android:name=".Reservations" />
         <activity android:name=".ChooseTeam" />
         <activity android:name=".ChooseTeamResult" />
         <activity android:name=".CreateTeamResult" />
@@ -54,7 +53,6 @@
         <activity android:name=".SignUp" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".CitySelect" />
-        <activity android:name=".Dashboard" />
         <activity android:name=".ChooseHaliSaha" />
         <activity android:name=".ChoosePlayer" />
         <activity android:name=".ApproveReservation" />

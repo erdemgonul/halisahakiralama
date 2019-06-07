@@ -1,9 +1,9 @@
-package com.example.rup.halisahakiralama;
+package com.example.rup.halisahakiralama.client;
 
 import com.example.rup.halisahakiralama.client.City;
 
 import java.util.List;
 
 public class CityListResponse {
-    List<City> cities;
+    public List<City> cities;
 }

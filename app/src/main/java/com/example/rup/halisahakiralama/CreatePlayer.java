@@ -1,11 +1,14 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
@@ -32,18 +35,26 @@ public class CreatePlayer extends AppCompatActivity {
         address=findViewById(R.id.createplayeraddress);
         phone=findViewById(R.id.createplayerphone);
 
+
         toButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreatePlayer.this, ChooseRolePlayer.class);
-                System.out.println(name.getText());
-                intent.putExtra("name",name.getText() + "");
-                intent.putExtra("surname",surname.getText() + "");
-                intent.putExtra("phone",phone.getText() + "");
-                intent.putExtra("address",address.getText() + "");
-                final Gson gson=new Gson();
-                intent.putExtra("user",gson.toJson(user));
-                CreatePlayer.this.startActivity(intent);
+
+                if(!(name.getEditableText()+"").equals("") && !(surname.getEditableText()+"").equals("") &&
+                        !(address.getEditableText()+"").equals("") && !(phone.getEditableText()+"").equals("")){
+                    Intent intent = new Intent(CreatePlayer.this, ChooseRolePlayer.class);
+                    System.out.println(name.getText());
+                    intent.putExtra("name",name.getText() + "");
+                    intent.putExtra("surname",surname.getText() + "");
+                    intent.putExtra("phone",phone.getText() + "");
+                    intent.putExtra("address",address.getText() + "");
+                    final Gson gson=new Gson();
+                    intent.putExtra("user",gson.toJson(user));
+                    CreatePlayer.this.startActivity(intent);
+                }else{
+                    Toast.makeText(CreatePlayer.this, "Tüm alanlar doldurulmalıdır.", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

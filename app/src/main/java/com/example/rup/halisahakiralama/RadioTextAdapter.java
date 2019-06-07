@@ -71,7 +71,7 @@ public class RadioTextAdapter extends BaseAdapter {
 
             holder.district_text = (TextView) convertView.findViewById(R.id.districttext);
             holder.checkradio = (RadioButton) convertView.findViewById(R.id.adddistrictradio);
-
+            holder.checkradio.setClickable(false);
 
 
             convertView.setTag(holder);
@@ -84,16 +84,24 @@ public class RadioTextAdapter extends BaseAdapter {
         holder.district_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(!holder.checkradio.isChecked()){
                     SelectMultipleDistricts.tonext.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
                     SelectMultipleDistricts.addedDistricts.add(SelectMultipleDistricts.districts.get(position));
                     holder.checkradio.setChecked(true);
+                    SelectMultipleDistricts.tonext.setText("Devam Et.");
                 }else{
                     SelectMultipleDistricts.addedDistricts.remove(SelectMultipleDistricts.districts.get(position));
                     holder.checkradio.setChecked(false);
+
+                    if(SelectMultipleDistricts.addedDistricts.isEmpty()){
+                        SelectMultipleDistricts.tonext.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD3D3D3")));
+                        SelectMultipleDistricts.tonext.setText("En az bir ilçe seçmelisin.");
+                    }
                 }
             }
         });
+
 
 
         return convertView;

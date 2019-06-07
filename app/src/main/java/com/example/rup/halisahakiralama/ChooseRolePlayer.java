@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
@@ -122,18 +123,22 @@ public class ChooseRolePlayer extends AppCompatActivity {
         tonextbutton.setOnClickListener(new View.OnClickListener() {
                                             @Override
                                             public void onClick(View v) {
-                                                Intent intent = new Intent(ChooseRolePlayer.this, CitySelect.class);
 
+                                                if(sentRoles.isEmpty()){
+                                                    Toast.makeText(ChooseRolePlayer.this, "En az bir rol seçmelisin.", Toast.LENGTH_SHORT).show();
+                                                }else{
+                                                    Intent intent = new Intent(ChooseRolePlayer.this, CitySelect.class);
+                                                    String x=extras.getString("name");
+                                                    intent.putExtra("name",username);
+                                                    intent.putExtra("surname",extras.getString("surname"));
+                                                    intent.putExtra("phone",extras.getString("phone"));
+                                                    intent.putExtra("address",extras.getString("address"));
+                                                    intent.putExtra("roles",gson.toJson(sentRoles));
+                                                    intent.putExtra("user",gson.toJson(user));
+                                                    intent.putExtra("fromCreatePlayer",true);
+                                                    ChooseRolePlayer.this.startActivity(intent);
+                                                }
 
-                                                String x=extras.getString("name");
-                                                intent.putExtra("name",username);
-                                                intent.putExtra("surname",extras.getString("surname"));
-                                                intent.putExtra("phone",extras.getString("phone"));
-                                                intent.putExtra("address",extras.getString("address"));
-                                                intent.putExtra("roles",gson.toJson(sentRoles));
-                                                intent.putExtra("user",gson.toJson(user));
-                                                intent.putExtra("fromCreatePlayer",true);
-                                                ChooseRolePlayer.this.startActivity(intent);
                                             }
                                         });
 

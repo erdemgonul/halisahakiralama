@@ -46,10 +46,8 @@
 
     <TextView
         android:id="@+id/cityhalisaharesult"
-        android:layout_width="0dp"
+        android:layout_width="339dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="36dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-light"
         android:text="deneme4"
@@ -57,12 +55,10 @@
         android:textColor="@android:color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/districthalisaharesult"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="36dp" />
 
     <TextView
-        android:id="@+id/districthalisaharesult"
+        android:id="@+id/addresshalisaharesult"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -76,6 +72,23 @@
         app:layout_constraintBottom_toTopOf="@+id/intervalMinutes_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/districthalisaharesult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="ücret"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/addresshalisaharesult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -101,7 +114,24 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
-        android:layout_marginBottom="156dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="deneme5"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/createhalisahapriceresult"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/createhalisahapriceresult"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="108dp"
         android:fontFamily="sans-serif-light"
         android:text="deneme5"
         android:textAlignment="viewStart"

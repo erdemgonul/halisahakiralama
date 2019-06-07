@@ -30,7 +30,7 @@ public class CreateStadiumResult extends AppCompatActivity {
 
     Bundle extras;
     User user;
-    TextView stadiumname,stadiumphone,stadiumtime,stadiumcity,stadiumdistrict;
+    TextView stadiumname,stadiumphone,stadiumtime,stadiumcity,stadiumdistrict,stadiumaddress,stadiumprice;
     Button createstadium;
 
 
@@ -51,6 +51,8 @@ public class CreateStadiumResult extends AppCompatActivity {
         stadiumcity=findViewById(R.id.cityhalisaharesult);
         stadiumdistrict=findViewById(R.id.districthalisaharesult);
         createstadium=findViewById(R.id.createhalisaharesult);
+        stadiumprice=findViewById(R.id.createhalisahapriceresult);
+        stadiumaddress=findViewById(R.id.addresshalisaharesult);
 
 
         stadiumname.setText("Halısaha Adı: " + extras.getString("stadium_name"));
@@ -58,7 +60,8 @@ public class CreateStadiumResult extends AppCompatActivity {
         stadiumtime.setText("Maç süresi (dakika): " + extras.getString("stadium_time"));
         stadiumcity.setText("Şehir : " + extras.getString("il"));
         stadiumdistrict.setText("İlçe : " + extras.getString("ilce"));
-
+        stadiumprice.setText("Maç başı ücret: " + extras.getString("stadium_price"));
+        stadiumaddress.setText("Adres: " + extras.getString("stadium_address"));
 
 
         createstadium.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +84,8 @@ public class CreateStadiumResult extends AppCompatActivity {
             jsonBody.put("phoneNumber", extras.getString("stadium_phone"));
             jsonBody.put("intervalMinutes", extras.getString("stadium_time"));
             jsonBody.put("owner", user.id);
+            jsonBody.put("address",extras.getString("stadium_address"));
+            jsonBody.put("amount",extras.getString("stadium_price"));
 
 
         } catch (JSONException e) {
@@ -90,8 +95,6 @@ public class CreateStadiumResult extends AppCompatActivity {
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println("mustafaaaa" + response.toString());
-
                 Intent intent = new Intent(CreateStadiumResult.this, ChooseJobOwner.class);
                 final Gson gson=new Gson();
                 intent.putExtra("user",gson.toJson(user));

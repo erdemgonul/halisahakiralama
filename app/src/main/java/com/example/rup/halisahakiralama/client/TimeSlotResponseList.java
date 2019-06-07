@@ -1,4 +1,4 @@
-package com.example.rup.halisahakiralama;
+package com.example.rup.halisahakiralama.client;
 
 import com.example.rup.halisahakiralama.client.TimeSlot;
 

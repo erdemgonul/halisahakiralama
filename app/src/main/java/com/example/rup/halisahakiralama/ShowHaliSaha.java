@@ -68,7 +68,7 @@ public class ShowHaliSaha extends AppCompatActivity {
 
         editText=findViewById(R.id.editText);
 
-        arabutton=findViewById(R.id.ara_button);
+        //arabutton=findViewById(R.id.ara_button);
         arabutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

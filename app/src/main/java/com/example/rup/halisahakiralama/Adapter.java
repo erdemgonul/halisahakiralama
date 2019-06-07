@@ -45,6 +45,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import static com.example.rup.halisahakiralama.Notifications.goHome;
 import static com.example.rup.halisahakiralama.Notifications.notifications;
 import static com.example.rup.halisahakiralama.Notifications.user;
 
@@ -335,7 +336,7 @@ public class Adapter  extends BaseAdapter {
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println(response);
+               goHome();
 
             }
         }, new Response.ErrorListener() {
@@ -400,7 +401,7 @@ public class Adapter  extends BaseAdapter {
                     @Override
                     public void onResponse(String response) {
 
-
+                        goHome();
                     }
                 },
                 new com.android.volley.Response.ErrorListener()

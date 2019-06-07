@@ -29,13 +29,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.rup.halisahakiralama.client.ReservationTime;
 import com.example.rup.halisahakiralama.client.Stadium;
+import com.example.rup.halisahakiralama.client.TimeSlotResponseList;
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -108,16 +108,7 @@ public class SetDate extends AppCompatActivity {
             }
         });
         toNextFrag=findViewById(R.id.setdate_to_button);
-        toNextFrag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(SetDate.this,ChooseHaliSaha.class);
-                intent.putExtra("date",edittext.getText());
 
-                SetDate.this.startActivity(intent);
-
-            }
-        });
 
         pickDateButton=findViewById(R.id.button10);
         pickDateButton.setOnClickListener(new View.OnClickListener() {

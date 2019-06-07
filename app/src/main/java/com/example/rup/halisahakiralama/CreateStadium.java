@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
@@ -14,7 +15,7 @@ public class CreateStadium extends AppCompatActivity {
 
     Bundle extras;
     User user;
-    EditText stadiumname,stadiumphone,stadiumintervaltime;
+    EditText stadiumname,stadiumphone,stadiumintervaltime,address,price;
     Button toCitySelect;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class CreateStadium extends AppCompatActivity {
         stadiumname=findViewById(R.id.createhalisahaname);
         stadiumphone=findViewById(R.id.createhalisahaphone);
         stadiumintervaltime=findViewById(R.id.createhalisahainterval);
+        address=findViewById(R.id.createhalisahaaddress);
+        price=findViewById(R.id.createhalisahamoney);
 
         toCitySelect=findViewById(R.id.nexthalisahacreate);
 
@@ -36,15 +39,24 @@ public class CreateStadium extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(CreateStadium.this, CitySelect.class);
-                intent.putExtra("stadium_name",stadiumname.getEditableText() +"");
-                intent.putExtra("stadium_phone",stadiumphone.getEditableText()+"");
-                intent.putExtra("stadium_time",stadiumintervaltime.getEditableText()+"");
-                intent.putExtra("option","fromCreateStadium");
-                intent.putExtra("fromCreateStadium",true);
-                final Gson gson=new Gson();
-                intent.putExtra("user",gson.toJson(user));
-                CreateStadium.this.startActivity(intent);
+                if((stadiumname.getEditableText()+"").equals("") && (stadiumphone.getEditableText()+"").equals("") && (stadiumintervaltime.getEditableText()+"").equals("") &&
+                        (address.getEditableText()+"").equals("") && (price.getEditableText()+"").equals("") ){
+                    Toast.makeText(CreateStadium.this, "Boş alanları doldurmalısın.", Toast.LENGTH_SHORT).show();
+                }else{
+
+                    Intent intent = new Intent(CreateStadium.this, CitySelect.class);
+                    intent.putExtra("stadium_name",stadiumname.getEditableText() +"");
+                    intent.putExtra("stadium_phone",stadiumphone.getEditableText()+"");
+                    intent.putExtra("stadium_time",stadiumintervaltime.getEditableText()+"");
+                    intent.putExtra("stadium_price",address.getEditableText()+"");
+                    intent.putExtra("stadium_address",price.getEditableText()+"");
+                    intent.putExtra("option","fromCreateStadium");
+                    intent.putExtra("fromCreateStadium",true);
+                    final Gson gson=new Gson();
+                    intent.putExtra("user",gson.toJson(user));
+                    CreateStadium.this.startActivity(intent);
+                }
+
             }
         });
     }

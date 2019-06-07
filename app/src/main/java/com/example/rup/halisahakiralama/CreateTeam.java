@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rup.halisahakiralama.client.User;
 import com.google.gson.Gson;
@@ -41,13 +42,19 @@ public class CreateTeam extends AppCompatActivity {
         tonext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateTeam.this, CitySelect.class);
 
-                intent.putExtra("name",createname.getText() + "");
-                final Gson gson=new Gson();
-                intent.putExtra("user",gson.toJson(user));
-                intent.putExtra("fromCreateTeam",true);
-                CreateTeam.this.startActivity(intent);
+                if((createname.getEditableText()+"").equals("")){
+                    Toast.makeText(CreateTeam.this, "Takımına bir isim vermelisin.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent intent = new Intent(CreateTeam.this, CitySelect.class);
+
+                    intent.putExtra("name",createname.getText() + "");
+                    final Gson gson=new Gson();
+                    intent.putExtra("user",gson.toJson(user));
+                    intent.putExtra("fromCreateTeam",true);
+                    CreateTeam.this.startActivity(intent);
+                }
+
             }
         });
 
