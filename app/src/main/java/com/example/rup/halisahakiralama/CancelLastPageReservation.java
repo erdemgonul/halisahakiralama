@@ -85,6 +85,7 @@ public class CancelLastPageReservation extends AppCompatActivity {
         };
         queue.add(getRequest);
     }
+
     public void goHome(View v){
         Intent intent = new Intent(this, ChooseJobOwner.class);
         final Gson gson=new Gson();

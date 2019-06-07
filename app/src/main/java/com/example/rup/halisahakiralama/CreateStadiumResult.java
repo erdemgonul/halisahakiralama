@@ -76,7 +76,8 @@ public class CreateStadiumResult extends AppCompatActivity {
         JSONObject jsonBody = new JSONObject();
         try {
             jsonBody.put("name", extras.getString("stadium_name"));
-            jsonBody.put("district", extras.getString("ilce"));
+            jsonBody.put("districtName", extras.getString("ilce"));
+            jsonBody.put("cityName", extras.getString("il"));
             jsonBody.put("phoneNumber", extras.getString("stadium_phone"));
             jsonBody.put("intervalMinutes", extras.getString("stadium_time"));
             jsonBody.put("owner", user.id);

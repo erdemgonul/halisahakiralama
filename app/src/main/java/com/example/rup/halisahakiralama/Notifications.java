@@ -130,10 +130,8 @@ public class Notifications extends AppCompatActivity {
 
                         NotificationListResponse p = g.fromJson(response, NotificationListResponse.class);
                         notifications=p.notificationDTOS;
-
-                        listView.setAdapter(adapter);
-
-
+                        if(!notifications.isEmpty())
+                            listView.setAdapter(adapter);
 
                     }
                 },

@@ -163,7 +163,6 @@ public class Adapter  extends BaseAdapter {
 
             }
 
-            else{
 
                 if(notifications.get(position).getApproval()){
                     if(notifications.get(position).getRead()){
@@ -201,7 +200,7 @@ public class Adapter  extends BaseAdapter {
                     }
                 });
 
-            }
+
         }
 
 
