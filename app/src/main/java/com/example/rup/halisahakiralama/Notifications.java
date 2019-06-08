@@ -50,11 +50,10 @@ public class Notifications extends AppCompatActivity {
 
         context=this;
 
-        listView = (ListView) findViewById(R.id.notifications_listview);
+        listView =findViewById(R.id.notifications_listview);
 
         final Gson gson=new Gson();
         Bundle  b=getIntent().getExtras();
-
         user= gson.fromJson(b.getString("user"),User.class);
         adapter = new Adapter(this);
         getNotificationsFrom();
@@ -113,11 +112,6 @@ public class Notifications extends AppCompatActivity {
 
 
     public  void getNotificationsFrom(){
-
-
-
-
-
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = StaticVariables.ip_address + "notification/getAll";
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,

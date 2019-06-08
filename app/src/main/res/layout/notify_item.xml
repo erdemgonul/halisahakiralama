@@ -67,20 +67,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/next_button"
-            android:backgroundTint="@color/LawnGreen"
-            android:text="Onayla"
-            android:textColor="@android:color/white" />
+            android:backgroundTint="#22B473"
+            android:fontFamily="sans-serif-medium"
+            android:text="isteği gör"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
 
-        <Button
-            android:id="@+id/notify_no_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/next_button"
-            android:backgroundTint="@color/BlueViolet"
-            android:text="REDDET"
-
-            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <LinearLayout

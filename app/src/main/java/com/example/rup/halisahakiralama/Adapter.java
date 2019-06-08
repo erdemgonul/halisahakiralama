@@ -70,7 +70,6 @@ public class Adapter  extends BaseAdapter {
     }
     @Override
     public int getItemViewType(int position) {
-
         return position;
     }
 
@@ -104,9 +103,6 @@ public class Adapter  extends BaseAdapter {
             holder.date = (TextView) convertView.findViewById(R.id.notify_date);
             holder.textView=(TextView) convertView.findViewById(R.id.notify_text);
             holder.btn_ok = (Button) convertView.findViewById(R.id.notify_ok_button);
-            holder.btn_no = (Button) convertView.findViewById(R.id.notify_no_button);
-            holder.approvedText=convertView.findViewById(R.id.approved_text);
-
 
             convertView.setTag(holder);
         }else {
@@ -120,25 +116,15 @@ public class Adapter  extends BaseAdapter {
         if(notifications.get(position).getRead()){
             if(notifications.get(position).getRead()){
                 holder.btn_ok.setVisibility(View.GONE);
-                holder.btn_no.setVisibility(View.GONE);
             }else{
-
                 holder.btn_ok.setVisibility(View.VISIBLE);
-                holder.btn_no.setVisibility(View.VISIBLE);
             }
         }else{
             if(notifications.get(position).getType().equals("PlayerVote") || notifications.get(position).getType().equals("TeamVote")) {
                 holder.btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         ratePlayerOrTeam(position);
-                    }
-                });
-                holder.btn_no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
                     }
                 });
             }
@@ -146,21 +132,9 @@ public class Adapter  extends BaseAdapter {
                 holder.btn_ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        try {
                             requestDetails(position);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                     }
                 });
-                holder.btn_no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-
 
             }
 
@@ -168,33 +142,21 @@ public class Adapter  extends BaseAdapter {
                 if(notifications.get(position).getApproval()){
                     if(notifications.get(position).getRead()){
                         holder.btn_ok.setVisibility(View.GONE);
-                        holder.btn_no.setVisibility(View.GONE);
                     }else{
 
                         holder.btn_ok.setVisibility(View.VISIBLE);
-                        holder.btn_no.setVisibility(View.VISIBLE);
                     }
-
                 }else{
                     holder.btn_ok.setVisibility(View.GONE);
-                    holder.btn_no.setVisibility(View.GONE);
                 }
-
-
-
         }
-
-
-
 
         return convertView;
     }
 
     private class ViewHolder {
-
-        protected Button btn_ok, btn_no;
-        private TextView willinguser, date,textView,approvedText;
-
+        protected Button btn_ok;
+        private TextView willinguser, date,textView;
     }
 
     public  void ratePlayerOrTeam(final int i){
@@ -346,9 +308,7 @@ public class Adapter  extends BaseAdapter {
                 {
                     @Override
                     public void onResponse(String response) {
-
                         System.out.println(response);
-
                         Notifications.goHome();
                     }
                 },
@@ -380,7 +340,6 @@ public class Adapter  extends BaseAdapter {
                 {
                     @Override
                     public void onResponse(String response) {
-
                         goHome();
                     }
                 },
@@ -388,12 +347,11 @@ public class Adapter  extends BaseAdapter {
                 {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
                     }
                 }
         ) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 HashMap<String, String> params = new HashMap<String, String>();
                 String creds = String.format("%s:%s",user.username,user.password);
                 String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
@@ -404,7 +362,7 @@ public class Adapter  extends BaseAdapter {
         queue.add(getRequest);
     }
 
-    public void requestDetails(final int i) throws JSONException {
+    public void requestDetails(final int i) {
 
 
         RequestQueue queue = Volley.newRequestQueue(Notifications.context);
@@ -412,11 +370,8 @@ public class Adapter  extends BaseAdapter {
         JSONObject jsonBody=null;
         if(notifications.get(i).getType().equals("PlayerClaim")){
             url = StaticVariables.ip_address + "player/claim/" +  notifications.get(i).getClaimId();
-
         }else if(notifications.get(i).getType().equals("TeamClaim")){
-
             url = StaticVariables.ip_address + "team/claim/" + notifications.get(i).getClaimId();
-
         }
 
 
@@ -432,17 +387,15 @@ public class Adapter  extends BaseAdapter {
                         requestfrom= dialog.findViewById(R.id.requestfrom);
                         requestdate= dialog.findViewById(R.id.requestdate);
                         requeststadium= dialog.findViewById(R.id.requeststadium);
-
                         acceptRequest=dialog.findViewById(R.id.button2);
                         declineRequest=dialog.findViewById(R.id.button);
 
-                        JSONObject jsonObject= null;
                         Gson g = new Gson();
                         ClaimResponse claimResponse = g.fromJson(response, ClaimResponse.class);
                         ClaimDTO claimDTO= claimResponse.claimDTO;
-                        requestfrom.setText(claimDTO.willing);
-                        requeststadium.setText(claimDTO.stadium);
-
+                        requestfrom.setText("Başvuru Yapan : "+ claimDTO.willing);
+                        requeststadium.setText("Halısaha : " + claimDTO.stadium);
+                        requestdate.setText("Tarih ve Saat : "  + claimDTO.reservationDate +  "  " +claimDTO.beginHour + "-" + claimDTO.endHour);
                         declineRequest.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -454,11 +407,8 @@ public class Adapter  extends BaseAdapter {
                             @Override
                             public void onClick(View v) {
                                 approveRequest(i,Notifications.context,Notifications.user);
-
                             }
                         });
-
-
                         dialog.show();
                     }
                 },
@@ -467,12 +417,11 @@ public class Adapter  extends BaseAdapter {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO Auto-generated method stub
-
                     }
                 }
         ) {
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders(){
                 HashMap<String, String> params = new HashMap<String, String>();
                 String creds = String.format("%s:%s",user.username,user.password);
                 String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
@@ -481,14 +430,5 @@ public class Adapter  extends BaseAdapter {
             }
         };
         queue.add(getRequest);
-
-
-
-
-
-
-
     }
-
-
 }

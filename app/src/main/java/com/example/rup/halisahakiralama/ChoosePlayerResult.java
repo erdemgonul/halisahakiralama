@@ -34,7 +34,7 @@ public class ChoosePlayerResult extends AppCompatActivity {
     Player player;
     String reservationDate,il,ilce,stadium;
     ReservationTime hours;
-    TextView name, address, amount, intervalMinutes, dateText;
+    TextView name, address, positions, playerRate;
     Button approve,arabutton;
     User user;
     EditText editText;
@@ -62,13 +62,12 @@ public class ChoosePlayerResult extends AppCompatActivity {
         address=findViewById(R.id.adres_text);
         address.setText("Adres: " + player.address);
 
-        amount=findViewById(R.id.ucret_text);
-        amount.setText("Pozisyon:  " + player.positions.substring(0, player.positions.length() - 1));
+        positions=findViewById(R.id.ucret_text);
+        positions.setText("Pozisyon:  " + player.positions.substring(0, player.positions.length() - 1).replaceAll(";",",").toLowerCase());
 
-        dateText=findViewById(R.id.date_text);
-        dateText.setText("Puan: " + player.rate);
+        playerRate =findViewById(R.id.date_text);
+        playerRate.setText("Puan: " + player.rate);
         arabutton=findViewById(R.id.oyuncuyuara_button);
-
         arabutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

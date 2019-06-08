@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Base64;
 import android.view.MenuItem;
@@ -39,10 +40,10 @@ public class Profil extends AppCompatActivity {
     Button team,editprofile, back,toplayer,changepassword;
     EditText username,email,teamname,password,playernameEdit;
     LinearLayout teamlayout,playerlayout,maillayout,parolalayout;
+    ConstraintLayout breakerPlayer,breakerTeam;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         setContentView(R.layout.activity_profile);
 
         final Gson gson=new Gson();
@@ -62,30 +63,43 @@ public class Profil extends AppCompatActivity {
         back=findViewById(R.id.tonext123);
         maillayout=findViewById(R.id.profileuserlayout2);
         team=findViewById(R.id.toteampage);
-
+        breakerPlayer=findViewById(R.id.breaker);
+        breakerTeam=findViewById(R.id.constraintLayout2);
 
         if(user.isGoogleSign){
             parolalayout.setVisibility(View.GONE);
             maillayout.setVisibility(View.GONE);
         }
 
+        if(user.role.equals("ROLE_USER")){
 
-        team.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Profil.this, CreateTeam.class);
-                intent.putExtra("user",gson.toJson(user));
-                Profil.this.startActivity(intent);
-            }
-        });
-        toplayer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(Profil.this, ShowPlayer.class);
-                intent.putExtra("user",gson.toJson(user));
-                Profil.this.startActivity(intent);
-            }
-        });
+            team.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(Profil.this, CreateTeam.class);
+                    intent.putExtra("user",gson.toJson(user));
+                    Profil.this.startActivity(intent);
+                }
+            });
+            toplayer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(Profil.this, CreatePlayer.class);
+                    intent.putExtra("user",gson.toJson(user));
+                    Profil.this.startActivity(intent);
+                }
+            });
+
+            getTeam();
+            getPlayer();
+        }else{
+            team.setVisibility(View.GONE);
+            teamlayout.setVisibility(View.GONE);
+            playerlayout.setVisibility(View.GONE);
+            toplayer.setVisibility(View.GONE);
+            breakerTeam.setVisibility(View.GONE);
+            breakerPlayer.setVisibility(View.GONE);
+        }
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,36 +107,21 @@ public class Profil extends AppCompatActivity {
                     Intent intent=new Intent(Profil.this, ChooseJob.class);
                     intent.putExtra("user",gson.toJson(user));
                     Profil.this.startActivity(intent);
-
                 }else{
                     Intent intent=new Intent(Profil.this, ChooseJobOwner.class);
                     intent.putExtra("user",gson.toJson(user));
                     Profil.this.startActivity(intent);
-
                 }
-
             }
         });
-        toplayer.setOnClickListener(new View.OnClickListener() {
-                                      @Override
-                                      public void onClick(View v) {
-                                          Intent intent=new Intent(Profil.this, CreatePlayer.class);
-                                          intent.putExtra("user",gson.toJson(user));
-                                          Profil.this.startActivity(intent);
-                                      }
-            });
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 try {
                     callEditProfile();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Intent intent=new Intent(Profil.this, ChooseJob.class);
-                intent.putExtra("user",gson.toJson(user));
-                Profil.this.startActivity(intent);
             }
         });
         changepassword.setOnClickListener(new View.OnClickListener() {
@@ -137,8 +136,7 @@ public class Profil extends AppCompatActivity {
 
         username.setText("" + user.username);
         email.setText("" + user.email);
-        getTeam();
-        getPlayer();
+
     }
 
     public void getPlayer(){
@@ -257,17 +255,6 @@ public class Profil extends AppCompatActivity {
         queue.add(getRequest);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), ChooseJob.class);
-        final Gson gson=new Gson();
-        Bundle extras = getIntent().getExtras();
-        user= gson.fromJson(extras.getString("user"),User.class);
-        myIntent.putExtra("user",gson.toJson(user));
-        startActivityForResult(myIntent, 0);
-        return true;
-    }
-
     private void callEditProfile() throws JSONException {
 
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -282,6 +269,17 @@ public class Profil extends AppCompatActivity {
         JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
+                Gson gson=new Gson();
+                if(user.role.equals("ROLE_USER")){
+
+                    Intent intent=new Intent(Profil.this, ChooseJob.class);
+                    intent.putExtra("user",gson.toJson(user));
+                    Profil.this.startActivity(intent);
+                }else{
+                    Intent intent=new Intent(Profil.this, ChooseJobOwner.class);
+                    intent.putExtra("user",gson.toJson(user));
+                    Profil.this.startActivity(intent);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -291,16 +289,5 @@ public class Profil extends AppCompatActivity {
         });
 
         queue.add(jsonObject);
-    }
-    private void signOut() {
-
-
-        SharedPreferences myPreferences
-                = PreferenceManager.getDefaultSharedPreferences(Profil.this);
-        myPreferences.edit().remove("user").commit();
-
-
-        Intent intent=new Intent(Profil.this,ChooseAuth.class);
-        Profil.this.startActivity(intent);
     }
 }

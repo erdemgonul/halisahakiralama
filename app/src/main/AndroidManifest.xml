@@ -18,14 +18,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        >
+
         <activity android:name=".CreateStadiumResult"></activity>
         <activity android:name=".CreateStadium" />
         <activity android:name=".ChooseTeam" />
         <activity android:name=".ChooseTeamResult" />
         <activity android:name=".CreateTeamResult" />
         <activity android:name=".ChangePassword" />
-        <activity android:name=".ShowPlayer" />
         <activity android:name=".TeamCreateJoin" />
         <activity android:name=".CreateTeam" />
         <activity android:name=".ShowPlayerResult" />
@@ -50,8 +51,8 @@
         <activity android:name=".SetDate" />
         <activity android:name=".ChooseJob" />
         <activity android:name=".SignIn" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".ForgotPassword" />
+        <activity android:name=".SignUp"   android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".ForgotPassword"  android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".CitySelect" />
         <activity android:name=".ChooseHaliSaha" />
         <activity android:name=".ChoosePlayer" />
@@ -59,7 +60,7 @@
         <activity android:name=".CancelLastPageReservation" />
         <activity android:name=".ChooseJobOwner" />
         <activity android:name=".ShowReservation" />
-        <activity android:name=".Profil" />
+        <activity android:name=".Profil"  android:windowSoftInputMode="adjustPan" />
         <activity android:name=".SuccessLastPageReservation" />
 
         <service
