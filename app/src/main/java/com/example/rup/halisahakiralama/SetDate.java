@@ -243,7 +243,7 @@ public class SetDate extends AppCompatActivity {
 
         else if(option.equals("FindPlayer")) {
             RequestQueue queue = Volley.newRequestQueue(this);
-            String url = StaticVariables.ip_address + "reservation/time/sheet/" + id;
+            String url = StaticVariables.ip_address + "reservation/time/sheet/empty/" + id + "/" + date;
             StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                     new com.android.volley.Response.Listener<String>() {
                         @Override
@@ -340,7 +340,7 @@ public class SetDate extends AppCompatActivity {
             queue.add(getRequest);
         } else if(option.equals("FindTeam")) {
             RequestQueue queue = Volley.newRequestQueue(this);
-            String url = StaticVariables.ip_address + "reservation/time/sheet/" + id;
+            String url = StaticVariables.ip_address + "reservation/time/sheet/empty/" + id +  "/" + date;
             StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                     new com.android.volley.Response.Listener<String>() {
                         @Override
