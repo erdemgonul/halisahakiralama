@@ -180,26 +180,6 @@ public class Adapter  extends BaseAdapter {
                     holder.btn_no.setVisibility(View.GONE);
                 }
 
-                holder.btn_ok.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        approveRequest(position,Notifications.context,Notifications.user);
-                        holder.btn_ok.setVisibility(View.GONE);
-                        holder.btn_no.setVisibility(View.GONE);
-                        holder.approvedText.setVisibility(View.VISIBLE);
-                    }
-                });
-                holder.btn_no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        cancelRequest(position,Notifications.context,Notifications.user);
-                        holder.btn_ok.setVisibility(View.GONE);
-                        holder.btn_no.setVisibility(View.GONE);
-                        holder.approvedText.setVisibility(View.VISIBLE);
-                    }
-                });
 
 
         }
