@@ -160,26 +160,31 @@ public class SetDate extends AppCompatActivity {
                                 list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
                             }
                             hours = list.toArray(new String[0]);
-
+                            final List<Integer> redHours=new ArrayList<>();
                             ArrayAdapter<String> veriAdaptoru = new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])) {
+                                @Override
+                                public int getViewTypeCount() {
+                                    return getCount();
+                                }
+
+                                @Override
+                                public int getItemViewType(int position) {
+                                    return position;
+                                }
                                 @Override
                                 public View getView(int position, View convertView, ViewGroup parent) {
 
                                     listView.setVisibility(View.VISIBLE);
                                     View view = super.getView(position, convertView, parent);
                                     TextView textView = (TextView) view.findViewById(android.R.id.text1);
-                                    if (!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY")) {
-
-                                        Log.d("d", position + "");
-                                        /*YOUR CHOICE OF COLOR*/
+                                    if (!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY") && !redHours.contains(position)) {
+                                        redHours.add(position);
                                         textView.setBackgroundColor(Color.RED);
                                         textView.setClickable(false);
                                         textView.setTextColor(Color.WHITE);
-
                                     }
                                     return view;
                                 }
-
                             };
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
@@ -211,14 +216,10 @@ public class SetDate extends AppCompatActivity {
                                                 SetDate.this.startActivity(intent);
                                             }
                                         });
-
                                     }
                                 }
                             });
-
                             listView.setAdapter(veriAdaptoru);
-
-
                         }
                     },
                     new com.android.volley.Response.ErrorListener() {
@@ -434,19 +435,6 @@ public class SetDate extends AppCompatActivity {
             queue.add(getRequest);
         }
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), ChooseHaliSaha.class);
 
-        final Gson gson=new Gson();
-        Bundle extras = getIntent().getExtras();
-        user= gson.fromJson(extras.getString("user"),User.class);
-        myIntent.putExtra("user",gson.toJson(user));
-        myIntent.putExtra("stadium",gson.toJson(stadium));
-        myIntent.putExtra("stadium_id",stadiumId);
-
-        startActivityForResult(myIntent, 0);
-        return true;
-    }
 
 }
