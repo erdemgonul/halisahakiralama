@@ -220,9 +220,9 @@ public class Profil extends AppCompatActivity {
                                 Team p = g.fromJson(x, Team.class);
                                 if(p != null) {
                                     teamname.setText("" + p.name);
+                                    team.setText("Takımı Değiştir");
                                 }
                                 else {
-                                    team.setText("Takımı Değiştir");
                                     team.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
