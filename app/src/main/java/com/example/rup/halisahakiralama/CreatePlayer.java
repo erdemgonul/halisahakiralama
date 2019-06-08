@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,20 +43,33 @@ public class CreatePlayer extends AppCompatActivity {
 
                 if(!(name.getEditableText()+"").equals("") && !(surname.getEditableText()+"").equals("") &&
                         !(address.getEditableText()+"").equals("") && !(phone.getEditableText()+"").equals("")){
-                    Intent intent = new Intent(CreatePlayer.this, ChooseRolePlayer.class);
-                    System.out.println(name.getText());
-                    intent.putExtra("name",name.getText() + "");
-                    intent.putExtra("surname",surname.getText() + "");
-                    intent.putExtra("phone",phone.getText() + "");
-                    intent.putExtra("address",address.getText() + "");
-                    final Gson gson=new Gson();
-                    intent.putExtra("user",gson.toJson(user));
-                    CreatePlayer.this.startActivity(intent);
+                    if(isValidPhoneNumber(phone.getEditableText() + "")) {
+                        Intent intent = new Intent(CreatePlayer.this, ChooseRolePlayer.class);
+                        System.out.println(name.getText());
+                        intent.putExtra("name", name.getText() + "");
+                        intent.putExtra("surname", surname.getText() + "");
+                        intent.putExtra("phone", phone.getText() + "");
+                        intent.putExtra("address", address.getText() + "");
+                        final Gson gson = new Gson();
+                        intent.putExtra("user", gson.toJson(user));
+                        CreatePlayer.this.startActivity(intent);
+                    }
+                    else
+                        Toast.makeText(CreatePlayer.this, "Lütfen 10 karakterli geçerli bir telefon numarası giriniz. ", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(CreatePlayer.this, "Tüm alanlar doldurulmalıdır.", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+    }
+
+    public static boolean isValidPhoneNumber(String phone) {
+        if (phone.length() == 10)
+        {
+            return Patterns.PHONE.matcher(phone).matches();
+        }
+
+        return false;
     }
 }
