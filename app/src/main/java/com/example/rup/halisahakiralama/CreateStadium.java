@@ -3,6 +3,7 @@ package com.example.rup.halisahakiralama;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,22 +44,34 @@ public class CreateStadium extends AppCompatActivity {
                         (address.getEditableText()+"").equals("") && (price.getEditableText()+"").equals("") ){
                     Toast.makeText(CreateStadium.this, "Boş alanları doldurmalısın.", Toast.LENGTH_SHORT).show();
                 }else{
-
-                    Intent intent = new Intent(CreateStadium.this, CitySelect.class);
-                    intent.putExtra("stadium_name",stadiumname.getEditableText() +"");
-                    intent.putExtra("stadium_phone",stadiumphone.getEditableText()+"");
-                    intent.putExtra("stadium_time",stadiumintervaltime.getEditableText()+"");
-                    intent.putExtra("stadium_price",address.getEditableText()+"");
-                    intent.putExtra("stadium_address",price.getEditableText()+"");
-                    intent.putExtra("option","fromCreateStadium");
-                    intent.putExtra("fromCreateStadium",true);
-                    final Gson gson=new Gson();
-                    intent.putExtra("user",gson.toJson(user));
-                    CreateStadium.this.startActivity(intent);
+                    if(isValidPhoneNumber(stadiumphone.getEditableText() + "")) {
+                        Intent intent = new Intent(CreateStadium.this, CitySelect.class);
+                        intent.putExtra("stadium_name", stadiumname.getEditableText() + "");
+                        intent.putExtra("stadium_phone", stadiumphone.getEditableText() + "");
+                        intent.putExtra("stadium_time", stadiumintervaltime.getEditableText() + "");
+                        intent.putExtra("stadium_address", address.getEditableText() + "");
+                        intent.putExtra("stadium_price", price.getEditableText() + "");
+                        intent.putExtra("option", "fromCreateStadium");
+                        intent.putExtra("fromCreateStadium", true);
+                        final Gson gson = new Gson();
+                        intent.putExtra("user", gson.toJson(user));
+                        CreateStadium.this.startActivity(intent);
+                    }
+                    else
+                        Toast.makeText(CreateStadium.this, "Lütfen 10 karakterli geçerli bir telefon numarası giriniz. ", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+    }
+
+    public static boolean isValidPhoneNumber(String phone) {
+        if (phone.length() == 10)
+        {
+            return Patterns.PHONE.matcher(phone).matches();
+        }
+
+        return false;
     }
 
 
