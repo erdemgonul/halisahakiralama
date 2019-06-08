@@ -48,6 +48,8 @@
         android:id="@+id/cityhalisaharesult"
         android:layout_width="339dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-light"
         android:text="deneme4"
@@ -55,7 +57,8 @@
         android:textColor="@android:color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/districthalisaharesult"
-        tools:layout_editor_absoluteX="36dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/addresshalisaharesult"
