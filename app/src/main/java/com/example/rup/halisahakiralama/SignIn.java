@@ -85,14 +85,12 @@ public class SignIn extends AppCompatActivity {
                                 try {
                                     signUser(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString(), token);
                                 } catch (JSONException e) {
-                                    System.out.println("FUCK2");
-                                    Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignIn.this, "Giriş Yapılamadı ", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
             }
         });
-
         signinbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,12 +112,6 @@ public class SignIn extends AppCompatActivity {
         });
 
     }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), ChooseAuth.class);
-        startActivityForResult(myIntent, 0);
-        return true;
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -134,8 +126,6 @@ public class SignIn extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             final GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            System.out.println(account.getDisplayName());
             FirebaseInstanceId.getInstance().getInstanceId()
                     .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                         @Override
@@ -149,23 +139,13 @@ public class SignIn extends AppCompatActivity {
 
                             try {
                                 newUser(account.getDisplayName(),account.getEmail(), account.getEmail(), token);
-                                System.out.println("BU SEFER BURDAYIM");
-                                //BURDA HTTP POST ATICAN JAVAYA
-                                // Signed in successfully, show authenticated UI.
-
-
                             } catch (JSONException e) {
-
                             }
-
                         }
                     });
-
-
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            System.out.println("mustafaaaa " + e.getMessage());
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
         }
     }
@@ -173,7 +153,6 @@ public class SignIn extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         final GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account!=null){
             FirebaseInstanceId.getInstance().getInstanceId()
@@ -190,7 +169,6 @@ public class SignIn extends AppCompatActivity {
                             try {
                                 signUser(account.getDisplayName(),account.getEmail(), token);
                             } catch (JSONException e) {
-                                Toast.makeText(SignIn.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

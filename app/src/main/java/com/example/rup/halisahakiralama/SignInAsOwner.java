@@ -1,7 +1,9 @@
 package com.example.rup.halisahakiralama;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -45,32 +47,30 @@ public class SignInAsOwner extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
-
         setContentView(R.layout.activity_sign_in_as_owner);
+
+
+
         com.google.android.gms.common.SignInButton  b=findViewById(R.id.sign_in_button_owner);
         setGoogleButtonText(b,"Google İle Oturum Aç");
 
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         mailtext=findViewById(R.id.signinmailowner_input);
         passwordtext=findViewById(R.id.signinpasswordowner_input);
 
         signinbutton=findViewById(R.id.sign_in_button_owner);
         forgotbutton=findViewById(R.id.signinforgotpassword_button_owner);
-
-        changeactivity=findViewById(R.id.hey123);
-
-        System.out.println("SELAM");
         forgotbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SignInAsOwner.this.startActivity(new Intent(SignInAsOwner.this,ForgotPassword.class));
             }
         });
-
 
         signasbackend=findViewById(R.id.buttonowner);
         signasbackend.setOnClickListener(new View.OnClickListener() {
@@ -90,10 +90,8 @@ public class SignInAsOwner extends AppCompatActivity {
                                 try {
                                     signUserAsOwner(mailtext.getEditableText().toString(),passwordtext.getEditableText().toString(), token);
                                 } catch (JSONException e) {
-                                    System.out.println("FUCK2");
-                                    Toast.makeText(SignInAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(SignInAsOwner.this, "Giriş Yapılamadı ", Toast.LENGTH_SHORT).show();
                                 }
-                                Toast.makeText(SignInAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
@@ -105,24 +103,6 @@ public class SignInAsOwner extends AppCompatActivity {
                 startActivityForResult(signInIntent, RC_SIGN_IN);
             }
         });
-
-        changeactivity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SignInAsOwner.this.startActivity(new Intent(SignInAsOwner.this,SignIn.class));
-            }
-        });
-
-
-
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-
-
     }
 
     @Override
@@ -150,28 +130,16 @@ public class SignInAsOwner extends AppCompatActivity {
                             String token = task.getResult().getToken();
 
                             try {
-                                signUserAsOwner(account.getDisplayName(),account.getEmail(), token);
+                                newUser(account.getDisplayName(),account.getEmail(), token);
                             } catch (JSONException e) {
-                                System.out.println("FUCK2");
-                                Toast.makeText(SignInAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(SignInAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
                         }
                     });
-            Toast.makeText(this, "successful", Toast.LENGTH_SHORT).show();
-            SignInAsOwner.this.startActivity(new Intent(SignInAsOwner.this,ChooseJob.class));
-
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
         }
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        Intent myIntent = new Intent(getApplicationContext(), ChooseAuth.class);
-        startActivityForResult(myIntent, 0);
-        return true;
     }
     @Override
     protected void onStart() {
@@ -193,10 +161,7 @@ public class SignInAsOwner extends AppCompatActivity {
                             try {
                                 signUserAsOwner(account.getDisplayName(),account.getEmail(), token);
                             } catch (JSONException e) {
-                                System.out.println("FUCK2");
-                                Toast.makeText(SignInAsOwner.this, "FUCKKKK2 ", Toast.LENGTH_SHORT).show();
                             }
-                            Toast.makeText(SignInAsOwner.this, "helalll", Toast.LENGTH_SHORT).show();
                         }
                     });
         }
@@ -232,67 +197,25 @@ public class SignInAsOwner extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 User user=new User();
                 try {
-                    System.out.println(response);
-                    JSONObject object=response.getJSONObject("userDTO");
-                    user.username=object.getString("username");
-                    user.password=object.getString("password");
-                    user.role=object.getString("role");
-                    user.email=object.getString("email");
-                    user.id=object.getString("id");
-
-                    System.out.println("---------- DENEME ");
-                    Toast.makeText(SignInAsOwner.this, "HELALL", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent(SignInAsOwner.this,ChooseJobOwner.class);
-
                     Gson gson=new Gson();
+                    JSONObject object=response.getJSONObject("userDTO");
+                    user= gson.fromJson(String.valueOf(object),User.class);
+
+
+                    SharedPreferences myPreferences
+                            = PreferenceManager.getDefaultSharedPreferences(SignInAsOwner.this);
+                    SharedPreferences.Editor myEditor = myPreferences.edit();
+
+                    myEditor.putString("user",gson.toJson(user) );
+                    myEditor.commit();
+
+                    Intent intent=new Intent(SignInAsOwner.this,ChooseJobOwner.class);
                     intent.putExtra("user",gson.toJson(user));
                     SignInAsOwner.this.startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                System.out.println("FUCK");
-                Toast.makeText(SignInAsOwner.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        queue.add(jsonObject);
-    }
-    private void newUser(final String username, final String password, final String email, final String token) throws JSONException {
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = StaticVariables.ip_address + "user";
-        JSONObject jsonBody = new JSONObject();
-
-        jsonBody.put("username", username);
-        jsonBody.put("password", password);
-        jsonBody.put("email", email);
-        jsonBody.put("role", "ROLE_STD_OWNER");
-        jsonBody.put("fcmPushToken", token);
-
-        JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                User user=new User();
-                try {
-                    JSONObject object=response.getJSONObject("userDTO");
-                    user.username=object.getString("username");
-                    user.password=object.getString("password");
-                    user.role=object.getString("role");
-                    user.id=object.getString("id");
-                    user.email=object.getString("email");
-                } catch (JSONException e) {
-                    try {
-                        signUserAsOwner(username,password, token);
-                    } catch (JSONException e1) {
-                        mailtext.setError("Kullanıcı Adı veya Şifre Yanlış");
-                        passwordtext.setError("Kullanıcı Adı veya Şifre Yanlış");
-                        Toast.makeText(SignInAsOwner.this, "Giriş yapılamadı", Toast.LENGTH_SHORT).show();
-                    }
+                    mailtext.setError("Kullanıcı Adı veya Şifre Yanlış");
+                    passwordtext.setError("Kullanıcı Adı veya Şifre Yanlış");
                 }
             }
         }, new Response.ErrorListener() {
@@ -302,6 +225,35 @@ public class SignInAsOwner extends AppCompatActivity {
                 passwordtext.setError("Kullanıcı Adı veya Şifre Yanlış");
                 Toast.makeText(SignInAsOwner.this, "Giriş yapılamadı", Toast.LENGTH_SHORT).show();
 
+            }
+        });
+
+        queue.add(jsonObject);
+    }
+    private void newUser(final String username,final String email, final String token) throws JSONException {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = StaticVariables.ip_address + "user";
+        JSONObject jsonBody = new JSONObject();
+
+        jsonBody.put("username", username);
+        jsonBody.put("password", username);
+        jsonBody.put("email", email);
+        jsonBody.put("role", "ROLE_STD_OWNER");
+        jsonBody.put("fcmPushToken", token);
+        jsonBody.put("isGoogleSign", true);
+
+        JsonObjectRequest jsonObject = new JsonObjectRequest(Request.Method.POST, url, jsonBody, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                User user=new User();
+                try {
+                    signUserAsOwner(username,username,token);
+                } catch (JSONException e) {
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
             }
         });
 
