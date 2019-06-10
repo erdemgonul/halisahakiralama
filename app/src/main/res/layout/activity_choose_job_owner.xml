@@ -34,20 +34,42 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/signoutbutton">
 
-        <Button
-            android:id="@+id/rezervationbutton"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_margin="0dp"
-            android:layout_weight="1"
-            android:backgroundTint="#ED553B"
-            android:drawableTop="@drawable/button_reservations"
-            android:drawableTint="@color/white"
-            android:paddingTop="20dp"
-            android:text="Rezervasyonlarım"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="18sp" />
+            android:layout_height="wrap_content"
+            tools:layout_editor_absoluteX="17dp"
+            tools:layout_editor_absoluteY="24dp">
+
+            <Button
+                android:id="@+id/rezervationbutton2"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="#ED553B"
+                android:drawableTop="@drawable/button_reservations"
+                android:drawableTint="@color/white"
+                android:paddingTop="20dp"
+                android:text="Rezervasyonlarım"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/rezervationbutton"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="0dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/DarkKhaki"
+                android:drawableTop="@drawable/button_reservations"
+                android:drawableTint="@color/white"
+                android:paddingTop="20dp"
+                android:text="İsteklerim"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/addhalisaha"

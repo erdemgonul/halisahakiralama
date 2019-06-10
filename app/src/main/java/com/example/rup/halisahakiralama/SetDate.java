@@ -445,7 +445,87 @@ public class SetDate extends AppCompatActivity {
                 }
             };
             queue.add(getRequest);
+        }else if(option.equals("fromShowReservations")) {
+
+            toNextFrag.setText("Ana Sayfaya Dön");
+            toNextFrag.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#22B473")));
+
+            toNextFrag.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Gson gson = new Gson();
+                    Intent intent = new Intent(SetDate.this, ChooseJobOwner.class);
+                    intent.putExtra("user", gson.toJson(user));
+                    SetDate.this.startActivity(intent);
+                }
+            });
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = StaticVariables.ip_address + "reservation/time/sheet/empty/" + id +  "/" + date;
+            StringRequest getRequest = new StringRequest(Request.Method.GET, url,
+                    new com.android.volley.Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            // response
+                            Log.d("d", response);
+                            Gson g = new Gson();
+
+                            final TimeSlotResponseList p = g.fromJson(response, TimeSlotResponseList.class);
+
+                            List<String> list = new ArrayList<>();
+                            for (int i = 0; i < p.timeSlotDTOs.size(); i++) {
+                                list.add(p.timeSlotDTOs.get(i).beginHour + "  ---  " + p.timeSlotDTOs.get(i).endHour);
+                            }
+                            hours = list.toArray(new String[0]);
+                            final List<Integer> redHours=new ArrayList<>();
+                            ArrayAdapter<String> veriAdaptoru = new ArrayAdapter<String>(SetDate.this, android.R.layout.simple_list_item_1, android.R.id.text1, list.toArray(new String[0])) {
+                                @Override
+                                public int getViewTypeCount() {
+                                    return getCount();
+                                }
+
+                                @Override
+                                public int getItemViewType(int position) {
+                                    return position;
+                                }
+                                @Override
+                                public View getView(int position, View convertView, ViewGroup parent) {
+
+                                    listView.setVisibility(View.VISIBLE);
+                                    View view = super.getView(position, convertView, parent);
+                                    TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                                    if (!p.timeSlotDTOs.get(position).reservationStatus.equals("EMPTY") && !redHours.contains(position)) {
+                                        redHours.add(position);
+                                        textView.setBackgroundColor(Color.RED);
+                                        textView.setClickable(false);
+                                        textView.setTextColor(Color.WHITE);
+                                    }
+                                    return view;
+                                }
+
+                            };
+                            listView.setAdapter(veriAdaptoru);
+                        }
+                    },
+                    new com.android.volley.Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // TODO Auto-generated method stub
+
+                        }
+                    }
+            ) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> params = new HashMap<String, String>();
+                    String creds = String.format("%s:%s", user.username, user.password);
+                    String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
+                    params.put("Authorization", auth);
+                    return params;
+                }
+            };
+            queue.add(getRequest);
         }
+
     }
 
 

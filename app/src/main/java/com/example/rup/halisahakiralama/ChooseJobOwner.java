@@ -20,7 +20,7 @@ public class ChooseJobOwner extends Activity {
     TextView  userText;
 
     GoogleSignInClient mGoogleSignInClient;
-    Button reservationButton,addhalisaha,signOutButton,profileButton;
+    Button reservationButton,addhalisaha,signOutButton,profileButton,reservationButton2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +34,7 @@ public class ChooseJobOwner extends Activity {
         reservationButton=findViewById(R.id.rezervationbutton);
         addhalisaha=findViewById(R.id.addhalisaha);
         profileButton=findViewById(R.id.ownerprofile);
-
+        reservationButton2=findViewById(R.id.rezervationbutton2);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +49,15 @@ public class ChooseJobOwner extends Activity {
             public void onClick(View view) {
 
                 Intent intent=new Intent(ChooseJobOwner.this, ApproveReservation.class);
+                intent.putExtra("user",gson.toJson(user));
+                ChooseJobOwner.this.startActivity(intent);
+            }
+        });
+        reservationButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent=new Intent(ChooseJobOwner.this, Reservations.class);
                 intent.putExtra("user",gson.toJson(user));
                 ChooseJobOwner.this.startActivity(intent);
             }
