@@ -460,7 +460,7 @@ public class SetDate extends AppCompatActivity {
                 }
             });
             RequestQueue queue = Volley.newRequestQueue(this);
-            String url = StaticVariables.ip_address + "reservation/time/sheet/empty/" + id +  "/" + date;
+            String url = StaticVariables.ip_address + "reservation/time/sheet/" + id + "/" + date;
             StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                     new com.android.volley.Response.Listener<String>() {
                         @Override

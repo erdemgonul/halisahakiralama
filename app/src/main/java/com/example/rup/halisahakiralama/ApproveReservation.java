@@ -99,7 +99,6 @@ public class ApproveReservation extends AppCompatActivity {
                                         intent.putExtra("reservation",gson.toJson(p.reservations.get(i)));
                                         gson=new Gson();
                                         intent.putExtra("user",gson.toJson(user));
-                                        Toast.makeText(ApproveReservation.this, p.reservations.get(i).id+"", Toast.LENGTH_SHORT).show();
                                         ApproveReservation.this.startActivity(intent);
                                     }
                                 });
