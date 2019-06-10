@@ -41,10 +41,14 @@ public class ShowReservation extends AppCompatActivity {
         stad.setText("Halısaha Adı: " + reservation.stadium);
 
         userName=findViewById(R.id.halisahasahibi_text);
-        userName.setText("Rezervasyon Yapan: " +user.username);
+        userName.setText("Rezervasyon Yapan: " +reservation.user);
 
         yorum=findViewById(R.id.yorum_text);
-        yorum.setText("Yorum: " + reservation.comment);
+        String yorumStr = "";
+        if(reservation.comment != null)
+            yorumStr = reservation.comment;
+
+        yorum.setText("Yorum: " + yorumStr);
 
         approve=findViewById(R.id.button3);
         cancel=findViewById(R.id.button4);

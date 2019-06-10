@@ -14,4 +14,5 @@ public class Stadium {
     @Key public String address;
     @Key public Integer intervalMinutes;
     @Key public BigDecimal amount;
+    @Key public String phoneNumber;
 }

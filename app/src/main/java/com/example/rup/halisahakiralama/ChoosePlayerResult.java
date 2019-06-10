@@ -167,13 +167,13 @@ public class ChoosePlayerResult extends AppCompatActivity {
                 }
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + "05388508090"));
+                callIntent.setData(Uri.parse("tel:" + "+90" + player.phoneNumber));
                 startActivity(callIntent);
 
             }
             else {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + "05388508090"));
+                callIntent.setData(Uri.parse("tel:" + "+90" + player.phoneNumber));
                 startActivity(callIntent);
             }
         }

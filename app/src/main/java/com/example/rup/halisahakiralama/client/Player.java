@@ -11,4 +11,5 @@ public class Player {
     @Key public String positions;
     @Key public String address;
     @Key public BigDecimal rate;
+    @Key public String phoneNumber;
 }
