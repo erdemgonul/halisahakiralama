@@ -112,9 +112,7 @@ public class ShowPlayerResult extends AppCompatActivity {
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
-                        System.out.println("FUCK");
-                        Toast.makeText(ShowPlayerResult.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ShowPlayerResult.this, "HATA ", Toast.LENGTH_SHORT).show();
 
                     }
                 })

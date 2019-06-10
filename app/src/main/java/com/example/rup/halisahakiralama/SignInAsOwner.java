@@ -138,7 +138,7 @@ public class SignInAsOwner extends AppCompatActivity {
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Toast.makeText(this, "fail", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "HATA", Toast.LENGTH_SHORT).show();
         }
     }
     @Override

@@ -143,8 +143,7 @@ public class ChoosePlayerResult extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                System.out.println("FUCK");
-                Toast.makeText(ChoosePlayerResult.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChoosePlayerResult.this, "HATA ", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -174,7 +173,7 @@ public class ChoosePlayerResult extends AppCompatActivity {
             }
             else {
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse("tel:" + "05366594646"));
+                callIntent.setData(Uri.parse("tel:" + "05388508090"));
                 startActivity(callIntent);
             }
         }

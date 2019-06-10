@@ -24,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.codemybrainsout.ratingdialog.RatingDialog;
 import com.example.rup.halisahakiralama.client.NotifyNumber;
+import com.example.rup.halisahakiralama.client.Team;
 import com.example.rup.halisahakiralama.client.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,6 +32,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -105,10 +109,11 @@ public class ChooseJob extends Activity {
         findTeamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(ChooseJob.this, IlceSelect.class);
-                intent.putExtra("user",gson.toJson(user));
-                intent.putExtra("option","FindTeam");
+                Intent intent = new Intent(ChooseJob.this, IlceSelect.class);
+                intent.putExtra("user", gson.toJson(user));
+                intent.putExtra("option", "FindTeam");
                 ChooseJob.this.startActivity(intent);
+
             }
         });
 

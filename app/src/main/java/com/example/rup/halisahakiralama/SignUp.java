@@ -85,7 +85,6 @@ public class SignUp extends AppCompatActivity {
                                         userNameText.setError(null);
                                         mailtext.setError(null);
                                         checkForMailDuplicate(mailtext.getEditableText().toString()+"");
-                                        Toast.makeText(SignUp.this, "helalll", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     }
@@ -97,7 +96,6 @@ public class SignUp extends AppCompatActivity {
                 else
                 {
                     termbox.setTextColor(Color.RED);
-                    System.out.println("BAS BAKAYIM !!!!!!!!!!!!!!!!!!!!");
                 }
 
             }
@@ -142,8 +140,7 @@ public class SignUp extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    System.out.println("FUCK");
-                    Toast.makeText(SignUp.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUp.this, "HATA ", Toast.LENGTH_SHORT).show();
 
                 }
             });

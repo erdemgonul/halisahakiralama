@@ -80,9 +80,7 @@ public class ApprovedHaliSaha extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
-                System.out.println("FUCK");
-                Toast.makeText(ApprovedHaliSaha.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ApprovedHaliSaha.this, "HATA ", Toast.LENGTH_SHORT).show();
 
             }
         })

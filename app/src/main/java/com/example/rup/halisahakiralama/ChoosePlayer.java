@@ -119,7 +119,6 @@ public class ChoosePlayer extends AppCompatActivity {
                 {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(ChoosePlayer.this,"hey", Toast.LENGTH_LONG).show();
                         // response
                         Log.d("d",response);
                         Gson g = new Gson();

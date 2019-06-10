@@ -50,10 +50,12 @@ public class ChangePassword extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    if((oldpassword.getText()+"").equals(user.password) && (newpassword.getText()+"").equals(approvenewpassword.getText()+""))
-                        callChangePassword();
+                    if(!(oldpassword.getText()+"").equals(user.password))
+                        Toast.makeText(ChangePassword.this, "Eski Şifre Uyuşmamaktadır ", Toast.LENGTH_SHORT).show();
+                    else if(!(newpassword.getText()+"").equals(approvenewpassword.getText()+""))
+                        Toast.makeText(ChangePassword.this, "Yeni Şifreler Uyuşmamaktadır ", Toast.LENGTH_SHORT).show();
                     else{
-
+                        callChangePassword();
                     }
 
                 } catch (JSONException e) {
@@ -83,8 +85,7 @@ public class ChangePassword extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                System.out.println("FUCK");
-                Toast.makeText(ChangePassword.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChangePassword.this, "HATA ", Toast.LENGTH_SHORT).show();
 
             }
         });

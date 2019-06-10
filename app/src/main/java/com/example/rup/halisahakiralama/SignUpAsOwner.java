@@ -154,8 +154,7 @@ public class SignUpAsOwner extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                System.out.println("FUCK");
-                Toast.makeText(SignUpAsOwner.this, "FUCKKKK ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SignUpAsOwner.this, "HATA ", Toast.LENGTH_SHORT).show();
 
             }
         });
